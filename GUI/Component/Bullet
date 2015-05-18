@@ -1,0 +1,32 @@
+package Component;
+
+import java.awt.geom.Point2D;
+
+public abstract class Bullet extends GameObject
+{
+final int myDamage;
+int mySpeed;
+int myDirection;
+Point2D.Double myLoc;
+Player myPlayer;
+  public int getDirection()
+  {
+    return myDirection;
+  }
+  
+  public Point2D.Double getLocation()
+  {
+    return myLoc;
+  }
+  
+  public int getSpeed()
+  {
+    return mySpeed;
+  }
+  
+  public Player getPlayer()
+  {
+    return myPlayer;
+  }
+
+}
