@@ -9,6 +9,11 @@ protected double mySpeed;
 protected Player myPlayer;
 protected Long startTime;
 
+  public class Bullet(Player player)
+  {
+    myPlayer = player;
+    startTime = System.currentTimeMillis();
+  }
   public int getSpeed()
   {
     return mySpeed;
