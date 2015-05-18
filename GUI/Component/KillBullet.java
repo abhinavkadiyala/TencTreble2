@@ -7,7 +7,6 @@ public KillBullet(Player player)
 {
   myDamage = 1;
   mySpeed = 1; //change value as needed
-  myPlayer = player;
 }
 
 }
