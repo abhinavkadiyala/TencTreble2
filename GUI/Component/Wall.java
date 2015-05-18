@@ -1,5 +1,7 @@
 package Component;
 
+import java.awt.geom.Point2D;
+
 public class Wall extends GameObject{
   int myDirection;
   Point2D.Double myLoc;
