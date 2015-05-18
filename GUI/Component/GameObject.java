@@ -30,10 +30,8 @@ public class GameObject {
 		map = aMap;
 	}
 	
-	public void move()
-	{
-		//needs implementation
-	}
+	public void act()
+	{}
 	public abstract void update();
 	
 	
