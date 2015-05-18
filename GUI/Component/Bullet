@@ -4,9 +4,9 @@ import java.awt.geom.Point2D;
 
 public abstract class Bullet extends GameObject
 {
-final int myDamage;
-int mySpeed;
-Player myPlayer;
+protected final int myDamage;
+protected int mySpeed;
+protected Player myPlayer;
 
   public int getSpeed()
   {
