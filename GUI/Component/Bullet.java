@@ -15,7 +15,7 @@ protected final long LIFETIME = 10000;
     myPlayer = player;
     startTime = System.currentTimeMillis();
   }
-  public int getSpeed()
+  public double getSpeed()
   {
     return mySpeed;
   }
@@ -39,6 +39,9 @@ protected final long LIFETIME = 10000;
     if(this.time() >= LIFETIME)
     {
       this.destroy();
+    }else
+    {
+      this.move();
     }
   }
   
