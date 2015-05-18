@@ -29,6 +29,11 @@ public class GameObject {
 		myDirection = dir;
 		map = aMap;
 	}
+	
+	public void move()
+	{
+		//needs implementation
+	}
 	public abstract void update();
 	
 	
