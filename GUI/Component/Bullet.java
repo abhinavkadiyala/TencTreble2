@@ -9,6 +9,7 @@ protected double mySpeed;
 protected Player myPlayer;
 protected Long startTime;
 protected final long LIFETIME = 10000;
+protected boolean expire = false;
 
   public class Bullet(Player player)
   {
@@ -26,7 +27,7 @@ protected final long LIFETIME = 10000;
   }
   
   public boolean expired (){
-    return (System.currentTimeMillis() - startTime >= LIFETIME);
+    return expire;
   }
   
   public long time()
@@ -39,9 +40,10 @@ protected final long LIFETIME = 10000;
     if(this.time() >= LIFETIME)
     {
       this.destroy();
+      expire = true;
     }else
     {
-      this.move();
+      //move
     }
   }
   
