@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 
 public class GameObject {
-	protected Double myLoc;
+	protected Point2D.Double myLoc;
 	protected double myDirection;
 	protected Maze maze;
 	protected Image image;
@@ -28,6 +28,28 @@ public class GameObject {
 		myLoc = loc;
 		myDirection = dir;
 		map = aMap;
+	}
+	public void putSelfInGrid(Maze mz, Point2D.Double loc)
+	{
+		if(grid != null)
+			throw new IllegalStateException("This actor is already contained in a grid.");
+		
+		GameObject gameObject = mz.get(loc);
+		if(gameObject != null)
+			gameObject.removeSelfFromGrid();
+		mz.put(loc, this);
+		maze = mz;
+		myLoc = loc;
+	}
+	public void removeSelfFromGrid()
+	{
+		if(maze == null)
+			throw new IllegalStateException("This actor is not contained in a grid.");
+		if(maze.get(location) != this)
+			throw new IllegalStateException("The grid conatins a different actor at location" + location + ".");
+		maze.remove(location);
+		maze = null;
+		myLoc = null;
 	}
 	public abstract void update();
 	
