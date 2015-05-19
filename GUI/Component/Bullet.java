@@ -35,7 +35,7 @@ protected boolean expire = false;
     return System.currentTimeMillis - startTime;
   }
   
-  public void act()
+  public void update()
   {
     if(this.time() >= LIFETIME)
     {
