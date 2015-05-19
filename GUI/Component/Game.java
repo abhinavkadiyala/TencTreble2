@@ -18,4 +18,10 @@ public class Game implements KeyListener
         for (GameObject go : obj)
             go.update();
     }
+    public void add (GameObject obj){
+        players.add(obj);
+    }
+    public void remove (GameObject obj){
+        players.remove(obj);
+    }
 }
