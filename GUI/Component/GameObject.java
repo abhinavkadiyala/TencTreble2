@@ -23,11 +23,11 @@ public class GameObject {
 		image = null;
 	}
 	
-	public GameObject(Point2D.Double loc, int dir, Maze aMap)
+	public GameObject(Point2D.Double loc, int dir, Map aMap)
 	{
 		myLoc = loc;
 		myDirection = dir;
-		maze = aMap;image.get
+		map = aMap;
 	}
 	public void putSelfInGrid(Maze mz, Point2D.Double loc)
 	{
@@ -37,7 +37,7 @@ public class GameObject {
 		GameObject gameObject = mz.get(loc);
 		if(gameObject != null)
 			gameObject.removeSelfFromGrid();
-		mz.put(loc, this);
+		mz.put(this);
 		maze = mz;
 		myLoc = loc;
 	}
@@ -47,24 +47,11 @@ public class GameObject {
 			throw new IllegalStateException("This actor is not contained in a grid.");
 		if(maze.get(location) != this)
 			throw new IllegalStateException("The grid conatins a different actor at location" + location + ".");
-		maze.remove(location);
+		maze.remove(this);
 		maze = null;
 		myLoc = null;
 	}
 	public abstract void update();
 	
-	public Point2D.Double getLocation()
-	{
-		return myLoc;
-	}
 	
-	public int getDirection()
-	{
-		return myDirection;
-	}
-	
-	public void update()
-	{
-		
-	}
 }
