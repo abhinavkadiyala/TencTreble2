@@ -23,11 +23,11 @@ public class GameObject {
 		image = null;
 	}
 	
-	public GameObject(Point2D.Double loc, int dir, Map aMap)
+	public GameObject(Point2D.Double loc, int dir, Maze aMap)
 	{
 		myLoc = loc;
 		myDirection = dir;
-		map = aMap;
+		maze = aMap;image.get
 	}
 	public void putSelfInGrid(Maze mz, Point2D.Double loc)
 	{
@@ -53,5 +53,18 @@ public class GameObject {
 	}
 	public abstract void update();
 	
+	public Point2D.Double getLocation()
+	{
+		return myLoc;
+	}
 	
+	public int getDirection()
+	{
+		return myDirection;
+	}
+	
+	public void update()
+	{
+		
+	}
 }
