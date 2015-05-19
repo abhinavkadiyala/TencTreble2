@@ -29,9 +29,6 @@ public class GameObject {
 		myDirection = dir;
 		map = aMap;
 	}
-	
-	public void act()
-	{}
 	public abstract void update();
 	
 	
