@@ -1,7 +1,7 @@
-Public class Maze{
+Public class Map{
   protected Wall [] walls;
   
-  public Maze (){
+  public Map (){
     walls = new Wall[];
   }
   
