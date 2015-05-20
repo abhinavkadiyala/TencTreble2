@@ -29,16 +29,16 @@ public class GameObject {
 		myDirection = dir;
 		map = aMap;
 	}
-	public void putSelfInGrid(Maze mz, Point2D.Double loc)
+	public void putSelfInGrid(Map mp, Point2D.Double loc)
 	{
 		if(grid != null)
 			throw new IllegalStateException("This actor is already contained in a grid.");
 		
-		GameObject gameObject = mz.get(loc);
+		GameObject gameObject = mp.get(loc);
 		if(gameObject != null)
 			gameObject.removeSelfFromGrid();
-		mz.put(this);
-		map = mz;
+		mp.put(this);
+		map = mp;
 		myLoc = loc;
 	}
 	public void removeSelfFromGrid()
