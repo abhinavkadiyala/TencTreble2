@@ -12,7 +12,7 @@ import javax.swing.*;
 public class GameObject {
 	protected Point2D.Double myLoc;
 	protected double myDirection;
-	protected Maze maze;
+	protected Map map;
 	protected Image image;
 	
 	public GameObject()
@@ -38,17 +38,17 @@ public class GameObject {
 		if(gameObject != null)
 			gameObject.removeSelfFromGrid();
 		mz.put(this);
-		maze = mz;
+		map = mz;
 		myLoc = loc;
 	}
 	public void removeSelfFromGrid()
 	{
-		if(maze == null)
+		if(map == null)
 			throw new IllegalStateException("This actor is not contained in a grid.");
-		if(maze.get(location) != this)
+		if(map.get(location) != this)
 			throw new IllegalStateException("The grid conatins a different actor at location" + location + ".");
-		maze.remove(this);
-		maze = null;
+		map.remove(this);
+		map = null;
 		myLoc = null;
 	}
 	public void update()
