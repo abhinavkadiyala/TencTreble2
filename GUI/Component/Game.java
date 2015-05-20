@@ -7,6 +7,12 @@ public class Game implements KeyListener
     int level;      //what is this?
     Map map;
     
+    public Game (Player player1, Player player2, Map mp){
+        players.add(player1);
+        players.add(player2);
+        map = mp;
+    }
+    
     public void keyPressed(KeyEvent key) {
         for (Player p : players) p.keyPressed(key.getKeyCode());
     }
