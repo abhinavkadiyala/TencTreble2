@@ -28,6 +28,17 @@ public class Tank extends GameObject
     public void turn(double amt) {
         turn += amt;
     }
+    public void conflict (GameObject other){
+        if (other instanceof Bullet){
+            other.removeSelfFromGrid();
+            if (other instanceof KillBullet){
+                this.removseSelfFromGrid();
+            }
+        }
+        else if (other instanceof Wall){
+            // FILL THIS IN
+        }
+    }
     
     public Tank(Point2D.Double l, Maze m) {
         super(l, 0, m);
