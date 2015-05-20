@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 
 import javax.swing.*;
 
+
 public class GameObject {
 	protected Point2D.Double myLoc;
 	protected double myDirection;
@@ -29,9 +30,17 @@ public class GameObject {
 		myDirection = dir;
 		map = aMap;
 	}
+	public Map getMap()
+	{
+		return map;
+	}
+	public Point2D.Double getLocation()
+	{
+		return myLoc;
+	}
 	public void putSelfInGrid(Map mp, Point2D.Double loc)
 	{
-		if(grid != null)
+		if(map != null)
 			throw new IllegalStateException("This actor is already contained in a grid.");
 		
 		GameObject gameObject = mp.get(loc);
@@ -50,6 +59,28 @@ public class GameObject {
 		map.remove(this);
 		map = null;
 		myLoc = null;
+	}
+	public void moveTo(Point2D.Double newLocation)
+	{
+		if(map == null)
+			throw new IllegalStateException("This actor is not in a grid.");
+		if(map.get(location) != this)
+			throw new IllegalStateException("The grid contains a diefferent actor at location " + myLoc + ".");
+		if(!map.isValid(newLocation))
+			throw new IllegalArgumentexception("Location " + newLocation + " is not valid.");
+		
+		if (newLocation.equals(myLoc))
+			return;
+		map.remove(location);
+		GameObject other = map.get(newLocation);
+		if(other != null)
+			this.conflict(other);
+		myLoc = newLocation;
+		map.put(myLoc, this);
+	}
+	public void conflict(GameObject other)
+	{
+		
 	}
 	public void update()
 	{
