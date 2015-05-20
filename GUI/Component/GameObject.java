@@ -38,6 +38,14 @@ public class GameObject {
 	{
 		return myLoc;
 	}
+	public double getDirection()
+	{
+		return myDirection;
+	}
+	public void setDirection(double newDirection)
+	{
+		myDirection = newDirection
+	}
 	public void putSelfInGrid(Map mp, Point2D.Double loc)
 	{
 		if(map != null)
