@@ -1,12 +1,15 @@
 Public class Map{
-  protected Wall [] walls;
+  HashSet<GameObject> obj;
   
   public Map (){
-    walls = new Wall[];
+    obj = new HashSet<GameObject> obj;
   }
   
-  public addWall(Wall wall){
-    walls.add(wall);
+  public void add (GameObject gObj){
+      obj.add(gObj);
   }
+  public void remove (GameObject obj){
+      obj.remove(gObj);
+    }
 
 }
