@@ -5,6 +5,7 @@ public class Game implements KeyListener
 {
     Player[] players;
     int level;      //what is this?
+    Map map;
     HashSet<GameObject> obj;
     
     public void keyPressed(KeyEvent key) {
@@ -18,10 +19,10 @@ public class Game implements KeyListener
         for (GameObject go : obj)
             go.update();
     }
-    public void add (GameObject obj){
-        players.add(obj);
+    public void add (GameObject gObj){
+        obj.add(gObj);
     }
     public void remove (GameObject obj){
-        players.remove(obj);
+        obj.remove(gObj);
     }
 }
