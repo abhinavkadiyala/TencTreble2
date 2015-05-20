@@ -51,7 +51,10 @@ public class GameObject {
 		maze = null;
 		myLoc = null;
 	}
-	public abstract void update();
+	public void update()
+	{
+		
+	}
 	
 	
 }
