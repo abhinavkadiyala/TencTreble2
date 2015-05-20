@@ -35,6 +35,14 @@ protected boolean expire = false;
     return System.currentTimeMillis - startTime;
   }
   
+  public void conflict(GameObject other)
+  {
+    if(other instanceof Wall)
+    {
+      //physically bounce somehow
+    }
+  }
+  
   public void update()
   {
     if(this.time() >= LIFETIME)
