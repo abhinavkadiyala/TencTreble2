@@ -1,6 +1,5 @@
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Random; 
+import java.util.*;
+
 /**
  * recursive backtracking algorithm
  * shamelessly borrowed from the ruby at
@@ -19,24 +18,10 @@ public class MazeGenerator {
     private final int density;  //default 7 //1-9
  
     public MazeGenerator(int x, int y) {
-        density = 7;
-        this.x = x;
-        this.y = y;
-        maze = new int[this.x][this.y];
-        visited = new int[this.x][this.y];
-        seed = System.currentTimeMillis();
-        rand = new Random(seed);
-        generateMaze(0, 0);
+        this(x, y, System.currentTimeMillis(), 7);
     }
     public MazeGenerator(int x, int y, long s) {
-        density = 7;
-        this.x = x;
-        this.y = y;
-        maze = new int[this.x][this.y];
-        visited = new int[this.x][this.y];
-        seed = s;
-        rand = new Random(seed);
-        generateMaze(0,0);
+        this(x, y, s, 7);
     }
     public MazeGenerator(int x, int y, long s, int ds) {
         density = ds;
@@ -134,12 +119,9 @@ public class MazeGenerator {
     }
     public static void encoded(long enc) {
         int x = (int)(enc % 100);
-        enc /= 100;
-        int y = (int)(enc % 100);
-        enc /= 100;
-        int d = (int)(enc % 10);
-        enc /= 10;
-        seed(x, y, enc, d);
+        int y = (int)((enc/=100) % 100);
+        int d = (int)((enc/=100) % 10);
+        seed(x, y, enc/10, d);
     }
     
     public long encode() {
