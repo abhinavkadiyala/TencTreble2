@@ -1,11 +1,9 @@
 package Component;
 
-import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
+import java.awt.geom.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.ImageIcon;
 
 import javax.swing.*;
 
@@ -16,7 +14,7 @@ public abstract class GameObject {
 	protected Map map;
 	protected Image image;
 	
-	public GameObject()
+	private GameObject()
 	{
 		myLoc = new Point2D.Double();
 		myDirection = 0;
