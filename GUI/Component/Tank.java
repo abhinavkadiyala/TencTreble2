@@ -7,7 +7,7 @@ public class Tank extends GameObject
     // TODO: implement health if we plan on doing so.
     PowerUp power;
     double angle;
-    double move, turn; //positive for forward/right, negative for backward/left
+    double move, turn; //positive for forward/left, negative for backward/right
     private final static int MAX_BULLETS = 5;
     LinkedList<Bullet> bullets;
     public boolean fire(Bullet bullet) {
