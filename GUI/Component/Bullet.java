@@ -13,6 +13,7 @@ protected boolean expire = false;
 
   public class Bullet(Player player)
   {
+    super(player.getTank().getLocation(), player.getTank().getDirection(), player.getTank().getMap());
     myPlayer = player;
     startTime = System.currentTimeMillis();
   }
