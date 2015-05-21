@@ -32,11 +32,14 @@ public class Tank extends GameObject
         if (other instanceof Bullet){
             other.removeSelfFromGrid();
             if (other instanceof KillBullet){
-                this.removseSelfFromGrid();
+                this.removeSelfFromGrid();
             }
         }
         else if (other instanceof Wall){
             // FILL THIS IN
+            /* expected behavior:
+             * turn an amount relative to its angle of incidence from the wall (angle from the normal)
+             */
         }
     }
     
