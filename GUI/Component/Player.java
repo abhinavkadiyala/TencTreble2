@@ -7,9 +7,9 @@
  */
 public class Player
 {
-    Tank tank;
+    Tank tank;      //TODO: create a tank somewhere
     String name;
-    int score;
+    int score = 0;
     int fb, bb, lb, rb, sb;         //ForwardButton, BackButton, LeftButton, RightButton, ShootButton
     private static final double fv, bv, ts;    //ForwardVel, BackVel, TurnSpd
     static {
