@@ -7,9 +7,8 @@ public class Game implements KeyListener
     int level;      //what is this?
     Map map;
     
-    public Game (Player player1, Player player2, Map mp){
-        players.add(player1);
-        players.add(player2);
+    public Game(Map mp, Player... ps) {
+        players = ps;
         map = mp;
     }
     
@@ -27,7 +26,7 @@ public class Game implements KeyListener
     public void add (GameObject gObj){
         map.add(gObj);
     }
-    public void remove (GameObject obj){
+    public void remove (GameObject gObj){
         map.remove(gObj);
     }
 }
