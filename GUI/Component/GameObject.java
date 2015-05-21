@@ -24,7 +24,7 @@ public class GameObject {
 		image = null;
 	}
 	
-	public GameObject(Point2D.Double loc, int dir, Map aMap)
+	public GameObject(Point2D.Double loc, double dir, Map aMap)
 	{
 		myLoc = loc;
 		myDirection = dir;
