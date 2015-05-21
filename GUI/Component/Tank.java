@@ -38,6 +38,7 @@ public class Tank extends GameObject
         else if (other instanceof Wall){
             // FILL THIS IN
             /* expected behavior:
+             * move away from the wall
              * turn an amount relative to its angle of incidence from the wall (angle from the normal)
              */
         }
