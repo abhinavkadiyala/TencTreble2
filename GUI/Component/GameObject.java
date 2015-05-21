@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.*;
 
 
-public class GameObject {
+public abstract class GameObject {
 	protected Point2D.Double myLoc;
 	protected double myDirection;
 	protected Map map;
@@ -86,14 +86,8 @@ public class GameObject {
 		myLoc = newLocation;
 		map.put(myLoc, this);
 	}
-	public void conflict(GameObject other)
-	{
-		
-	}
-	public void update()
-	{
-		
-	}
+	public abstract void conflict(GameObject other);
+	public abstract void update();
 	
 	
 }
