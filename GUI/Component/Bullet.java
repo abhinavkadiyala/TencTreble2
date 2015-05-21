@@ -16,6 +16,7 @@ protected boolean expire = false;
     super(player.getTank().getLocation(), player.getTank().getDirection(), player.getTank().getMap());
     myPlayer = player;
     startTime = System.currentTimeMillis();
+    mySpeed = 1; //change value as needed
   }
   public double getSpeed()
   {
