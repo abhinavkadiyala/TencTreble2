@@ -20,8 +20,8 @@ public class Tank extends GameObject
         ListIterator<Bullet> biter = bullets.listIterator();
         while (biter.hasNext())
             if (biter.next().expired()) biter.remove();
-        this.move(move);
-        this.turn(turn);
+        Point2D.Double() current = this.getLocation();
+        this.setLocation(point2D.Double(current.getX() + move * Math.cos(this.getDirection()), current.getY() + move * Math.sin(this.getDirection())));
         // TODO: movement
     }
     public void move(double amt) {
