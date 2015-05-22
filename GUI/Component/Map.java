@@ -1,4 +1,6 @@
-Public class Map{
+package component;
+
+public class Map{
   HashSet<GameObject> obj;
   
   public Map (){
