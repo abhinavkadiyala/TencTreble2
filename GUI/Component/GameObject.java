@@ -51,30 +51,12 @@ public abstract class GameObject {
 		myDirection = newDirection
 		return od;
 	}
-	public void putSelfInGrid(Map mp, Point2D.Double loc)
+	public void setMap(Map mp)
 	{
-		if(map != null)
-			throw new IllegalStateException("This actor is already contained in a grid.");
-		
-		GameObject gameObject = mp.get(loc);
-		if(gameObject != null)
-			gameObject.removeSelfFromGrid();
-		mp.put(this);
+		if (mp == null) map.remove(this);
+		else mp.add(this);
 		map = mp;
-		myLoc = loc;
-	}
-	public void removeSelfFromGrid()
-	{
-		if(map == null)
-			throw new IllegalStateException("This actor is not contained in a grid.");
-		if(map.get(location) != this)
-			throw new IllegalStateException("The grid conatins a different actor at location" + location + ".");
-		map.remove(this);
-		map = null;
-		myLoc = null;
 	}
 	public abstract void conflict(GameObject other);
 	public abstract void update();
-	
-	
 }
