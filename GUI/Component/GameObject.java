@@ -58,5 +58,5 @@ public abstract class GameObject {
 		map = mp;
 	}
 	public abstract void conflict(GameObject other);
-	public abstract void update();
+	public abstract void update(int deltaTime);
 }
