@@ -36,13 +36,20 @@ public abstract class GameObject {
 	{
 		return myLoc;
 	}
+	public Point2D.Double setLocation(Point2D.Double loc) {
+		Point2D.Double ol = myLoc;
+		myLoc = loc;
+		return ol;
+	}
 	public double getDirection()
 	{
 		return myDirection;
 	}
-	public void setDirection(double newDirection)
+	public double setDirection(double newDirection)
 	{
+		double od = myDirection;
 		myDirection = newDirection
+		return od;
 	}
 	public void putSelfInGrid(Map mp, Point2D.Double loc)
 	{
@@ -65,24 +72,6 @@ public abstract class GameObject {
 		map.remove(this);
 		map = null;
 		myLoc = null;
-	}
-	public void moveTo(Point2D.Double newLocation)
-	{
-		if(map == null)
-			throw new IllegalStateException("This actor is not in a grid.");
-		if(map.get(location) != this)
-			throw new IllegalStateException("The grid contains a diefferent actor at location " + myLoc + ".");
-		if(!map.isValid(newLocation))
-			throw new IllegalArgumentexception("Location " + newLocation + " is not valid.");
-		
-		if (newLocation.equals(myLoc))
-			return;
-		map.remove(location);
-		GameObject other = map.get(newLocation);
-		if(other != null)
-			this.conflict(other);
-		myLoc = newLocation;
-		map.put(myLoc, this);
 	}
 	public abstract void conflict(GameObject other);
 	public abstract void update();
