@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Game implements KeyListener
 {
+    MazeGenerator mg;
     Player[] players;
-    int level;      //what is this?
     Map map;
     
     public Game(Map mp, Player... ps) {
