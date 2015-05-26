@@ -1,130 +1,50 @@
-
 /*
- * GuiTest1.java
+ * GuiTest4.java
  *
- * Created on April 14, 2004, 9:35 PM
- *		Apr 10, 2014	Added JSlider
+ * Created on May 5, 2004
  *
  * @author  T. Neuhaus
  *
- * Creates a window with six types of components:
- *  (1) A JLabel, with the text "This is a label".
- *  (2) A JTextField - when you type in it and hit Enter, the Console window
- *      will display the text entered
- *  (3) A JButton - when you click it, the Console window will display that
- *      the button was pressed and what text is in the button
- *  (4) A JCheckbox - when you click it, the Console window will display whether
- *      the checkbox was just checked or unchecked
- *  (5) A JCombobox - when you click on the drop-down list arrow, a list will
- *      appear with the items "item1", "item2", "item3", "item4"; when you
- *      choose an item in the list, the Console window will display which item
- *      was chosen
- *  (6) A JMenu called 'File' - which you choose it, a pull-down menu with the
- *      items "Start" and "Exit" will be displayed; when you choose "Start", a
- *      message will appear in the Console window, or when you choose "Exit",
- *      the application will end.
- *	(7) A JSlider - when you slide the knob, it prints out the updated value
+ * Creates a window and draws some graphics - lines, rectangles, ovals.
+ * Demonstrates a timer that makes a fish image move across the screen.
+ *
  */
 
 // IMPORT the following classes to access GUI functionality:
 import java.awt.*;          // access to Container
 import java.awt.event.*;    // access to WindowAdapter, WindowEvent
 import javax.swing.*;       // access to JFrame and JComponents
-import javax.swing.event.*;		// access to JSlider events
 
-// The class needs to extend JFrame:
-public class GuiTest1 extends JFrame {
-    
-    // component(s) in window - these are just some samples
-    private JLabel label1;
-    private JTextField textField1;
-    private JButton button1;
-    private JCheckBox chkBox1;
-    private JComboBox<String> comboBox1;
-    private String[] names = {"item1", "item2", "item3", "item4"};
-                // list for comboBox1
-    private JSlider slider1;
-    private JMenuItem startItem, exitItem;
-    
-    /** Creates a new instance of gui_test - sets up GUI */
-    public GuiTest1() {
+// The class needs to extend JFrame; it also implements ActionListener to
+// support use of the timer
+public class Gui extends JFrame implements ActionListener{
+	
+	// instance variables
+	private Image fish;
+	
+	private int counter;		// counts seconds
+	private int fishX, fishY;	// location of fish on screen
+	
+	/** Creates a new instance of gui_test - sets up GUI */
+    public Gui() {
         // STEP 1: must call super() first
-        super("Comment in Window Title Bar");
-        
+        super("Demo Graphics: Lines, Rectangles, Ovals");
+    
+    // STEPS 2-5: not needed here because this example does not
+    // include any GUI "components"...
         // STEP 2: get content pane and set its layout
-        Container container = getContentPane();
-        container.setLayout( new FlowLayout() );
-                    // other possible layouts: BorderLayout, GridLayout,
-                    // BoxLayout, CardLayout, GridBagLayout
-        
-        // STEP 3: construct component(s), such as:
-        //      JLabel - displays text or icons
-        //      JTextField - accepts text input by user; event triggered
-        //              when user hits 'Enter'
-        //      JButton - triggers an event when user clicks on it
-        //      JCheckBox - checked or unchecked by user
-        //      JComboBox, JList - drop-down list of items, where user selects one
-        //		JSlider - can slide a knob within a bounded interval
-        //      JMenuBar, JMenuItem - used to manage menus located at the
-        //                  top of the window
-        label1 = new JLabel("This is a label");
-        textField1 = new JTextField(20);    // width = 20
-        button1 = new JButton("Text in button");
-        chkBox1 = new JCheckBox("Text next to checkbox");
-        
-        comboBox1 = new JComboBox<String>(names);   // names = Strings in list
-        comboBox1.setMaximumRowCount(3);    
-                    // optional; provides scrollbar if list is greater than 3
-                    
-        slider1 = new JSlider();	// horizontal slider with values 0..100, init to 50
-        slider1.setMajorTickSpacing(10);	// will show tick marks & numbers in increments of 10
-        slider1.setPaintTicks(true);
-        slider1.setPaintLabels(true);
-        
-        // menu items are handled a little differently...here is a sample
-        // menu with 2 items, "Start" and "Exit"
-        JMenu fileMenu = new JMenu("File");
-        startItem = new JMenuItem("Start");
-        exitItem = new JMenuItem("Exit");
-        JMenuBar bar = new JMenuBar();
-
-        
-        // STEP 4: add all components (except menu items) to the Container;
-        //         add all JMenuItems to appropriate JMenu, setJMenuBar and
-        //          add all JMenus to it
-        container.add(label1);
-        container.add(textField1);
-        container.add(button1);
-        container.add(chkBox1);
-        container.add(comboBox1);
-        container.add(slider1);
-        fileMenu.add(startItem);
-        fileMenu.add(exitItem); 
-        setJMenuBar (bar);
-        bar.add (fileMenu);
-        
+        // STEP 3: construct component(s), such as:     
+        // STEP 4: add all components to the Container;
         // STEP 5: register any needed event handlers 
-        //      - each sample component above (except the JLabel) needs 
-        //      an event handler
-        //      - for each *type* of component used, an event handler
-        //      associated with that type should be instantiated; that
-        //      handler can handle one or more components of that type;
-        //      - each event handler is defined below as a private inner class -
-        //      see section after main()
-        //      - method addActionListener must be called for every 
-        //      JTextField and JButton component; method addItemListener
-        //      for every JCheckBox and JComboBox component; method 
-        //		addChangeListener for every JSlider;
-        //      where the argument is the appropriate type of event handler
-        textField1.addActionListener(new TextFieldHandler());
-		button1.addActionListener(new ButtonHandler());
-        chkBox1.addItemListener(new CheckBoxHandler());
-        comboBox1.addItemListener(new ComboBoxHandler());
-        slider1.addChangeListener(new SliderHandler());
-        MenuItemHandler menuItemHandler = new MenuItemHandler();
-        startItem.addActionListener(menuItemHandler);
-        exitItem.addActionListener(menuItemHandler);
-         
+
+		// need to load up "fish" image used below
+		ImageIcon fishIcon = new ImageIcon("redTank.gif");
+		fish = fishIcon.getImage();
+		
+		int load = fishIcon.getImageLoadStatus();
+		System.out.println("fish load " + load);
+				// 2 = aborted; 8 = complete; 4 = errored
+		
         // DON'T FORGET TO INCLUDE THIS CODE - otherwise you will not
         // be able to close your application!!!
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -133,112 +53,97 @@ public class GuiTest1 extends JFrame {
             }
         });
         
-        // STEP 6: set window size and show window
-        setSize( 275, 275);
-        // alternative to 'setSize' is 'pack' which sizes the window
-        // to fit the preferred sizes of its subcomponents
-//		pack();
-        setVisible(true);
+        // initial location of fish
+        fishX = 300;	
+        fishY = 40;
         
-    }
-    
-    /**
-     * execute application
-     */
-    public static void main(String[] args) {
-        GuiTest1 application = new GuiTest1();
-    }
-    
-    /******** PRIVATE INNER CLASSES FOR EVENT HANDLING ***************/
-    /*
-     * - Provide ActionListener event handlers for JTextField, JButton
-     * - Provide ItemListener event handlers for JCheckBox, JComboBox events
-     * - Provide ChangeListener event handlers for JSlider
-     * - Provide MouseListener event handlers for mouse events
-     * - Provide KeyListener event handlers for key events
-     *
-     * - if there is more than one component associated with a
-     *  particular event handler, you can test which component caused
-     *  the event using the method event.getSource()
-     */
-    private class TextFieldHandler implements ActionListener {
-        public void actionPerformed (ActionEvent event) {
-            // replace with appropriate reaction to the text entered
-            
-            // sample code to test which event occurred and print out
-            // text typed in text field
-            if (event.getSource() == textField1) 
-            { 
-                System.out.print("Text typed in textField1: ");
-                System.out.println(event.getActionCommand());
-            }
-        }
-    }
-    private class ButtonHandler implements ActionListener {
-        public void actionPerformed (ActionEvent event) {
-            // replace with appropriate reaction to button press
-            
-            // sample code to show that button pressed
-            if (event.getSource() == button1) {
-                System.out.print("Button1 pressed; label in it is: ");
-                System.out.println(event.getActionCommand());
-            }
-        }
-    }
-
-    private class CheckBoxHandler implements ItemListener {
-        public void itemStateChanged (ItemEvent event) {
-            // replace with appropriate reaction to checkbox change
-            
-            // sample code to test which checkbox changed and whether
-            // changed to 'selected' or 'unselected'
-            if (event.getSource() == chkBox1) {
-                if (event.getStateChange() == ItemEvent.SELECTED)
-                    System.out.println("Chkbox1 just checked");
-                else
-                    System.out.println("Chkbox1 just unchecked");
-            }
-        }   
-    }
-
-    private class ComboBoxHandler implements ItemListener {
-        public void itemStateChanged (ItemEvent event) {
-            // replace with appropriate reaction to list choice
-            
-            // sample code
-            if (event.getSource() == comboBox1) {
-                if ( event.getStateChange() == ItemEvent.SELECTED) {
-                            // a particular item in list was selected
-                    String itemSelected = names[comboBox1.getSelectedIndex()];
-                    System.out.println("Item selected: " + itemSelected);
-                }
-            }
+        // STEP 6: set window size and show window
+        setSize( 400, 170);
+        setVisible(true);
+ 
+       	// construction a Swing timer that goes off every 1000 msec (1 sec)
+        Timer timer = new javax.swing.Timer(1000, this);
+        timer.start();		// timer starts here
                 
-        }  
     }
     
-    private class SliderHandler implements ChangeListener {
-    	public void stateChanged (ChangeEvent event) {
-    		if (event.getSource() == slider1) {
-    			int x = slider1.getValue();
-    			System.out.println("Slider value is now " + x);
-    		}
-    			
-    	}
-    }
-    
-    private class MenuItemHandler implements ActionListener {
-        public void actionPerformed (ActionEvent event) {
-            // replace with appropriate reaction to menu choice
-            
-            // sample code
-            if (event.getSource() == startItem) {
-                System.out.println("'Start' menu item selected");
-            }
-            else if (event.getSource() == exitItem ) {
-                System.exit(0);     // EXIT
-            }
-        }   
-    }
+    /*
+     * This is the graphics demo section.  When you want to use
+     * any methods of the Graphics class, you need to call the
+     * Component method paint(), which takes a Graphics object
+     * as an argument.  The run-time system is in control of when
+     * paint() executes, not the programmer, because drawing graphics
+     * is "event-driven" (e.g. when a window is covered or uncovered).
+     * If the programmer needs to call paint(), the way to do that is by calling the method
+     * repaint() instead.  (See the use of repaint() in GuiTest3.)
+     *
+     * Here are just some of the Graphics methods:
+     *  - public void setColor (Color c)
+     *			// sets the current color - see Color class for
+     *			// available predefined colors
+     *	- public void drawLine(int x1, int y1, int x2, int y2)
+     *			// draws line between (x1, y1) and (x2, y2)
+     *  - public void drawRect (int x, int y, int width, int height)
+     *			// draws rectangle with top left corner at (x,y)
+     *  - public void fillRect (int x, int y, int width, int height)
+     *			// draws a solid rectangle with top left corner at (x,y)
+     *  - public void drawOval (int x, int y, int width, int height)
+     *			// draws oval in current color with specified width
+     *			// and height; bounding rectangle's top left corner
+     *			// is at (x,y) and oval touches all sides of bounding
+     *			// rectangle
+     *	- public void fillOval (int x, int y, int width, int height)
+     *			// see drawOval
+     *	- public void drawImage (Image img, int x, int y, ImageObserver observer)
+     *			// draws image loaded from a GIF, JPEG or PNG file - upper
+     *			// left corner at (x, y) - usually make 'observer' be 'this'
+     */
+     public void paint (Graphics g )
+     {
+     	// call superclass's paint method
+     	super.paint(g);
+     	
+     	// draw a red line; 2 blue rectangles, one filled and one
+     	// not; and 2 magenta ovals, one filled and one not
+     	
+     	g.setColor(Color.red);
+     	g.drawLine(5, 30, 350, 30);
+     	
+     	g.setColor(Color.blue);
+     	g.drawRect(5, 40, 90, 55);
+     	g.fillRect(100, 40, 90, 55);
+     	
+     	g.setColor(Color.magenta);
+     	g.drawOval(195, 100, 90, 55);
+     	g.fillOval(290, 100, 90, 55);
+     	
+		// location of fish changes each time the timer goes off
+     	g.drawImage(fish, fishX, fishY, this);	// 'fish' was loaded in constructor
+     }
 
-}   // end GuiTest1
+	// this method is called each time the timer goes off     
+	public void actionPerformed(ActionEvent evt) 
+	{
+		// move fish across and down screen
+		if (fishX > 0)
+			fishX -= 50;	// move fish to left a bit
+		else
+		{
+			fishX = 300;	// move fish far to right and
+			fishY +=30;		// down a bit
+			if (fishY > 100)
+				fishY = 40;	// put back closer to top
+		}
+		// need to tell the Repaint Manager that the fish has moved:
+		repaint();
+		
+		// counting the seconds	
+		counter++;
+		System.out.println("time is " + counter);
+	}
+     	
+    public static void main(String[] args) {
+        Gui application = new Gui();
+    }
+    	
+}
