@@ -6,7 +6,7 @@ import java.util.*;
  * http://weblog.jamisbuck.org/2010/12/27/maze-generation-recursive-backtracking
  * <p/>
  * Stolen from <a href="http://rosettacode.org/wiki/Maze">here</a>.
- * Edited to allow multiple-path traversal and encoding by saving seed, dimensions, and density
+ * Edited to allow multiple-paths and encoding by saving seed, dimensions, and density
  */
 public class MazeGenerator {
 	private final int x;		//default 8 //01-99
@@ -15,7 +15,7 @@ public class MazeGenerator {
 	private final int[][] visited;
 	private final long seed;
 	private Random rand;
-	private final int density;	//default 7 //1-9
+	private final int density;  //default 7 //1-9
 
 	public MazeGenerator(int x, int y) {
 		this(x, y, System.currentTimeMillis(), 7);
@@ -36,6 +36,7 @@ public class MazeGenerator {
 
 	public void display() {
 		System.out.println(x+" "+y+" "+density+" "+seed);
+		System.out.println(encode2());
 		for (int i = 0; i < y; i++) {
 			// draw the north edge
 			for (int j = 0; j < x; j++) {
@@ -44,7 +45,7 @@ public class MazeGenerator {
 			System.out.println("+");
 			// draw the west edge
 			for (int j = 0; j < x; j++) {
-				System.out.print((maze[j][i] & 8) == 0 ? "|   " : "    ");
+				System.out.print((maze[j][i] & 8) == 0 ? "|   " : "	");
 			}
 			System.out.println("|");
 		}
@@ -122,8 +123,14 @@ public class MazeGenerator {
 		int d = (int)((enc/=100) % 10);
 		seed(x, y, enc/10, d);
 	}
+	public static void encoded(String enc) {
+	    encoded(BaseTransformer.convert(enc, 52));
+	}
 
 	public long encode() {
 		return ((seed * 10 + density) * 100 + y) * 100 + x;
+	}
+	public String encode2() {
+		return BaseTransformer.convert(encode(), 52);
 	}
 }
