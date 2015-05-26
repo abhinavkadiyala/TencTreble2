@@ -12,4 +12,7 @@ public class Map {
 	public void remove(GameObject gObj) {
 		obj.remove(gObj);
 	}
+	public Set<GameObject> objects() {
+		return obj;
+	}
 }
