@@ -28,4 +28,7 @@ public class Game implements KeyListener
     public void remove (GameObject gObj){
         map.remove(gObj);
     }
+    public Map getMap() {
+        return map;
+    }
 }
