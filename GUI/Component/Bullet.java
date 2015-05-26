@@ -11,7 +11,7 @@ protected Long startTime;
 protected final long LIFETIME = 10000;
 protected boolean expire = false;
 
-  public class Bullet(Player player)
+  public Bullet(Player player)
   {
     super(player.getTank().getLocation(), player.getTank().getDirection(), player.getTank().getMap());
     myPlayer = player;
