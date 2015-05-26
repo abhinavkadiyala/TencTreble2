@@ -48,6 +48,9 @@ public class Player
     public Bullet getBullet() {
         return null;    // TODO: make this actually create+return a bullet
     }
+    public Tank getTank() {
+        return tank;
+    }
     
     public Player(String n, int f, int b, int l, int r) {
         name = n; fb = f; bb = b; lb = l; rb = r;
