@@ -44,7 +44,7 @@ public class MazeGenerator {
 			System.out.println("+");
 			// draw the west edge
 			for (int j = 0; j < x; j++) {
-				System.out.print((maze[j][i] & 8) == 0 ? "|   " : " ");
+				System.out.print((maze[j][i] & 8) == 0 ? "|   " : "    ");
 			}
 			System.out.println("|");
 		}
