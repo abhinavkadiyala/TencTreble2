@@ -15,5 +15,11 @@ public class Game implements KeyListener{
       return null;
     }
   }
+  public update(){
+    for(GameObject object: obj)
+    {
+      object.update();
+    }
+  }
     
 }
