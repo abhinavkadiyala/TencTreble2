@@ -38,7 +38,7 @@ public class Gui extends JFrame implements ActionListener{
         // STEP 5: register any needed event handlers 
 
 		// need to load up "fish" image used below
-		ImageIcon fishIcon = new ImageIcon("redTank.gif");
+		ImageIcon fishIcon = new ImageIcon("RedTank.gif");
 		fish = fishIcon.getImage();
 		
 		int load = fishIcon.getImageLoadStatus();
