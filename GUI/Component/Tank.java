@@ -39,7 +39,9 @@ public class Tank extends GameObject
         }
         else if (other instanceof Wall){
             double direction = this.getDirection();
-            
+            this.setLocation(point2D.Double(current.getX() - move * Math.cos(this.getDirection()), current.getY() - move * Math.sin(this.getDirection())));
+        }
+    }    
             
             
             // FILL THIS IN
