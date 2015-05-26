@@ -3,7 +3,6 @@ import java.util.*;
 
 public class Game implements KeyListener
 {
-    MazeGenerator mg;
     Player[] players;
     Map map;
     
