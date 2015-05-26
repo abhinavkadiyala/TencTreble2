@@ -1,4 +1,4 @@
-package component;
+package Component;
 
 import java.awt.geom.*;
 import java.util.*;
@@ -48,7 +48,7 @@ public abstract class GameObject {
 	public double setDirection(double newDirection)
 	{
 		double od = myDirection;
-		myDirection = newDirection
+		myDirection = newDirection;
 		return od;
 	}
 	public void setMap(Map mp)
@@ -58,5 +58,5 @@ public abstract class GameObject {
 		map = mp;
 	}
 	public abstract void conflict(GameObject other);
-	public abstract void update(int deltaTime);
+	public abstract void update(); //apparently it took in an int before
 }

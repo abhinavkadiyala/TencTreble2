@@ -1,4 +1,4 @@
-package component;
+package Component;
 
 import java.awt.geom.Point2D;
 
@@ -30,7 +30,7 @@ public abstract class Bullet extends GameObject
 	}
   
 	public long time() {
-		return System.currentTimeMillis - startTime;
+		return System.currentTimeMillis() - startTime;
 	}
 	
 	public void conflict(GameObject other) {

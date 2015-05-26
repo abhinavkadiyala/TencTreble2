@@ -1,3 +1,5 @@
+package Component;
+
 import java.awt.geom.*;
 import java.util.*;
 
@@ -20,8 +22,9 @@ public class Tank extends GameObject
         ListIterator<Bullet> biter = bullets.listIterator();
         while (biter.hasNext())
             if (biter.next().expired()) biter.remove();
-        Point2D.Double() current = this.getLocation();
-        this.setLocation(point2D.Double(current.getX() + move * Math.cos(this.getDirection()), current.getY() + move * Math.sin(this.getDirection())));
+        Point2D.Double current = this.getLocation();
+        Point2D.Double next = new Point2D.Double(current.getX() + move * Math.cos(this.getDirection()), current.getY() + move * Math.sin(this.getDirection()));
+        this.setLocation(next);
         // TODO: movement
     }
     public void move(double amt) {
@@ -32,14 +35,15 @@ public class Tank extends GameObject
     }
     public void conflict (GameObject other){
         if (other instanceof Bullet){
-            other.removeSelfFromGrid();
+            other.setMap(null);
             if (other instanceof KillBullet){
-                this.removeSelfFromGrid();
+                this.setMap(null);
             }
         }
         else if (other instanceof Wall){
             double direction = this.getDirection();
-            this.setLocation(point2D.Double(current.getX() - move * Math.cos(this.getDirection()), current.getY() - move * Math.sin(this.getDirection())));
+            Point2D.Double current = this.getLocation();
+            this.setLocation(new Point2D.Double(current.getX() - move * Math.cos(this.getDirection()), current.getY() - move * Math.sin(this.getDirection())));
         }
     }    
             
@@ -49,10 +53,8 @@ public class Tank extends GameObject
              * move away from the wall
              * turn an amount relative to its angle of incidence from the wall (angle from the normal)
              */
-        }
-    }
-    
-    public Tank(Point2D.Double l, Maze m) {
+ 
+    public Tank(Point2D.Double l, Map m) {
         super(l, 0, m);
         power = null;
         move = turn = 0;

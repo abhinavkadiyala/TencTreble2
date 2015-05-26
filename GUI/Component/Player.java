@@ -1,3 +1,5 @@
+package Component;
+
 
 /**
  * Write a description of class Player here.

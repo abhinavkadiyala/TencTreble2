@@ -8,7 +8,6 @@ public class VisionBullet extends Bullet
   public VisionBullet(Player player)
   {
     super(player);
-    myDamage = 0;
     myRadius = 5; //change value as needed
   }
 }

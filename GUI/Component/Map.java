@@ -1,11 +1,17 @@
-package component;
+package Component;
+
+import java.util.*;
+
 
 public class Map {
 	Set<GameObject> obj;
 	public Map() {
-		obj = new HashSet<GameObject> obj;
+		obj = new HashSet<GameObject>();
 	}
-  
+	
+	public Set<GameObject> getObjects(){
+		return obj;
+	}
 	public void add(GameObject gObj) {
 		obj.add(gObj);
 	}

@@ -1,3 +1,5 @@
+package Component;
+
 import java.awt.event.*;
 import java.util.*;
 
@@ -19,6 +21,7 @@ public class Game implements KeyListener
     }
     public void keyTyped(KeyEvent key) {return;}
     public void update() {
+    	Set<GameObject> obj = map.getObjects();
         for (GameObject go : obj)
             go.update();
     }

@@ -2,11 +2,10 @@ package Component;
 
 import java.awt.geom.Point2D;
 
-public class KillBullet extends Bullet{
-public KillBullet(Player player)
-{
-  super(player);
-  myDamage = 1;
-}
+public class KillBullet extends Bullet {
+	public KillBullet(Player player) {
+		super(player);
+
+	}
 
 }
