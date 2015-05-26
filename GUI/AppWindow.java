@@ -11,9 +11,14 @@ import javax.swing.AbstractAction;
 import java.awt.event.ActionEvent;
 import javax.swing.Action;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 
-public class AppWindow {
+public class AppWindow implements ActionListener {
 
 	private JFrame frame;
 
@@ -53,10 +58,23 @@ public class AppWindow {
 		frame.setJMenuBar(menuBar);
 		
 		JMenu mnGame = new JMenu("Game");
+		mnGame.setMnemonic('g');
 		menuBar.add(mnGame);
 		
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
+		mntmNewGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		mnGame.add(mntmNewGame);
 		frame.getContentPane().setLayout(null);
+		
+	}
+	
+	public void newGame() {
+		frame.getContentPane().addKeyListener(new GamePanel());
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
