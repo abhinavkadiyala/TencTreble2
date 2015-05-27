@@ -1,6 +1,7 @@
 package component;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.geom.Point2D;
 
 public class Wall extends GameObject {
@@ -22,7 +23,7 @@ public class Wall extends GameObject {
 	}
 
 	@Override
-	public void paint(Graphics g) {
+	public void paint(Graphics2D g) {
 		g.fillRect((int)getLocation().x, (int) getLocation().y, 5, 20);
 		// TODO Auto-generated method stub
 
