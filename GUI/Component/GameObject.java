@@ -1,11 +1,7 @@
 package component;
 
 import java.awt.geom.*;
-import java.util.*;
 import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.*;
 
 
 public abstract class GameObject {
@@ -14,6 +10,7 @@ public abstract class GameObject {
 	protected Map map;
 	protected Image image;
 	
+	@SuppressWarnings("unused")
 	private GameObject()
 	{
 		myLoc = new Point2D.Double();
@@ -40,6 +37,9 @@ public abstract class GameObject {
 		Point2D.Double ol = myLoc;
 		myLoc = loc;
 		return ol;
+	}
+	public void translate(double x, double y) {
+		myLoc.setLocation(myLoc.x+x, myLoc.y+y);
 	}
 	public double getDirection()
 	{

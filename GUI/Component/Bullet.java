@@ -1,8 +1,6 @@
 package component;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Point2D;
+import java.awt.*;
 
 public abstract class Bullet extends GameObject
 {
@@ -49,7 +47,7 @@ public abstract class Bullet extends GameObject
 			this.destroy();
 			expire = true;
 		} else {
-			//move
+			this.translate(mySpeed*Math.cos(getDirection()), mySpeed*Math.sin(getDirection()));	//move
 		}
 	}
   

@@ -38,7 +38,7 @@ public class MazeGenerator {
 
 	public void display() {
 		System.out.println(x+" "+y+" "+density+" "+seed);
-		System.out.println(encode2());
+		//System.out.println(encode2());
 		for (int i = 0; i < y; i++) {
 			// draw the north edge
 			for (int j = 0; j < x; j++) {
@@ -105,12 +105,6 @@ public class MazeGenerator {
 		}
 	};
 
-	public static void main(String[] args) {
-		int x = args.length >= 1 ? (Integer.parseInt(args[0])) : 8;
-		int y = args.length == 2 ? (Integer.parseInt(args[1])) : 8;
-		MazeGenerator maze = new MazeGenerator(x, y);
-		maze.display();
-	}
 	public static void seed(int x, int y, long s) {
 		MazeGenerator maze = new MazeGenerator(x,y,s);
 		maze.display();
@@ -125,14 +119,14 @@ public class MazeGenerator {
 		int d = (int)((enc/=100) % 10);
 		seed(x, y, enc/10, d);
 	}
-	public static void encoded(String enc) {
+	/*public static void encoded(String enc) {
 	    encoded(BaseTransformer.convert(enc, 52));
-	}
+	}*/
 
 	public long encode() {
 		return ((seed * 10 + density) * 100 + y) * 100 + x;
 	}
-	public String encode2() {
+	/*public String encode2() {
 		return BaseTransformer.convert(encode(), 52);
-	}
+	}*/
 }
