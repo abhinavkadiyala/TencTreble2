@@ -29,6 +29,7 @@ public class GameObject {
 		myDirection = dir;
 		map = aMap;
 	}
+	
 	public void putSelfInGrid(Maze mz, Point2D.Double loc)
 	{
 		if(grid != null)
@@ -41,6 +42,7 @@ public class GameObject {
 		map = mz;
 		myLoc = loc;
 	}
+	
 	public void removeSelfFromGrid()
 	{
 		if(map == null)
@@ -51,6 +53,7 @@ public class GameObject {
 		map = null;
 		myLoc = null;
 	}
+	
 	public void update()
 	{
 		
