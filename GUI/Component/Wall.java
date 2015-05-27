@@ -29,7 +29,8 @@ public class Wall extends GameObject {
 		g.setStroke(new BasicStroke(WALL_WIDTH));
 		Point2D.Double loc = getLocation();
 		double dir = getDirection();
-		g.drawLine(loc.x, loc.y, loc.x+Game.CELL_SIDE*Math.cos(dir), loc.y+Game.CELL_SIDE*Math.sin(dir))
+		g.drawLine(loc.x, loc.y, loc.x+Game.CELL_SIDE*Math.cos(dir), loc.y+Game.CELL_SIDE*Math.sin(dir));
+		g.setStroke(s);
 	}
 
 }
