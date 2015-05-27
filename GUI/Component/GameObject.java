@@ -65,5 +65,5 @@ public abstract class GameObject {
 	public abstract void conflict(GameObject other);
 	public abstract void update(); //apparently it took in an int, delta time before
 	
-	public abstract void paint(Graphics g);
+	public abstract void paint(Graphics2D g);
 }
