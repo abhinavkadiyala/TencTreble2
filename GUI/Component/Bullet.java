@@ -56,7 +56,7 @@ public abstract class Bullet extends GameObject
 		//needs implementation
 	}
 	
-	public void paint(Graphics g) {
+	public void paint(Graphics2D g) {
 		g.fillOval((int)getLocation().x-BULLET_RADIUS, (int) getLocation().y-BULLET_RADIUS, 2*BULLET_RADIUS, 2*BULLET_RADIUS);
 	}
 
