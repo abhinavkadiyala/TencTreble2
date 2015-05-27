@@ -1,6 +1,8 @@
 
 import javax.swing.JPanel;
 
+import component.*;
+
 import java.awt.Graphics;
 import java.awt.event.*;
 
