@@ -77,6 +77,29 @@ public class AppWindow implements ActionListener {
 		frame.getContentPane().add(gp);
 		frame.getContentPane().addKeyListener(gp);
 	}
+	
+	public void paint (Graphics g )
+     {
+     	// call superclass's paint method
+     	super.paint(g);
+     	
+     	// draw a red line; 2 blue rectangles, one filled and one
+     	// not; and 2 magenta ovals, one filled and one not
+     	
+     	g.setColor(Color.red);
+     	g.drawLine(5, 30, 350, 30);
+     	
+     	g.setColor(Color.blue);
+     	g.drawRect(5, 40, 90, 55);
+     	g.fillRect(100, 40, 90, 55);
+     	
+     	g.setColor(Color.magenta);
+     	g.drawOval(195, 100, 90, 55);
+     	g.fillOval(290, 100, 90, 55);
+     	
+		// location of fish changes each time the timer goes off
+     	//g.drawImage(fish, fishX, fishY, this);	// 'fish' was loaded in constructor
+     }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
