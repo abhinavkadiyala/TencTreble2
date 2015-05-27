@@ -1,10 +1,11 @@
 package component;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.geom.Point2D;
 
 public class Wall extends GameObject {
+
+	private static void WALL_WIDTH = 5;
 
 	public Wall(Point2D.Double loc, double dir, Map aMap) {
 		super(loc, dir, aMap);
@@ -24,9 +25,11 @@ public class Wall extends GameObject {
 
 	@Override
 	public void paint(Graphics2D g) {
-		g.fillRect((int)getLocation().x, (int) getLocation().y, 5, 20);
-		// TODO Auto-generated method stub
-
+		Stroke s = g.getStroke();
+		g.setStroke(new BasicStroke(WALL_WIDTH));
+		Point2D.Double loc = getLocation();
+		double dir = getDirection();
+		g.drawLine(loc.x, loc.y, loc.x+Math.cos(dir), loc.y+Math.sin(dir))
 	}
 
 }
