@@ -57,6 +57,11 @@ public abstract class GameObject {
 		else mp.add(this);
 		map = mp;
 	}
+	
+	public void setImage(Image img)
+	{
+		image = img;
+	}
 	public abstract void conflict(GameObject other);
 	public abstract void update(); //apparently it took in an int, delta time before
 }
