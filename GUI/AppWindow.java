@@ -26,10 +26,10 @@ import java.awt.event.InputEvent;
 
 
 public class AppWindow implements ActionListener {
+	super("Demo Graphics: Lines, Rectangles, Ovals");
 	private int counter;
 
 	private JFrame frame;
-	
 
 	/**
 	 * Launch the application.
