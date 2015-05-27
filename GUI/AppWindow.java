@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import javax.swing.AbstractAction;
@@ -69,7 +70,12 @@ public class AppWindow implements ActionListener {
 	}
 	
 	public void newGame() {
-		frame.getContentPane().addKeyListener(new GamePanel());
+		Object[] sv = {2};
+		int p = (int) JOptionPane.showInputDialog(frame, "How many players?", "New Game", JOptionPane.PLAIN_MESSAGE, null, sv, 2);
+		frame.getContentPane().removeAll();
+		GamePanel gp = new GamePanel(p);
+		frame.getContentPane().add(gp);
+		frame.getContentPane().addKeyListener(gp);
 	}
 
 	@Override
