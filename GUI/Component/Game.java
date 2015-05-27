@@ -1,11 +1,17 @@
+package Component;
+
 import java.awt.event.*;
 import java.util.*;
 
 public class Game implements KeyListener
 {
     Player[] players;
-    int level;      //what is this?
-    HashSet<GameObject> obj;
+    Map map;
+    
+    public Game(Map mp, Player... ps) {
+        players = ps;
+        map = mp;
+    }
     
     public void keyPressed(KeyEvent key) {
         for (Player p : players) p.keyPressed(key.getKeyCode());
@@ -15,13 +21,17 @@ public class Game implements KeyListener
     }
     public void keyTyped(KeyEvent key) {return;}
     public void update() {
+    	Set<GameObject> obj = map.getObjects();
         for (GameObject go : obj)
             go.update();
     }
-    public void add (GameObject obj){
-        players.add(obj);
+    public void add (GameObject gObj){
+        map.add(gObj);
     }
-    public void remove (GameObject obj){
-        players.remove(obj);
+    public void remove (GameObject gObj){
+        map.remove(gObj);
+    }
+    public Map getMap() {
+        return map;
     }
 }

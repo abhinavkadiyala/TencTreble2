@@ -1,12 +1,24 @@
-Public class Map{
-  protected Wall [] walls;
-  
-  public Map (){
-    walls = new Wall[];
-  }
-  
-  public addWall(Wall wall){
-    walls.add(wall);
-  }
+package Component;
 
+import java.util.*;
+
+
+public class Map {
+	Set<GameObject> obj;
+	public Map() {
+		obj = new HashSet<GameObject>();
+	}
+	
+	public Set<GameObject> getObjects(){
+		return obj;
+	}
+	public void add(GameObject gObj) {
+		obj.add(gObj);
+	}
+	public void remove(GameObject gObj) {
+		obj.remove(gObj);
+	}
+	public Set<GameObject> objects() {
+		return obj;
+	}
 }

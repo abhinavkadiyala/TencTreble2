@@ -1,3 +1,5 @@
+package Component;
+
 
 /**
  * Write a description of class Player here.
@@ -7,9 +9,9 @@
  */
 public class Player
 {
-    Tank tank;
+    Tank tank;      //TODO: create a tank somewhere
     String name;
-    int score;
+    int score = 0;
     int fb, bb, lb, rb, sb;         //ForwardButton, BackButton, LeftButton, RightButton, ShootButton
     private static final double fv, bv, ts;    //ForwardVel, BackVel, TurnSpd
     static {
@@ -47,6 +49,9 @@ public class Player
     }
     public Bullet getBullet() {
         return null;    // TODO: make this actually create+return a bullet
+    }
+    public Tank getTank() {
+        return tank;
     }
     
     public Player(String n, int f, int b, int l, int r) {
