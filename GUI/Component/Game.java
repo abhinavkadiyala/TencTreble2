@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Game implements KeyListener
 {
-    public static double CELL_SIDE = 20;
+    public static int CELL_SIDE = 20;
     Player[] players;
     Map map;
     
