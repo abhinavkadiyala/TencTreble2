@@ -49,6 +49,11 @@ public class AppWindow implements ActionListener {
 		
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
 		mntmNewGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+		mntmNewGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				newGame();
+			}
+		});
 		mnGame.add(mntmNewGame);
 		frame.getContentPane().setLayout(null);
 		
