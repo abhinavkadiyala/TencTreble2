@@ -39,4 +39,7 @@ public class Game implements KeyListener
 	public Map getMap() {
 		return map;
 	}
+	public void paint(Graphics2D g) {
+		map.paint(g);
+	}
 }
