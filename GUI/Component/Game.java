@@ -8,6 +8,10 @@ public class Game implements KeyListener
     Player[] players;
     Map map;
     
+    public Game(int pct) {
+        players = new Player[pct];
+        map = new Map();
+    }
     public Game(Map mp, Player... ps) {
         players = ps;
         map = mp;
