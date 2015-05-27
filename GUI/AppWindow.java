@@ -1,33 +1,10 @@
 
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Graphics;
-
-import javax.swing.JFrame;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JSplitPane;
-
-import java.awt.BorderLayout;
-
-import javax.swing.AbstractAction;
-
-import java.awt.event.ActionEvent;
-
-import javax.swing.Action;
-import javax.swing.JPanel;
-import javax.swing.KeyStroke;
-
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.InputEvent;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
 
 public class AppWindow implements ActionListener {
-	super("Demo Graphics: Lines, Rectangles, Ovals");
-	private int counter;
 
 	private JFrame frame;
 
@@ -51,16 +28,6 @@ public class AppWindow implements ActionListener {
 	 * Create the application.
 	 */
 	public AppWindow() {
-		// DON'T FORGET TO INCLUDE THIS CODE - otherwise you will not
-        // be able to close your application!!!
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(WindowEvent evt) {
-                System.exit(0);
-            }
-        });
-        // construction a Swing timer that goes off every 1000 msec (1 sec)
-        Timer timer = new javax.swing.Timer(1000, this);
-        timer.start();		// timer starts here
 		initialize();
 	}
 
@@ -95,48 +62,10 @@ public class AppWindow implements ActionListener {
 		frame.getContentPane().add(gp);
 		frame.getContentPane().addKeyListener(gp);
 	}
-	
-	public void paint (Graphics g )
-     {
-     	// call superclass's paint method
-     	///super.paint(g);
-     	
-     	// draw a red line; 2 blue rectangles, one filled and one
-     	// not; and 2 magenta ovals, one filled and one not
-     	
-     	g.setColor(Color.red);
-     	g.drawLine(5, 30, 350, 30);
-     	
-     	g.setColor(Color.blue);
-     	g.drawRect(5, 40, 90, 55);
-     	g.fillRect(100, 40, 90, 55);
-     	
-     	g.setColor(Color.magenta);
-     	g.drawOval(195, 100, 90, 55);
-     	g.fillOval(290, 100, 90, 55);
-     	
-		// location of fish changes each time the timer goes off
-     	//g.drawImage(fish, fishX, fishY, this);	// 'fish' was loaded in constructor
-     }
 
-	// this method is called each time the timer goes off     
-	public void actionPerformed(ActionEvent evt) 
-	{
-		// move fish across and down screen
-		if (fishX > 0)
-			fishX -= 50;	// move fish to left a bit
-		else
-		{
-			fishX = 300;	// move fish far to right and
-			fishY +=30;		// down a bit
-			if (fishY > 100)
-				fishY = 40;	// put back closer to top
-		}
-		// need to tell the Repaint Manager that the fish has moved:
-		repaint();
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
-		// counting the seconds	
-		counter++;
-		System.out.println("time is " + counter);
 	}
 }
