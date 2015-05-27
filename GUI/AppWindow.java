@@ -111,9 +111,24 @@ public class AppWindow implements ActionListener {
      	//g.drawImage(fish, fishX, fishY, this);	// 'fish' was loaded in constructor
      }
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	// this method is called each time the timer goes off     
+	public void actionPerformed(ActionEvent evt) 
+	{
+		// move fish across and down screen
+		if (fishX > 0)
+			fishX -= 50;	// move fish to left a bit
+		else
+		{
+			fishX = 300;	// move fish far to right and
+			fishY +=30;		// down a bit
+			if (fishY > 100)
+				fishY = 40;	// put back closer to top
+		}
+		// need to tell the Repaint Manager that the fish has moved:
+		repaint();
 		
+		// counting the seconds	
+		counter++;
+		System.out.println("time is " + counter);
 	}
 }
