@@ -23,8 +23,7 @@ public class Tank extends GameObject
         while (biter.hasNext())
             if (biter.next().expired()) biter.remove();
         Point2D.Double current = this.getLocation();
-        Point2D.Double next = new Point2D.Double(current.getX() + move * Math.cos(this.getDirection()), current.getY() + move * Math.sin(this.getDirection()));
-        this.setLocation(next);
+        this.setLocation(new Point2D.Double(current.getX() + move * Math.cos(this.getDirection()), current.getY() + move * Math.sin(this.getDirection())));
         // TODO: movement
     }
     public void move(double amt) {
@@ -44,15 +43,14 @@ public class Tank extends GameObject
             double direction = this.getDirection();
             Point2D.Double current = this.getLocation();
             this.setLocation(new Point2D.Double(current.getX() - move * Math.cos(this.getDirection()), current.getY() - move * Math.sin(this.getDirection())));
-        }
-    }    
-            
             
             // FILL THIS IN
             /* expected behavior:
              * move away from the wall
              * turn an amount relative to its angle of incidence from the wall (angle from the normal)
              */
+        }
+    }
  
     public Tank(Point2D.Double l, Map m) {
         super(l, 0, m);
