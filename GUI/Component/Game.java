@@ -1,4 +1,4 @@
-package Component;
+package component;
 
 import java.awt.event.*;
 import java.util.*;

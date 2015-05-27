@@ -1,4 +1,4 @@
-package Graphics;
+package graphics;
 
 import java.awt.Image;
 import java.awt.event.*;
