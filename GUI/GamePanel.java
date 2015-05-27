@@ -15,7 +15,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	/**
 	 * Create the panel.
 	 */
-	public GamePanel() {
+	public GamePanel(int pct) {
+		game = new Game(pct);
 
 	}
 

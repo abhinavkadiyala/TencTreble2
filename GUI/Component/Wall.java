@@ -23,6 +23,7 @@ public class Wall extends GameObject {
 
 	@Override
 	public void paint(Graphics g) {
+		g.fillRect((int)getLocation().x, (int) getLocation().y, 5, 20);
 		// TODO Auto-generated method stub
 
 	}

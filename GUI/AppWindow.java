@@ -1,5 +1,7 @@
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -7,9 +9,13 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JSplitPane;
+
 import java.awt.BorderLayout;
+
 import javax.swing.AbstractAction;
+
 import java.awt.event.ActionEvent;
+
 import javax.swing.Action;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
@@ -91,7 +97,7 @@ public class AppWindow implements ActionListener {
 	public void paint (Graphics g )
      {
      	// call superclass's paint method
-     	super.paint(g);
+     	///super.paint(g);
      	
      	// draw a red line; 2 blue rectangles, one filled and one
      	// not; and 2 magenta ovals, one filled and one not

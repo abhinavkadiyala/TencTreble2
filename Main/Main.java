@@ -1,5 +1,7 @@
 import java.util.*;
 
+import component.*;
+
 
 public class Main {
 
