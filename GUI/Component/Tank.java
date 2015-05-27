@@ -1,5 +1,6 @@
 package component;
 
+import java.awt.Graphics;
 import java.awt.geom.*;
 import java.util.*;
 
@@ -58,4 +59,9 @@ public class Tank extends GameObject
         move = turn = 0;
         bullets = new LinkedList<Bullet>();
     }
+	@Override
+	public void paint(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -1,5 +1,6 @@
 package component;
 
+import java.awt.Graphics;
 import java.awt.geom.Point2D;
 
 public abstract class Bullet extends GameObject
@@ -56,7 +57,7 @@ public abstract class Bullet extends GameObject
 	}
 	
 	public void paint(Graphics g) {
-		g.fillOval(getLocation().x-BULLET_RADIUS, getLocation().y-BULLET_RADIUS, 2*BULLET_RADIUS, 2*BULLET_RADIUS));
+		g.fillOval((int)getLocation().x-BULLET_RADIUS, (int) getLocation().y-BULLET_RADIUS, 2*BULLET_RADIUS, 2*BULLET_RADIUS);
 	}
 
 }
