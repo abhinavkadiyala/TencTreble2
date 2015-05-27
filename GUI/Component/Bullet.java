@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 
 public abstract class Bullet extends GameObject
 {
-	private static final int BULLET_RADIUS = 2;
+	private static final double BULLET_RADIUS = 2;
 	protected final int myDamage = 1;
 	protected double mySpeed;
 	protected Player myPlayer;
@@ -58,7 +58,7 @@ public abstract class Bullet extends GameObject
 	}
 	
 	public void paint(Graphics2D g) {
-		g.fillOval((int)getLocation().x-BULLET_RADIUS, (int) getLocation().y-BULLET_RADIUS, 2*BULLET_RADIUS, 2*BULLET_RADIUS);
+		g.fillOval((int)(getLocation().x-BULLET_RADIUS),(int)(getLocation().y-BULLET_RADIUS),2*(int)BULLET_RADIUS,2*(int)BULLET_RADIUS);
 	}
 
 }
