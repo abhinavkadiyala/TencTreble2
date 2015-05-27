@@ -1,4 +1,3 @@
-package gui;
 
 import javax.swing.JPanel;
 

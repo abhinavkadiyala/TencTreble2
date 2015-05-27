@@ -28,16 +28,11 @@ public abstract class GameObject {
 		myDirection = dir;
 		map = aMap;
 	}
-<<<<<<< HEAD
-	
-	public void putSelfInGrid(Maze mz, Point2D.Double loc)
-=======
 	public Map getMap()
 	{
 		return map;
 	}
 	public Point2D.Double getLocation()
->>>>>>> origin/master
 	{
 		return myLoc;
 	}
@@ -46,21 +41,11 @@ public abstract class GameObject {
 		myLoc = loc;
 		return ol;
 	}
-<<<<<<< HEAD
-	
-	public void removeSelfFromGrid()
-=======
 	public double getDirection()
->>>>>>> origin/master
 	{
 		return myDirection;
 	}
-<<<<<<< HEAD
-	
-	public void update()
-=======
 	public double setDirection(double newDirection)
->>>>>>> origin/master
 	{
 		double od = myDirection;
 		myDirection = newDirection;
@@ -73,5 +58,5 @@ public abstract class GameObject {
 		map = mp;
 	}
 	public abstract void conflict(GameObject other);
-	public abstract void update(); //apparently it took in an int before
+	public abstract void update(); //apparently it took in an int, delta time before
 }
