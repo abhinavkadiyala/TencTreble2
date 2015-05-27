@@ -44,9 +44,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		for (GameObject obj : game.getMap().objects()) {
-			obj.paint(g2d);
-		}
+		game.paint(g2d);
 	}
 
 }
