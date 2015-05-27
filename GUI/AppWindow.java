@@ -43,6 +43,16 @@ public class AppWindow implements ActionListener {
 	 * Create the application.
 	 */
 	public AppWindow() {
+		// DON'T FORGET TO INCLUDE THIS CODE - otherwise you will not
+        // be able to close your application!!!
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(WindowEvent evt) {
+                System.exit(0);
+            }
+        });
+        // construction a Swing timer that goes off every 1000 msec (1 sec)
+        Timer timer = new javax.swing.Timer(1000, this);
+        timer.start();		// timer starts here
 		initialize();
 	}
 
