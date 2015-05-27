@@ -21,4 +21,9 @@ public class Map {
 	public Set<GameObject> objects() {
 		return obj;
 	}
+	public void paint(Graphics2D g) {
+		for (GameObject go : obj) {
+			go.paint(g);
+		}
+	}
 }
