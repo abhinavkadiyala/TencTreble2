@@ -7,6 +7,7 @@ import java.awt.event.*;
 public class AppWindow implements ActionListener {
 
 	private JFrame frame;
+	private JLabel labell;
 
 	/**
 	 * Launch the application.
@@ -56,6 +57,8 @@ public class AppWindow implements ActionListener {
 		});
 		mnGame.add(mntmNewGame);
 		frame.getContentPane().setLayout(null);
+		
+		labell = new JLabel("Scores go here");
 		
 	}
 	
