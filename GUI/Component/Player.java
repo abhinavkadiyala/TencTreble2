@@ -54,7 +54,7 @@ public class Player
 		return tank;
 	}
 
-	public Player(String n, int f, int b, int l, int r) {
-		name = n; fb = f; bb = b; lb = l; rb = r;
+	public Player(String n, int f, int b, int l, int r, int s) {
+		name = n; fb = f; bb = b; lb = l; rb = r; sb = s;
 	}
 }
