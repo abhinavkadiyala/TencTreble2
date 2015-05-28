@@ -17,6 +17,7 @@ public class Game implements KeyListener
 	private void initPlayers() {
 		for (int i = 0; i < players.length; i++) {
 			players[i] = new Player("Player "+(i-1),dKey[i][0],dKey[i][1],dKey[i][2],dKey[i][3],dKey[i][4]);
+			players[i].makeTank(null, map);	//location = null until a maze is created
 		}
 	}
 	public Game(int pct) {
