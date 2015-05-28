@@ -1,10 +1,8 @@
+package gui;
 
 import javax.swing.JPanel;
 
-import component.*;
-
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.event.*;
 
 @SuppressWarnings("serial")
@@ -16,8 +14,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	 * Create the panel.
 	 */
 	public GamePanel(int pct) {
+		setBackground(Color.LIGHT_GRAY);
 		game = new Game(pct);
-
+	}
+	public GamePanel() {
+		setBackground(Color.LIGHT_GRAY);
+		game = new Game(0);
+	}
+	public void newGame(int pct) {
+		game = new Game(pct);
 	}
 
 	@Override
@@ -43,8 +48,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	
 	public void paint(Graphics g) {
 		super.paint(g);
-		Graphics2D g2d = (Graphics2D) g;
-		game.paint(g2d);
+		game.paint((Graphics2D) g);
 	}
 
 }
