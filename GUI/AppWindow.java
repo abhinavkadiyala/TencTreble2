@@ -1,3 +1,4 @@
+package gui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +8,6 @@ import java.awt.event.*;
 public class AppWindow implements ActionListener {
 
 	private JFrame frame;
-	private JLabel labell;
 
 	/**
 	 * Launch the application.
@@ -56,19 +56,24 @@ public class AppWindow implements ActionListener {
 			}
 		});
 		mnGame.add(mntmNewGame);
+		
+		frame.setContentPane(new GamePanel());
 		frame.getContentPane().setLayout(null);
+		frame.addKeyListener((KeyListener) frame.getContentPane());
 		
-		labell = new JLabel("Scores go here");
-		
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 	}
 	
 	public void newGame() {
 		Object[] sv = {2};
 		int p = (int) JOptionPane.showInputDialog(frame, "How many players?", "New Game", JOptionPane.PLAIN_MESSAGE, null, sv, 2);
-		frame.getContentPane().removeAll();
-		GamePanel gp = new GamePanel(p);
-		frame.getContentPane().add(gp);
-		frame.getContentPane().addKeyListener(gp);
+		((GamePanel) frame.getContentPane()).newGame(p);
+		
 	}
 
 	@Override
