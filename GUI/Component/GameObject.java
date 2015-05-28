@@ -24,6 +24,7 @@ public abstract class GameObject {
 		myLoc = loc;
 		myDirection = dir;
 		map = aMap;
+		map.add(this);
 	}
 	public Map getMap()
 	{
@@ -53,8 +54,8 @@ public abstract class GameObject {
 	}
 	public void setMap(Map mp)
 	{
-		if (mp == null) map.remove(this);
-		else mp.add(this);
+		map.remove(this);
+		if (mp != null) mp.add(this);
 		map = mp;
 	}
 	
