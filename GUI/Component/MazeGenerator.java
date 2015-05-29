@@ -17,7 +17,7 @@ public class MazeGenerator {
 	private final int[][] visited;
 	private final long seed;
 	private Random rand;
-	private final int density;  //default 7 //1-9
+	private final int density;  //default 7 //0-9
 
 	public MazeGenerator(int x, int y) {
 		this(x, y, System.currentTimeMillis(), 7);
@@ -56,6 +56,23 @@ public class MazeGenerator {
 			System.out.print("+---");
 		}
 		System.out.println("+");
+	}
+	public String expr() {
+		String r = "";
+		for (int i = 0; i < y; i++) {
+			for (int j = 0; j < x; j++) {
+				r += (maze[j][i]&1) == 0 ? "-" : " ";
+			}
+			r += "\n";
+			for (int j = 0; j < x; j++) {
+				r += (maze[j][i]&8) == 0 ? "|" : " ";
+			}
+			r += "|\n";
+		}
+		for (int j = 0; j < x; j++) {
+			r += "-";
+		}
+		return r;
 	}
 
 	private void generateMaze(int cx, int cy) {

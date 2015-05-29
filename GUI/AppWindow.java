@@ -1,3 +1,4 @@
+package gui;
 
 import javax.swing.*;
 import java.awt.*;
@@ -55,18 +56,33 @@ public class AppWindow implements ActionListener {
 			}
 		});
 		mnGame.add(mntmNewGame);
-		frame.getContentPane().setLayout(null);
 		
+		frame.setContentPane(new GamePanel());
+		frame.getContentPane().setLayout(null);
+		frame.addKeyListener((KeyListener) frame.getContentPane());
+		
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 	}
 	
 	public void newGame() {
 		Object[] sv = {2};
+<<<<<<< HEAD
 		Integer p = (Integer) JOptionPane.showInputDialog(frame, "How many players?", "New Game", JOptionPane.PLAIN_MESSAGE, null, sv, 2);
 		if (p == null) return;
 		frame.getContentPane().removeAll();
 		GamePanel gp = new GamePanel(p);
 		frame.getContentPane().add(gp);
 		frame.getContentPane().addKeyListener(gp);
+=======
+		int p = (int) JOptionPane.showInputDialog(frame, "How many players?", "New Game", JOptionPane.PLAIN_MESSAGE, null, sv, 2);
+		((GamePanel) frame.getContentPane()).newGame(p);
+		
+>>>>>>> origin/master
 	}
 
 	@Override
