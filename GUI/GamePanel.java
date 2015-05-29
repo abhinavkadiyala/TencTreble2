@@ -1,6 +1,7 @@
-package gui;
 
-import javax.swing.JPanel;
+import javax.swing.*;
+
+import component.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,7 +9,7 @@ import java.awt.event.*;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
-	Game game;
+	Game game; static Color[] cs = {Color.LIGHT_GRAY, Color.CYAN, Color.MAGENTA}; static int i = 0;
 	
 	/**
 	 * Create the panel.
@@ -23,6 +24,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	public void newGame(int pct) {
 		game = new Game(pct);
+		setBackground(cs[i = (i+1) % 3]);
 	}
 
 	@Override

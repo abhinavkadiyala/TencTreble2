@@ -12,16 +12,10 @@ public class Wall extends GameObject {
 	}
 
 	@Override
-	public void conflict(GameObject other) {
-		// TODO Auto-generated method stub
-
-	}
+	public void conflict(GameObject other) {}
 
 	@Override
-	public void update() {
-		// TODO Auto-generated method stub
-
-	}
+	public void update() {}
 
 	@Override
 	public void paint(Graphics2D g) {

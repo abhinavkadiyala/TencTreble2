@@ -1,5 +1,7 @@
 package component;
 
+import java.awt.geom.Point2D;
+
 
 /**
  * Write a description of class Player here.
@@ -51,7 +53,9 @@ public class Player
 		return tank;
 	}
 	public Tank makeTank(Point2D.Double loc, Map m) {
+		Tank ot = tank;
 		tank = new Tank(loc, m);
+		return ot;
 	}
 
 	public Player(String n, int f, int b, int l, int r, int s) {

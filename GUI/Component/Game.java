@@ -1,12 +1,13 @@
 package component;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
 public class Game implements KeyListener
 {
 	public static int CELL_SIDE = 20;
-	private static final int[] dKey = {
+	private static final int[][] dKey = {
 		{KeyEvent.VK_UP     , KeyEvent.VK_DOWN   , KeyEvent.VK_LEFT   , KeyEvent.VK_RIGHT  , KeyEvent.VK_SLASH  },
 		{KeyEvent.VK_E      , KeyEvent.VK_D      , KeyEvent.VK_S      , KeyEvent.VK_F      , KeyEvent.VK_Q      },
 		{KeyEvent.VK_NUMPAD5, KeyEvent.VK_NUMPAD2, KeyEvent.VK_NUMPAD1, KeyEvent.VK_NUMPAD3, KeyEvent.VK_NUMPAD7}

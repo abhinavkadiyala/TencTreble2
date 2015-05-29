@@ -74,6 +74,9 @@ public class MazeGenerator {
 		}
 		return r;
 	}
+	public int[][] maze() {
+		return maze;
+	}
 
 	private void generateMaze(int cx, int cy) {
 		Dir[] dirs = Dir.values();
