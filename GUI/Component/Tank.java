@@ -11,6 +11,8 @@ public class Tank extends GameObject
     double move, turn; //positive for forward/left, negative for backward/right
     private final static int MAX_BULLETS = 5;
     LinkedList<Bullet> bullets;
+    private final int width = 20;
+    private final int height = 10;
     
     public boolean fire(Bullet bullet) {
         if (bullets.size() <= MAX_BULLETS) return false;
