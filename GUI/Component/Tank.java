@@ -64,7 +64,7 @@ public class Tank extends GameObject
     }
 	@Override
 	public void paint(Graphics2D g) {
-		g.drawPolygon(new int[] , new int[], 4);
+		g.drawPolygon(xCoordinates, yCoordinates, 4);
 		// TODO Auto-generated method stub
 		
 	}
