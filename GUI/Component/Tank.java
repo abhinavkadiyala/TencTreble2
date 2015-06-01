@@ -13,6 +13,7 @@ public class Tank extends GameObject
     LinkedList<Bullet> bullets;
     private final int width = 20;
     private final int height = 10;
+    private Point2D.Double [] coordinates;
     
     public boolean fire(Bullet bullet) {
         if (bullets.size() <= MAX_BULLETS) return false;
@@ -60,7 +61,7 @@ public class Tank extends GameObject
     }
 	@Override
 	public void paint(Graphics2D g) {
-		g.drawPolygon(new int[], new int[], 4);
+		g.drawPolygon(new int[] , new int[], 4);
 		// TODO Auto-generated method stub
 		
 	}
