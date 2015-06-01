@@ -9,8 +9,9 @@ import java.awt.event.*;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
-	Game game; static Color[] cs = {Color.LIGHT_GRAY, Color.CYAN, Color.MAGENTA}; static int i = 0;
-	
+	Game game;
+	static Color[] cs = {Color.LIGHT_GRAY, Color.CYAN, Color.MAGENTA}; static int i = 0;
+
 	/**
 	 * Create the panel.
 	 */
@@ -39,15 +40,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		
+		game.keyTyped(arg0);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		repaint();
 	}
-	
+
 	public void paint(Graphics g) {
 		super.paint(g);
 		game.paint((Graphics2D) g);
