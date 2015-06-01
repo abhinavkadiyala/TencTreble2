@@ -41,8 +41,14 @@ public class Game implements KeyListener
 	public void keyTyped(KeyEvent key) {return;}
 	public void update() {
 		Set<GameObject> obj = map.getObjects();
-		for (GameObject go : obj)
+		for (GameObject go : obj){
 			go.update();
+		}
+		for (GameObject go : obj){
+			if (go instanceof Tank){
+				
+			}
+		}
 	}
 	public void add (GameObject gObj){
 		map.add(gObj);
