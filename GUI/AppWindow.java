@@ -68,8 +68,15 @@ public class AppWindow implements ActionListener {
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
 
+
 		JMenuItem mntmControls = new JMenuItem("Controls");
 		mnHelp.add(mntmControls);
+		
+		mntmControls.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				controls();
+			}
+		});
 
 		frame.setContentPane(new GamePanel());
 		frame.getContentPane().setLayout(null);
@@ -91,6 +98,10 @@ public class AppWindow implements ActionListener {
 		if (p == null)
 			return;
 		((GamePanel) frame.getContentPane()).newGame(p);
+	}
+	
+	public void controls(){
+		
 	}
 
 	@Override

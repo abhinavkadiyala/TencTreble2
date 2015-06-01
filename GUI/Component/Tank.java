@@ -13,8 +13,6 @@ public class Tank extends GameObject
     LinkedList<Bullet> bullets;
     private final int width = 20;
     private final int height = 10;
-    private int [] xCoordinates;
-    private int [] yCoordinates;
     
     public boolean fire(Bullet bullet) {
         if (bullets.size() <= MAX_BULLETS) return false;
@@ -36,6 +34,19 @@ public class Tank extends GameObject
     public void turn(double amt) {
         turn += amt;
     }
+    public int[] getXCooridinates() {
+    	double dir = this.getDirection();
+    	Point2D.Double loc = this.getLocation();
+    	int[] xCoordinates = {(int)(loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2), (int)(loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(loc.x - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(loc.x - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2)};
+    	return xCoordinates;
+    }
+    public int[] getYCoordinates(){
+    	double dir = this.getDirection();
+    	Point2D.Double loc = this.getLocation();
+        int[] yCoordinates = {(int)(loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2), (int)(loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2)};
+        return yCoordinates;
+    }
+    
     public void conflict (GameObject other){
         if (other instanceof Bullet){
             other.setMap(null);
@@ -54,18 +65,23 @@ public class Tank extends GameObject
              */
         }
     }
- 
+    public Rectangle2D.Double getRect(){
+    	int [] xCoordinates = this.getXCooridinates();
+    	int [] yCoordinates = this.getYCoordinates();
+    	Rectangle2D.Double rectangle = new Rectangle2D.Double();
+    	for (int i = 0; i < 4; i++){
+    		rectangle.add(new Point2D.Double(xCoordinates[i], yCoordinates[i]));
+        }
+    	return rectangle;
+    }
     public Tank(Point2D.Double l, Map m) {
         super(l, 0, m);
         move = turn = 0;
         bullets = new LinkedList<Bullet>();
-        double dir = this.getDirection();
-        int[] xCoordinates = {(int)(this.getLocation().getX() + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2), (int)(this.getLocation().getX() + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(this.getLocation().getX() - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(this.getLocation().getX() - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2)};
-        int[] yCoordinates = {(int)(this.getLocation().getY() + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2), (int)(this.getLocation().getY() + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(this.getLocation().getY() - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(this.getLocation().getY() - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2)};
     }
 	@Override
 	public void paint(Graphics2D g) {
-		g.drawPolygon(xCoordinates, yCoordinates, 4);
+		g.drawPolygon(this.getXCooridinates(), this.getYCoordinates(), 4);
 		// TODO Auto-generated method stub
 		
 	}
