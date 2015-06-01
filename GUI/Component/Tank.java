@@ -16,7 +16,6 @@ public class Tank extends GameObject
         if (bullets.size() <= MAX_BULLETS) return false;
         // TODO: bullet-specific stuff
         bullets.add(bullet);
-        map.add(bullet);
         return true;
     }
     public void update() {
@@ -59,6 +58,7 @@ public class Tank extends GameObject
     }
 	@Override
 	public void paint(Graphics2D g) {
+		g.drawPolygon(new int[], new int[], 4);
 		// TODO Auto-generated method stub
 		
 	}
