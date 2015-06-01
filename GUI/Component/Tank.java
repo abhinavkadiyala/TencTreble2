@@ -59,8 +59,9 @@ public class Tank extends GameObject
         super(l, 0, m);
         move = turn = 0;
         bullets = new LinkedList<Bullet>();
-        xCoordinates = new int[(int)this.getLocation.getX() + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2, (int)this.getLocation.getX() + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2, (int)this.getLocation.getX() - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2, (int)this.getLocation.getX() - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2];
-        yCoordinates = new int[(int)this.getLocation.getY() + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2, (int)this.getLocation.getY() + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2, (int)this.getLocation.getY() - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2, (int)this.getLocation.getY() - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2];
+        double dir = this.getDirection();
+        int[] xCoordinates = {(int)(this.getLocation().getX() + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2), (int)(this.getLocation().getX() + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(this.getLocation().getX() - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(this.getLocation().getX() - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2)};
+        int[] yCoordinates = {(int)(this.getLocation().getY() + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2), (int)(this.getLocation().getY() + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(this.getLocation().getY() - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(this.getLocation().getY() - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2)};
     }
 	@Override
 	public void paint(Graphics2D g) {
