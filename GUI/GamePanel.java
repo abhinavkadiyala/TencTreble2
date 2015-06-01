@@ -1,8 +1,6 @@
 
 import javax.swing.*;
 
-import component.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
