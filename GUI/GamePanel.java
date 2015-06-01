@@ -1,6 +1,8 @@
 
 import javax.swing.*;
 
+import component.Game;
+
 import java.awt.*;
 import java.awt.event.*;
 
