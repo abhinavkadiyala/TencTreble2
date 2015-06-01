@@ -15,6 +15,7 @@ public class Tank extends GameObject
     private final int height = 10;
     private int [] xCoordinates;
     private int [] yCoordinates;
+    private Rectangle2D.Double rectangle;
     
     public boolean fire(Bullet bullet) {
         if (bullets.size() <= MAX_BULLETS) return false;
@@ -62,6 +63,9 @@ public class Tank extends GameObject
         double dir = this.getDirection();
         int[] xCoordinates = {(int)(this.getLocation().getX() + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2), (int)(this.getLocation().getX() + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(this.getLocation().getX() - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(this.getLocation().getX() - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2)};
         int[] yCoordinates = {(int)(this.getLocation().getY() + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2), (int)(this.getLocation().getY() + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(this.getLocation().getY() - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(this.getLocation().getY() - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2)};
+        for (int i = 0; i < 4; i++){
+        	rectangle.add(new Point2D.Double(xCoordinates[i], yCoordinates[i]));
+        }
     }
 	@Override
 	public void paint(Graphics2D g) {
