@@ -14,6 +14,7 @@ public class Maze extends GameObject {
 	
 	public Maze(int xmax, int ymax, Map mp) {
 		super(new Point2D.Double(),0,mp);
+		walls = new HashSet<Wall>();
 		int x = (int) (Math.random() * (xmax-3) + 3);
 		int y = (int) (Math.random() * (ymax-3) + 3);
 		long seed = System.currentTimeMillis();
@@ -24,9 +25,9 @@ public class Maze extends GameObject {
 				if((maze[j][i] & 1) == 0) walls.add(new Wall(new Point2D.Double(j*Game.CELL_SIDE, i*Game.CELL_SIDE),0,mp));
 			}
 			for (int j = 0; j < x; j++) {
-				if((maze[j][i] & 8) == 0) walls.add(new Wall(new Point2D.Double(j*Game.CELL_SIDE, i*Game.CELL_SIDE),0,mp));
+				if((maze[j][i] & 8) == 0) walls.add(new Wall(new Point2D.Double(j*Game.CELL_SIDE, i*Game.CELL_SIDE),Math.PI/2,mp));
 			}	
-			walls.add(new Wall(new Point2D.Double(x*Game.CELL_SIDE, i*Game.CELL_SIDE),0,mp));
+			walls.add(new Wall(new Point2D.Double(x*Game.CELL_SIDE, i*Game.CELL_SIDE),Math.PI/2,mp));
 		}
 		for (int j = 0; j < x; j++) {
 			walls.add(new Wall(new Point2D.Double(j*Game.CELL_SIDE, y*Game.CELL_SIDE),0,mp));
