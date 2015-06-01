@@ -1,8 +1,6 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
 
 public class AppWindow implements ActionListener {
 
@@ -48,13 +46,24 @@ public class AppWindow implements ActionListener {
 		menuBar.add(mnGame);
 
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
-		mntmNewGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
+		mntmNewGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
+				InputEvent.CTRL_MASK));
 		mntmNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				newGame();
 			}
 		});
 		mnGame.add(mntmNewGame);
+
+		JMenuItem mntmClose = new JMenuItem("Close");
+		mntmClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
+				InputEvent.CTRL_MASK));
+		mntmClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		mnGame.add(mntmClose);
 
 		frame.setContentPane(new GamePanel());
 		frame.getContentPane().setLayout(null);
@@ -69,14 +78,17 @@ public class AppWindow implements ActionListener {
 	}
 
 	public void newGame() {
-		Object[] sv = {2};
-		Integer p = (Integer) JOptionPane.showInputDialog(frame, "How many players?", "New Game", JOptionPane.PLAIN_MESSAGE, null, sv, 2);
-		if (p == null) return;
+		Object[] sv = { 2 };
+		Integer p = (Integer) JOptionPane.showInputDialog(frame,
+				"How many players?", "New Game", JOptionPane.PLAIN_MESSAGE,
+				null, sv, 2);
+		if (p == null)
+			return;
 		((GamePanel) frame.getContentPane()).newGame(p);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		((ActionListener) frame.getContentPane()).actionPerformed(e);
 	}
 }
