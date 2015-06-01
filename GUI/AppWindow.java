@@ -65,6 +65,12 @@ public class AppWindow implements ActionListener {
 		});
 		mnGame.add(mntmClose);
 
+		JMenu mnHelp = new JMenu("Help");
+		menuBar.add(mnHelp);
+
+		JMenuItem mntmControls = new JMenuItem("Controls");
+		mnHelp.add(mntmControls);
+
 		frame.setContentPane(new GamePanel());
 		frame.getContentPane().setLayout(null);
 		frame.addKeyListener((KeyListener) frame.getContentPane());
