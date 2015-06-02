@@ -1,7 +1,7 @@
-package Component;
+package component;
 
 import java.awt.*;
-import java.awt.geom.*;
+import java.awt.geom.Point2D;
 
 public abstract class Bullet extends GameObject
 {
@@ -19,15 +19,15 @@ public abstract class Bullet extends GameObject
 		startTime = System.currentTimeMillis();
 		mySpeed = 1; //change value as needed
 	}
+	public Bullet(Point2D.Double loc, double dir, Map mp, Player p) {
+		super(loc,dir,mp);
+		myPlayer = p;
+		startTime = System.currentTimeMillis();
+		mySpeed = 1;
+	}
 	public double getSpeed() {
 		return mySpeed;
 	}
-	
-	public Shape getBounds(){
-		
-		return new Ellipse2D.Double(getLocation().x-BULLET_RADIUS,getLocation().y-BULLET_RADIUS,2*BULLET_RADIUS,2*BULLET_RADIUS);	
-	}
-	
   
 	public Player getPlayer() {
 		return myPlayer;
@@ -45,7 +45,7 @@ public abstract class Bullet extends GameObject
 		if(other instanceof Wall) {
 			this.setDirection(2*other.getDirection() - this.getDirection());
 		} else if (other instanceof Tank) {
-			// do nothing (already resolved by Tank.conflict();)
+			// do something
 		}
 	}
   
@@ -59,16 +59,11 @@ public abstract class Bullet extends GameObject
 	}
   
 	public void destroy() {
-		this.setMap(null);
-		//needs implementation should be done now
+		//needs implementation
 	}
 	
 	public void paint(Graphics2D g) {
 		g.fillOval((int)(getLocation().x-BULLET_RADIUS),(int)(getLocation().y-BULLET_RADIUS),2*(int)BULLET_RADIUS,2*(int)BULLET_RADIUS);
-	}
-	public RectangularShape getEllipse() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
