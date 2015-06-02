@@ -43,6 +43,7 @@ public class Tank extends GameObject
 			loc.x - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2,
 			loc.x - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2
 		};
+		// I still get a NullPointerException here
 		return xCoordinates;
 	}
     public double[] getYCoords(){
