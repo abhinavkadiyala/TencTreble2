@@ -1,3 +1,9 @@
+/Game.class
 /component/
-/graphics/
-/map/
+/Map.class
+/GameObject.class
+/Tank.class
+/Player.class
+/Bullet.class
+/Maze.class
+/Wall.class

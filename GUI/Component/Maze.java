@@ -1,7 +1,8 @@
+package component;
 /**
  * 
  */
-package component;
+
 
 import java.awt.*;
 import java.awt.geom.*;

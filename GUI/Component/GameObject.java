@@ -1,4 +1,5 @@
-package Component;
+package component;
+
 
 import java.awt.geom.*;
 import java.awt.*;
@@ -55,7 +56,7 @@ public abstract class GameObject {
 	}
 	public void setMap(Map mp)
 	{
-		map.remove(this);
+		if (map != null) map.remove(this);
 		if (mp != null) mp.add(this);
 		map = mp;
 	}

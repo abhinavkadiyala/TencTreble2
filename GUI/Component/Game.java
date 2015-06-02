@@ -2,10 +2,11 @@ package component;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class Game implements KeyListener
 {
-	public static int CELL_SIDE = 20;
+	public static int CELL_SIDE = 25;
 	private static final int[][] dKey = {
 		{KeyEvent.VK_UP     , KeyEvent.VK_DOWN   , KeyEvent.VK_LEFT   , KeyEvent.VK_RIGHT  , KeyEvent.VK_SLASH  },
 		{KeyEvent.VK_E      , KeyEvent.VK_D      , KeyEvent.VK_S      , KeyEvent.VK_F      , KeyEvent.VK_Q      },
@@ -18,7 +19,7 @@ public class Game implements KeyListener
 	private void initPlayers() {
 		for (int i = 0; i < players.length; i++) {
 			players[i] = new Player("Player "+(i-1),dKey[i][0],dKey[i][1],dKey[i][2],dKey[i][3],dKey[i][4]);
-			players[i].makeTank(new java.awt.geom.Point2D.Double(), map);	//location = null until a maze is created
+			players[i].makeTank(new java.awt.geom.Point2D.Double(23,41), map);	//location = null until a maze is created
 		}
 	}
 	public Game() {
@@ -31,7 +32,7 @@ public class Game implements KeyListener
 		map = new Map();
 		initPlayers();
 		mz = new Maze(12,15,map);
-		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,players[0]));
+		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,/*players[0]*/null));
 	}
 	public Game(Map mp, Player... ps) {
 		players = ps;

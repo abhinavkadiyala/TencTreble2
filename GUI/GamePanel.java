@@ -1,7 +1,7 @@
 
 import javax.swing.*;
 
-import Component.*;
+import component.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -10,7 +10,8 @@ import java.awt.event.*;
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	Game game;
-	static Color[] cs = {Color.LIGHT_GRAY, Color.CYAN, Color.MAGENTA}; static int i = 0;
+	Timer timer;
+	private static final int DELAY_MS = 20;
 
 	/**
 	 * Create the panel.
@@ -25,7 +26,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	public void newGame(int pct) {
 		game = new Game(pct);
-		setBackground(cs[i = (i+1) % 3]);
+		if (timer != null) timer.stop();
+		timer = new Timer(DELAY_MS, this);
+		timer.start();
 	}
 
 	@Override
@@ -45,6 +48,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		game.update();
 		repaint();
 	}
 

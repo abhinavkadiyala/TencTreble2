@@ -1,5 +1,6 @@
 package component;
 
+
 import java.awt.*;
 import java.awt.geom.*;
 
@@ -7,7 +8,7 @@ public abstract class Bullet extends GameObject
 {
 	private static final double BULLET_RADIUS = 2;
 	protected final int myDamage = 1;
-	protected double mySpeed;
+	protected double mySpeed = 1.2;
 	protected Player myPlayer;
 	protected Long startTime;
 	protected final long LIFETIME = 10000;
@@ -17,13 +18,11 @@ public abstract class Bullet extends GameObject
 		super(player.getTank().getLocation(), player.getTank().getDirection(), player.getTank().getMap());
 		myPlayer = player;
 		startTime = System.currentTimeMillis();
-		mySpeed = 1; //change value as needed
 	}
 	public Bullet(Point2D.Double loc, double dir, Map mp, Player p) {
 		super(loc,dir,mp);
 		myPlayer = p;
 		startTime = System.currentTimeMillis();
-		mySpeed = 1;
 	}
 	public double getSpeed() {
 		return mySpeed;
