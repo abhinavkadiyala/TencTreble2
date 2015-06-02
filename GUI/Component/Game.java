@@ -47,8 +47,19 @@ public class Game implements KeyListener
 	}
 	public void keyTyped(KeyEvent key) {return;}
 	public void update() {
-		for (GameObject go : map.getObjects())
+		Set<GameObject> obj = map.getObjects();
+		for (GameObject go : obj) {
 			go.update();
+			if (go instanceof Tank) {
+				for (GameObject go2 : obj)
+					if (GameObject.intersect(go.getBounds(), go2.getBounds()))
+						go.conflict(go2);
+			} else if (go instanceof Bullet) {
+				for (GameObject go2 : obj)
+					if (go2 instanceof Wall && GameObject.intersect(go.getBounds(), go2.getBounds()))
+						go.conflict(go2);
+			}
+		}
 	}
 	public void add (GameObject gObj){
 		map.add(gObj);
