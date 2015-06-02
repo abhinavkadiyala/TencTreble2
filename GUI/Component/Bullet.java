@@ -30,9 +30,9 @@ public abstract class Bullet extends GameObject
 	}
 	
 	public Shape getBounds() {
--		
--		return new Ellipse2D.Double(getLocation().x-BULLET_RADIUS,getLocation().y-BULLET_RADIUS,2*BULLET_RADIUS,2*BULLET_RADIUS);	
--	}
+		
+		return new Ellipse2D.Double(getLocation().x-BULLET_RADIUS,getLocation().y-BULLET_RADIUS,2*BULLET_RADIUS,2*BULLET_RADIUS);	
+	}
   
 	public Player getPlayer() {
 		return myPlayer;
