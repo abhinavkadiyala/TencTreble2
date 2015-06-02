@@ -1,7 +1,7 @@
 /**
  * 
  */
-package Component;
+package component;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -57,12 +57,6 @@ public class Maze extends GameObject {
 	public void paint(Graphics2D g) {
 		for (Wall w : walls)
 			w.paint(g);
-	}
-
-	@Override
-	public Shape getBounds() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
