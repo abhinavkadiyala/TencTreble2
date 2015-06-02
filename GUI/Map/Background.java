@@ -1,4 +1,4 @@
-package map;
+package Map;
 
 public class Background {
 

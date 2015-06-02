@@ -1,4 +1,4 @@
-package component;
+package Component;
 
 import java.util.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ public class Map {
 	Set<GameObject> obj;
 	public Map() {
 		// STILL NEED SOME WAY TO USE MAZE GENERATOR
-		obj = new HashSet<>();
+		obj = new HashSet<GameObject>();
 	}
 	
 	public Set<GameObject> getObjects(){

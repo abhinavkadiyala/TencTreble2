@@ -1,4 +1,4 @@
-package component;
+package Component;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -33,6 +33,12 @@ public class Wall extends GameObject {
 		double dir = getDirection();
 		g.drawLine((int)(loc.x),(int) (loc.y),(int) (loc.x+ Game.CELL_SIDE*Math.cos(dir)),(int) (loc.y+Game.CELL_SIDE*Math.sin(dir)));
 		g.setStroke(s);
+	}
+
+	@Override
+	public Shape getBounds() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

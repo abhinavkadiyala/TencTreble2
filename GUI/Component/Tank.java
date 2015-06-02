@@ -1,4 +1,4 @@
-package component;
+package Component;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -93,5 +93,10 @@ public class Tank extends GameObject
 		g.drawPolygon(this.getXCooridinates(), this.getYCoordinates(), 4);
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public Shape getBounds() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

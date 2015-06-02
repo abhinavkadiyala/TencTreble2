@@ -1,4 +1,4 @@
-package component;
+package Component;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -65,6 +65,10 @@ public abstract class Bullet extends GameObject
 	
 	public void paint(Graphics2D g) {
 		g.fillOval((int)(getLocation().x-BULLET_RADIUS),(int)(getLocation().y-BULLET_RADIUS),2*(int)BULLET_RADIUS,2*(int)BULLET_RADIUS);
+	}
+	public RectangularShape getEllipse() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
