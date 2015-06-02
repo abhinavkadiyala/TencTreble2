@@ -1,7 +1,7 @@
 package component;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
+import java.awt.geom.*;
 
 public abstract class Bullet extends GameObject
 {
@@ -23,9 +23,9 @@ public abstract class Bullet extends GameObject
 		return mySpeed;
 	}
 	
-	public Ellipse2D.Double getEllipse(){
-		Ellipse2D.Double ellipse = new Ellipse2D.Double(getLocation().x-BULLET_RADIUS,(int)(getLocation().y-BULLET_RADIUS),2*(int)BULLET_RADIUS,2*(int)BULLET_RADIUS);
-		return ellipse;		
+	public Shape getBounds(){
+		
+		return new Ellipse2D.Double(getLocation().x-BULLET_RADIUS,getLocation().y-BULLET_RADIUS,2*BULLET_RADIUS,2*BULLET_RADIUS);	
 	}
 	
   
