@@ -1,6 +1,7 @@
 package component;
 
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 
 public abstract class Bullet extends GameObject
 {
@@ -21,6 +22,12 @@ public abstract class Bullet extends GameObject
 	public double getSpeed() {
 		return mySpeed;
 	}
+	
+	public Ellipse2D.Double getEllipse(){
+		Ellipse2D.Double ellipse = new Ellipse2D.Double(getLocation().x-BULLET_RADIUS,(int)(getLocation().y-BULLET_RADIUS),2*(int)BULLET_RADIUS,2*(int)BULLET_RADIUS);
+		return ellipse;		
+	}
+	
   
 	public Player getPlayer() {
 		return myPlayer;
@@ -52,7 +59,8 @@ public abstract class Bullet extends GameObject
 	}
   
 	public void destroy() {
-		//needs implementation
+		this.setMap(null);
+		//needs implementation should be done now
 	}
 	
 	public void paint(Graphics2D g) {

@@ -26,6 +26,7 @@ public abstract class GameObject {
 		map = aMap;
 		map.add(this);
 	}
+	
 	public Map getMap()
 	{
 		return map;

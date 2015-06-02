@@ -3,6 +3,8 @@ package component;
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
 
 public class Wall extends GameObject {
 
@@ -19,8 +21,9 @@ public class Wall extends GameObject {
 
 	@Override
 	public void update() {}
-	public Line2D.Double getLine(){
-		return line;
+	public Rectangle2D.Double getRect(){
+		Rectangle2D.Double rect = new Rectangle2D.Double(this.getLocation().x, this.getLocation().y, WALL_WIDTH, Game.CELL_SIDE);
+		return rect;
 	}
 	@Override
 	public void paint(Graphics2D g) {
@@ -28,7 +31,7 @@ public class Wall extends GameObject {
 		g.setStroke(new BasicStroke((float) WALL_WIDTH));
 		Point2D.Double loc = getLocation();
 		double dir = getDirection();
-		g.drawLine((int)(loc.x - 0.5 * Game.CELL_SIDE*Math.cos(dir)),(int) (loc.y - 0.5 * Game.CELL_SIDE*Math.sin(dir)),(int) (loc.x+ 0.5* Game.CELL_SIDE*Math.cos(dir)),(int) (loc.y+ 0.5 *Game.CELL_SIDE*Math.sin(dir)));
+		g.drawLine((int)(loc.x),(int) (loc.y),(int) (loc.x+ Game.CELL_SIDE*Math.cos(dir)),(int) (loc.y+Game.CELL_SIDE*Math.sin(dir)));
 		g.setStroke(s);
 	}
 

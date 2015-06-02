@@ -46,7 +46,32 @@ public class Game implements KeyListener
 		}
 		for (GameObject go : obj){
 			if (go instanceof Tank){
+				for (GameObject nej : obj){
+					if (nej instanceof Tank && ((Tank) nej).getRect().intersects(((Tank) go).getRect())){
+						go.conflict(nej);
+					}
+					else if (nej instanceof Bullet){
+						if (((Bullet) nej).getEllipse().intersects(((Tank) go).getRect())){
+							go.conflict(nej);
+						}
+					}
+					else if (nej instanceof Wall){
+						if (((Wall) nej).getRect().intersects(((Tank) go).getRect())){
+							go.conflict(nej);
+						}
+					}
+				}
 				
+			}
+			else if (go instanceof Bullet){
+				for (GameObject nej: obj){
+					if (nej instanceof Wall){
+						if (((Bullet) go).getEllipse().intersects(((Wall) nej).getRect())){
+							go.conflict(nej);
+						}
+							
+					}
+				}
 			}
 		}
 	}
