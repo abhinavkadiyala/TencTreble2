@@ -66,7 +66,7 @@ public abstract class GameObject {
 	public abstract void paint(Graphics2D g);
 
 	public abstract Shape getBounds();
-	public boolean intersect(Shape s1, Shape s2) {
+	public static boolean intersect(Shape s1, Shape s2) {
 		Area as1 = new Area(s1);
 		return as1.equals(as1.subtract(new Area(s2)));
 	}
