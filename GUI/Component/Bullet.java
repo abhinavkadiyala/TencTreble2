@@ -1,7 +1,7 @@
 package component;
 
 import java.awt.*;
-import java.awt.geom.Point2D;
+import java.awt.geom.*;
 
 public abstract class Bullet extends GameObject
 {
@@ -28,6 +28,11 @@ public abstract class Bullet extends GameObject
 	public double getSpeed() {
 		return mySpeed;
 	}
+	
+	public Shape getBounds() {
+-		
+-		return new Ellipse2D.Double(getLocation().x-BULLET_RADIUS,getLocation().y-BULLET_RADIUS,2*BULLET_RADIUS,2*BULLET_RADIUS);	
+-	}
   
 	public Player getPlayer() {
 		return myPlayer;
@@ -59,6 +64,7 @@ public abstract class Bullet extends GameObject
 	}
   
 	public void destroy() {
+		setMap(null);
 		//needs implementation
 	}
 	
