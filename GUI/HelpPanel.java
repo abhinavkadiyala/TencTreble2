@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -17,10 +18,10 @@ public class HelpPanel extends JPanel implements ActionListener, KeyListener{
 		// TODO Auto-generated constructor stub
 		super();
 		setBackground(Color.BLUE);
-		setBounds(new Rectangle(50, 50));
+		setBounds(new Rectangle(500, 200));
 		
-		JTextField helpText = new JTextField("Use arrow keys to move and press m to fire!");
-		
+		JOptionPane helpText = new JOptionPane("Use arrow keys to move and press m to fire!");
+		helpText.setVisible(true);
 		add(helpText);
 		setVisible(true);
 	}

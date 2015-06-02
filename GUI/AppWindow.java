@@ -102,6 +102,7 @@ public class AppWindow implements ActionListener {
 	
 	public void controls(){
 		frame.add(new HelpPanel());
+		frame.setVisible(true);
 	}
 
 	@Override
