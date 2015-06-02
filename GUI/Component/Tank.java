@@ -65,6 +65,10 @@ public class Tank extends GameObject
                 this.setMap(null);
             }
         }
+        else if (other instanceof Tank){
+        	 double dir = this.getDirection();
+             this.translate(-Math.cos(dir), -Math.sin(dir));
+        }
         else if (other instanceof Wall){
             double dir = this.getDirection();
             this.translate(-Math.cos(dir), -Math.sin(dir));
