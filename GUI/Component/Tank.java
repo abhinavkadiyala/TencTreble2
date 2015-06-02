@@ -82,6 +82,7 @@ public class Tank extends GameObject
 		for (int i = 0; i < 4; i++)
 			p2D.moveTo(xCoords[i], yCoords[i]);
 		p2D.moveTo(xCoords[0], yCoords[0]);
+		return p2d;
 	}
 	public Tank(Point2D.Double l, Map m) {
 		super(l, 0, m);
