@@ -1,4 +1,4 @@
-package Component;
+package component;
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -34,20 +34,30 @@ public class Tank extends GameObject
     public void turn(double amt) {
         turn += amt;
     }
-    public int[] getXCooridinates() {
-    	double dir = this.getDirection();
-    	Point2D.Double loc = this.getLocation();
-    	int[] xCoordinates = {(int)(loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2), (int)(loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(loc.x - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(loc.x - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2)};
-    	return xCoordinates;
-    }
-    public int[] getYCoordinates(){
-    	double dir = this.getDirection();
-    	Point2D.Double loc = this.getLocation();
-        int[] yCoordinates = {(int)(loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2), (int)(loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2)};
+	public double[] getXCoords() {
+		double dir = this.getDirection();
+		Point2D.Double loc = this.getLocation();
+		double[] xCoordinates = {
+			loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2,
+			loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2,
+			loc.x - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2,
+			loc.x - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2
+		};
+		return xCoordinates;
+	}
+    public double[] getYCoords(){
+		double dir = this.getDirection();
+		Point2D.Double loc = this.getLocation();
+        double[] yCoordinates = {
+        	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,
+        	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2,
+        	loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2,
+        	loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2
+        };
         return yCoordinates;
     }
     
-    public void conflict (GameObject other){
+    public void conflict(GameObject other){
         if (other instanceof Bullet){
             other.setMap(null);
             if (other instanceof KillBullet){
@@ -65,29 +75,23 @@ public class Tank extends GameObject
              */
         }
     }
-    public Rectangle2D.Double getRect(){
-    	int [] xCoordinates = this.getXCooridinates();
-    	int [] yCoordinates = this.getYCoordinates();
-    	Rectangle2D.Double rectangle = new Rectangle2D.Double();
-    	for (int i = 0; i < 4; i++){
-    		rectangle.add(new Point2D.Double(xCoordinates[i], yCoordinates[i]));
-        }
-    	return rectangle;
-    }
-    public Tank(Point2D.Double l, Map m) {
-        super(l, 0, m);
-        move = turn = 0;
-        bullets = new LinkedList<Bullet>();
-    }
-	@Override
-	public void paint(Graphics2D g) {
-		g.drawPolygon(this.getXCooridinates(), this.getYCoordinates(), 4);
-		// TODO Auto-generated method stub
-		
+	public Shape getBounds() {
+		//return new Polygon(getXCoords(), getYCoords(),4);
+		double[] xCoords = getXCoords(), yCoords = getYCoords();
+		Path2D p2d = new Path2D();
+		for (int i = 0; i < 4; i++)
+			p2D.moveTo(xCoords[i], yCoords[i]);
+		p2D.moveTo(xCoords[0], yCoords[0]);
+	}
+	public Tank(Point2D.Double l, Map m) {
+		super(l, 0, m);
+		move = turn = 0;
+		bullets = new LinkedList<Bullet>();
 	}
 	@Override
-	public Shape getBounds() {
+	public void paint(Graphics2D g) {
+		g.fillPolygon(this.getXCoords(), this.getYCoords(), 4);
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 }
