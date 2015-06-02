@@ -67,7 +67,8 @@ public abstract class GameObject {
 
 	public abstract Shape getBounds();
 	public static boolean intersect(Shape s1, Shape s2) {
-		Area as1 = new Area(s1);
-		return as1.equals(as1.subtract(new Area(s2)));
+		Area a1 = new Area(s1);
+		a1.intersect(new Area(s2));
+		return !a1.isEmpty();
 	}
 }
