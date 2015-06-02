@@ -59,4 +59,10 @@ public class Maze extends GameObject {
 			w.paint(g);
 	}
 
+	public Shape getBounds() {
+		Area a = new Area();
+		for (Wall w : walls)
+			a.add(new Area(w.getBounds()));
+		return a;
+	}
 }
