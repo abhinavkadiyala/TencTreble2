@@ -45,7 +45,7 @@ public abstract class Bullet extends GameObject
 		if(other instanceof Wall) {
 			this.setDirection(2*other.getDirection() - this.getDirection());
 		} else if (other instanceof Tank) {
-			// do something
+			// do nothing (already resolved by Tank.conflict();)
 		}
 	}
   
