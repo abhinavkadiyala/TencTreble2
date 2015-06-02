@@ -1,8 +1,7 @@
-package Component;
+package component;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 
 public class Game implements KeyListener
 {
@@ -14,17 +13,25 @@ public class Game implements KeyListener
 	};
 	Player[] players;
 	Map map;
+	Maze mz;
 
 	private void initPlayers() {
 		for (int i = 0; i < players.length; i++) {
 			players[i] = new Player("Player "+(i-1),dKey[i][0],dKey[i][1],dKey[i][2],dKey[i][3],dKey[i][4]);
-			players[i].makeTank(null, map);	//location = null until a maze is created
+			players[i].makeTank(new java.awt.geom.Point2D.Double(), map);	//location = null until a maze is created
 		}
 	}
+	public Game() {
+		players = new Player[0];
+		map = new Map();
+	}
 	public Game(int pct) {
+		//players = new Player[pct];
 		players = new Player[pct];
 		map = new Map();
 		initPlayers();
+		mz = new Maze(12,15,map);
+		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,players[0]));
 	}
 	public Game(Map mp, Player... ps) {
 		players = ps;
@@ -40,40 +47,8 @@ public class Game implements KeyListener
 	}
 	public void keyTyped(KeyEvent key) {return;}
 	public void update() {
-		Set<GameObject> obj = map.getObjects();
-		for (GameObject go : obj){
+		for (GameObject go : map.getObjects())
 			go.update();
-		}
-		for (GameObject go : obj){
-			if (go instanceof Tank){
-				for (GameObject nej : obj){
-					if (nej instanceof Tank && ((Tank) nej).getRect().intersects(((Tank) go).getRect())){
-						go.conflict(nej);
-					}
-					else if (nej instanceof Bullet){
-						if (((Bullet) nej).getEllipse().intersects(((Tank) go).getRect())){
-							go.conflict(nej);
-						}
-					}
-					else if (nej instanceof Wall){
-						if (((Wall) nej).getRect().intersects(((Tank) go).getRect())){
-							go.conflict(nej);
-						}
-					}
-				}
-				
-			}
-			else if (go instanceof Bullet){
-				for (GameObject nej: obj){
-					if (nej instanceof Wall){
-						if (((Bullet) go).getEllipse().intersects(((Wall) nej).getRect())){
-							go.conflict(nej);
-						}
-							
-					}
-				}
-			}
-		}
 	}
 	public void add (GameObject gObj){
 		map.add(gObj);
