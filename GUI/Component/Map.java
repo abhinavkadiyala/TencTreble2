@@ -8,7 +8,7 @@ import java.awt.*;
 public class Map {
 	int size;
 	Set<GameObject> obj;
-	ArrayList<GameObject> rm = new ArrayList<>();
+	ArrayList<GameObject> rm = new ArrayList<GameObject>();
 	public Map() {
 		// STILL NEED SOME WAY TO USE MAZE GENERATOR
 		obj = new HashSet<GameObject>();
@@ -16,7 +16,7 @@ public class Map {
 	
 	public Set<GameObject> getObjects(){
 		for (GameObject go : rm) obj.remove(go);
-		rm = new ArrayList<>();
+		rm = new ArrayList<GameObject>();
 		return obj;
 	}
 	public void add(GameObject gObj) {
