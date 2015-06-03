@@ -35,6 +35,13 @@ public class Maze extends GameObject {
 		}
 	}
 	
+	public int width() {
+		return mg.maze()[0].length;
+	}
+	public int height() {
+		return mg.maze().length;
+	}
+	
 	public long code() {
 		return mg.encode();
 	}

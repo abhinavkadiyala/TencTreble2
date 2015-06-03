@@ -2,6 +2,7 @@ package component;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.*;
 import java.util.*;
 
 public class Game implements KeyListener
@@ -17,9 +18,12 @@ public class Game implements KeyListener
 	Maze mz;
 
 	private void initPlayers() {
+		Random r = new Random();
 		for (int i = 0; i < players.length; i++) {
 			players[i] = new Player("Player "+(i-1),dKey[i][0],dKey[i][1],dKey[i][2],dKey[i][3],dKey[i][4]);
-			players[i].makeTank(new java.awt.geom.Point2D.Double(23,41), map);	//location = null until a maze is created
+			players[i].makeTank(new java.awt.geom.Point2D.Double(
+					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.height()-1),
+					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.width()-1)), map);	//location = null until a maze is created
 		}
 	}
 	public Game() {
@@ -30,8 +34,8 @@ public class Game implements KeyListener
 		//players = new Player[pct];
 		players = new Player[pct];
 		map = new Map();
-		initPlayers();
 		mz = new Maze(12,15,map);
+		initPlayers();
 		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,/*players[0]*/null));
 	}
 	public Game(Map mp, Player... ps) {
@@ -62,6 +66,11 @@ public class Game implements KeyListener
 						go.conflict(go2);
 			}
 		}
+	}
+	public static AffineTransform rotation(Point2D.Double anchor, double radians) {
+		AffineTransform r = new AffineTransform();
+		r.rotate(radians, anchor.x, anchor.y);
+		return r;
 	}
 	public void add (GameObject gObj){
 		map.add(gObj);

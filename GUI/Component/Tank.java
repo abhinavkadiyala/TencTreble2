@@ -83,11 +83,11 @@ public class Tank extends GameObject
         }
         else if (other instanceof Tank){
         	 double dir = this.getDirection();
-             this.translate(-Math.cos(dir), -Math.sin(dir));
+             this.translate(-move*Math.cos(dir), -move*Math.sin(dir));
         }
         else if (other instanceof Wall){
             double dir = this.getDirection();
-            this.translate(-Math.cos(dir), -Math.sin(dir));
+            this.translate(-move*Math.cos(dir), -move*Math.sin(dir));
             
             // FILL THIS IN
             /* expected behavior:
@@ -98,12 +98,15 @@ public class Tank extends GameObject
     }
 	public Shape getBounds() {	//needs to be improved so it actually does something.
 		//return new Polygon(getXCoords(), getYCoords(),4);
-		double[] xCoords = getXCoords(), yCoords = getYCoords();
+		/*double[] xCoords = getXCoords(), yCoords = getYCoords();
 		Path2D.Double p2d = new Path2D.Double();
 		for (int i = 0; i < 4; i++)
 			p2d.moveTo(xCoords[i], yCoords[i]);
 		p2d.moveTo(xCoords[0], yCoords[0]);
-		return p2d; 
+		return p2d;*/
+		Point2D.Double loc = getLocation();
+		return Game.rotation(loc, getDirection()).createTransformedShape(
+				new Rectangle2D.Double(loc.x-width/2,loc.y-height/2,width,height));
 		// this is currently disfunctional
 	}
 	public Tank(Point2D.Double l, Map m) {
@@ -117,13 +120,14 @@ public class Tank extends GameObject
 	public void paint(Graphics2D g) {
 		Color oc = g.getColor();
 		g.setColor(color);
-		double[] dxc = getXCoords(), dyc = getYCoords();
+		/*double[] dxc = getXCoords(), dyc = getYCoords();
 		int[] ixc = new int[dxc.length], iyc = new int[dyc.length];
 		for (int i = 0; i < 4; i++) {
 			ixc[i] = (int) dxc[i];
 			iyc[i] = (int) dyc[i];
 		}
-		g.fillPolygon(ixc, iyc, 4);
+		g.fillPolygon(ixc, iyc, 4);*/
+		g.fill(getBounds());
 		g.setColor(oc);
 	}
 }
