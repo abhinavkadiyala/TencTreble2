@@ -2,6 +2,7 @@ package component;
 
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Point2D.Double;
 
 
 /**
@@ -48,6 +49,10 @@ public class Player
 		return true;
 	}
 	public Bullet getBullet() {
+		Point2D.Double loc = this.getTank().getLocation();
+		double dir = this.getTank().getDirection();
+		Point2D.Double newLoc = new Point2D.Double(loc.x + 20 * Math.cos(dir), loc.y + 20 * Math.sin(dir));
+		Bullet hej = new KillBullet(newLoc ,dir, this.getTank().getMap(), this);
 		return null;    // TODO: make this actually create+return a bullet
 	}
 	public Tank getTank() {
