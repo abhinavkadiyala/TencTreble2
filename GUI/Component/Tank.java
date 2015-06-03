@@ -34,6 +34,7 @@ public class Tank extends GameObject
         while (biter.hasNext())
             if (biter.next().expired()) biter.remove();
         double dir = getDirection();
+        setDirection(dir+turn);
         this.translate(move * Math.cos(dir), move * Math.sin(dir));
         // TODO: movement
     }
@@ -42,7 +43,8 @@ public class Tank extends GameObject
         	move += amt;
     }
     public void turn(double amt) {
-        turn += amt;
+		if (Math.signum(turn) != Math.signum(amt))
+			turn += amt;
     }
 	public double[] getXCoords() {
 		double dir = this.getDirection();
