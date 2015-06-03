@@ -4,6 +4,7 @@ package component;
 
 import java.awt.*;
 import java.awt.geom.*;
+import java.awt.geom.Rectangle2D.Double;
 import java.util.*;
 
 
@@ -22,7 +23,7 @@ public class Tank extends GameObject
     	Color.black
     };
     static int colind = 0;
-    
+
     public boolean fire(Bullet bullet) {
         if (bullets.size() <= MAX_BULLETS) return false;
         // TODO: bullet-specific stuff
@@ -95,12 +96,22 @@ public class Tank extends GameObject
     }
 	public Shape getBounds() {	//needs to be improved so it actually does something.
 		//return new Polygon(getXCoords(), getYCoords(),4);
-		double[] xCoords = getXCoords(), yCoords = getYCoords();
+		/*
+		 * double[] xCoords = getXCoords(), yCoords = getYCoords();
 		Path2D.Double p2d = new Path2D.Double();
 		for (int i = 0; i < 4; i++)
 			p2d.moveTo(xCoords[i], yCoords[i]);
 		p2d.moveTo(xCoords[0], yCoords[0]);
-		return p2d;
+		return p2d; 
+		*/
+		double [] xCoord = this.getXCoords();
+		double [] yCoord = this.getYCoords();
+		return new Rectangle2D.Double()
+		return new Rectangle2D.Double(loc.x-WALL_WIDTH/2*Math.sin(dir)-WALL_WIDTH/2*Math.cos(dir),loc.y-WALL_WIDTH/2*Math.cos(dir)-WALL_WIDTH/2*Math.sin(dir),
+				WALL_WIDTH/2*Math.sin(dir)+(WALL_WIDTH/2+Game.CELL_SIDE)*Math.cos(dir),
+				WALL_WIDTH/2*Math.cos(dir)+(WALL_WIDTH/2+Game.CELL_SIDE)*Math.sin(dir));
+		
+		// this is currently disfunctional
 	}
 	public Tank(Point2D.Double l, Map m) {
 		super(l, 0, m);
