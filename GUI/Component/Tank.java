@@ -64,10 +64,10 @@ public class Tank extends GameObject
 		double dir = this.getDirection();
 		Point2D.Double loc = this.getLocation();
         double[] yCoordinates = {
-        	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2,
-        	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,
-        	loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,
-        	loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2
+        	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2, //for parallelogram, change to +
+        	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
+        	loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
+        	loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2//+
         };
         return yCoordinates;
     }
