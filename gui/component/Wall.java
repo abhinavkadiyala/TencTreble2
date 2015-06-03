@@ -32,8 +32,10 @@ public class Wall extends GameObject {
 	public Shape getBounds() {
 		Point2D.Double loc = getLocation();
 		double dir = getDirection();
-		return new Rectangle2D.Double(loc.x-WALL_WIDTH/2*Math.sin(dir)-WALL_WIDTH/2*Math.cos(dir),loc.y-WALL_WIDTH/2*Math.cos(dir)-WALL_WIDTH/2*Math.sin(dir),
-						WALL_WIDTH/2*Math.sin(dir)+(WALL_WIDTH/2+Game.CELL_SIDE)*Math.cos(dir),
-						WALL_WIDTH/2*Math.cos(dir)+(WALL_WIDTH/2+Game.CELL_SIDE)*Math.sin(dir));
+		return new Rectangle2D.Double(
+			loc.x-WALL_WIDTH/2*Math.sin(dir)-WALL_WIDTH/2*Math.cos(dir),
+			loc.y-WALL_WIDTH/2*Math.cos(dir)-WALL_WIDTH/2*Math.sin(dir),
+			WALL_WIDTH/2*Math.sin(dir)+(WALL_WIDTH/2+Game.CELL_SIDE)*Math.cos(dir),
+			WALL_WIDTH/2*Math.cos(dir)+(WALL_WIDTH/2+Game.CELL_SIDE)*Math.sin(dir));
 	}
 }
