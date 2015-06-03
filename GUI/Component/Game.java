@@ -74,4 +74,9 @@ public class Game implements KeyListener
 	public void paint(Graphics2D g) {
 		map.paint(g);
 	}
+	
+	public Shape getBounds()
+	{
+		return mz.getBounds();
+	}
 }
