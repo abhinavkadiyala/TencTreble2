@@ -19,7 +19,7 @@ public class Player
 	int fb, bb, lb, rb, sb;         //ForwardButton, BackButton, LeftButton, RightButton, ShootButton
 	private static final double fv, bv, ts;    //ForwardVel, BackVel, TurnSpd
 	static {
-		fv = 1.9; bv = 1.5; ts = 0.1;
+		fv = 0.9; bv = 0.6; ts = 0.1;
 	}
 
 	public boolean keyPressed(int key) {
@@ -53,7 +53,7 @@ public class Player
 		double dir = this.getTank().getDirection();
 		Point2D.Double newLoc = new Point2D.Double(loc.x + 20 * Math.cos(dir), loc.y + 20 * Math.sin(dir));
 		Bullet hej = new KillBullet(newLoc ,dir, this.getTank().getMap(), this);
-		return null;    // TODO: make this actually create+return a bullet
+		return hej;    // TODO: make this actually create+return a bullet
 	}
 	public Tank getTank() {
 		return tank;
