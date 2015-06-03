@@ -27,6 +27,7 @@ public class Tank extends GameObject
         if (bullets.size() <= MAX_BULLETS) return false;
         // TODO: bullet-specific stuff
         bullets.add(bullet);
+        map.add(bullet);
         return true;
     }
     public void update() {
