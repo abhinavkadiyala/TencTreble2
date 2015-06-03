@@ -48,6 +48,7 @@ public abstract class Bullet extends GameObject
 	public void conflict(GameObject other) {
 		if(other instanceof Wall) {
 			this.setDirection(2*other.getDirection() - this.getDirection());
+			move();		//try to fix glitch of bullet trapped in wall
 		} else if (other instanceof Tank) {
 			// already resolved by the Tank
 		}
@@ -61,8 +62,12 @@ public abstract class Bullet extends GameObject
 			this.destroy();
 			expire = true;
 		} else {
-			this.translate(mySpeed*Math.cos(getDirection()), mySpeed*Math.sin(getDirection()));	//move
+			move();
 		}
+	}
+	
+	public void move() {
+		this.translate(mySpeed*Math.cos(getDirection()), mySpeed*Math.sin(getDirection()));	//move
 	}
   
 	public void destroy() {
