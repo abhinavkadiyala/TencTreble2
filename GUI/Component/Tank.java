@@ -27,6 +27,7 @@ public class Tank extends GameObject
     public boolean fire(Bullet bullet) {
         if (bullets.size() > MAX_BULLETS) return false;
         // TODO: bullet-specific stuff
+        bullet.setMap(getMap());
         bullets.add(bullet);
         map.add(bullet);
         return true;
@@ -34,7 +35,8 @@ public class Tank extends GameObject
     public void update() {
         ListIterator<Bullet> biter = bullets.listIterator();
         while (biter.hasNext())
-            if (biter.next().expired()) biter.remove();
+        	if (biter.next().expired())
+        		biter.remove();
         double dir = getDirection();
         setDirection(dir+turn);
         this.translate(move * Math.cos(dir), move * Math.sin(dir));

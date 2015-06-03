@@ -37,7 +37,7 @@ public abstract class Bullet extends GameObject
 		return myPlayer;
 	}
   
-	public boolean expired () {
+	public boolean expired() {
 		return expire;
 	}
   

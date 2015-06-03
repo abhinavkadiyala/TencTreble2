@@ -25,7 +25,7 @@ public abstract class GameObject {
 		myLoc = loc;
 		myDirection = dir;
 		map = aMap;
-		map.add(this);
+		if (map != null) map.add(this);
 	}
 	
 	public Map getMap()
