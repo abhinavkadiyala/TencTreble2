@@ -1,8 +1,11 @@
-package Component;
+package component;
+
+
 
 import java.awt.*;
 import java.awt.geom.*;
 import java.util.*;
+
 
 public class Tank extends GameObject
 {
@@ -13,6 +16,12 @@ public class Tank extends GameObject
     LinkedList<Bullet> bullets;
     private final int width = 20;
     private final int height = 10;
+    Color color;
+    final static Color[] col = {
+    	Color.red, Color.green, Color.blue,
+    	Color.black
+    };
+    static int colind = 0;
     
     public boolean fire(Bullet bullet) {
         if (bullets.size() <= MAX_BULLETS) return false;
@@ -34,25 +43,40 @@ public class Tank extends GameObject
     public void turn(double amt) {
         turn += amt;
     }
-    public int[] getXCooridinates() {
-    	double dir = this.getDirection();
-    	Point2D.Double loc = this.getLocation();
-    	int[] xCoordinates = {(int)(loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2), (int)(loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(loc.x - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2), (int)(loc.x - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2)};
-    	return xCoordinates;
-    }
-    public int[] getYCoordinates(){
-    	double dir = this.getDirection();
-    	Point2D.Double loc = this.getLocation();
-        int[] yCoordinates = {(int)(loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2), (int)(loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2), (int)(loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2)};
+	public double[] getXCoords() {
+		double dir = this.getDirection();
+		Point2D.Double loc = this.getLocation();
+		double[] xCoordinates = {
+			loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2,
+			loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2,
+			loc.x - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2,
+			loc.x - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2
+		};
+		// I still get a NullPointerException here
+		return xCoordinates;
+	}
+    public double[] getYCoords(){
+		double dir = this.getDirection();
+		Point2D.Double loc = this.getLocation();
+        double[] yCoordinates = {
+        	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,
+        	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2,
+        	loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2,
+        	loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2
+        };
         return yCoordinates;
     }
     
-    public void conflict (GameObject other){
+    public void conflict(GameObject other){
         if (other instanceof Bullet){
-            other.setMap(null);
+        	((Bullet)other).destroy();
             if (other instanceof KillBullet){
                 this.setMap(null);
             }
+        }
+        else if (other instanceof Tank){
+        	 double dir = this.getDirection();
+             this.translate(-Math.cos(dir), -Math.sin(dir));
         }
         else if (other instanceof Wall){
             double dir = this.getDirection();
@@ -65,29 +89,33 @@ public class Tank extends GameObject
              */
         }
     }
-    public Rectangle2D.Double getRect(){
-    	int [] xCoordinates = this.getXCooridinates();
-    	int [] yCoordinates = this.getYCoordinates();
-    	Rectangle2D.Double rectangle = new Rectangle2D.Double();
-    	for (int i = 0; i < 4; i++){
-    		rectangle.add(new Point2D.Double(xCoordinates[i], yCoordinates[i]));
-        }
-    	return rectangle;
-    }
-    public Tank(Point2D.Double l, Map m) {
-        super(l, 0, m);
-        move = turn = 0;
-        bullets = new LinkedList<Bullet>();
-    }
-	@Override
-	public void paint(Graphics2D g) {
-		g.drawPolygon(this.getXCooridinates(), this.getYCoordinates(), 4);
-		// TODO Auto-generated method stub
-		
+	public Shape getBounds() {	//needs to be improved so it actually does something.
+		//return new Polygon(getXCoords(), getYCoords(),4);
+		double[] xCoords = getXCoords(), yCoords = getYCoords();
+		Path2D.Double p2d = new Path2D.Double();
+		for (int i = 0; i < 4; i++)
+			p2d.moveTo(xCoords[i], yCoords[i]);
+		p2d.moveTo(xCoords[0], yCoords[0]);
+		return p2d;
+	}
+	public Tank(Point2D.Double l, Map m) {
+		super(l, 0, m);
+		move = turn = 0;
+		bullets = new LinkedList<Bullet>();
+		color = col[colind];
+		colind = (colind + 1) % col.length;
 	}
 	@Override
-	public Shape getBounds() {
-		// TODO Auto-generated method stub
-		return null;
+	public void paint(Graphics2D g) {
+		Color oc = g.getColor();
+		g.setColor(color);
+		double[] dxc = getXCoords(), dyc = getYCoords();
+		int[] ixc = new int[dxc.length], iyc = new int[dyc.length];
+		for (int i = 0; i < 4; i++) {
+			ixc[i] = (int) dxc[i];
+			iyc[i] = (int) dyc[i];
+		}
+		g.fillPolygon(ixc, iyc, 4);
+		g.setColor(oc);
 	}
 }

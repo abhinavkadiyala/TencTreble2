@@ -1,4 +1,6 @@
-package Component;
+package component;
+
+
 
 public class VisionBullet extends Bullet
 {

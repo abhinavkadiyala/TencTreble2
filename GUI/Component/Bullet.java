@@ -1,4 +1,5 @@
-package Component;
+package component;
+
 
 import java.awt.*;
 import java.awt.geom.*;
@@ -7,7 +8,7 @@ public abstract class Bullet extends GameObject
 {
 	private static final double BULLET_RADIUS = 2;
 	protected final int myDamage = 1;
-	protected double mySpeed;
+	protected double mySpeed = 1.2;
 	protected Player myPlayer;
 	protected Long startTime;
 	protected final long LIFETIME = 10000;
@@ -17,17 +18,20 @@ public abstract class Bullet extends GameObject
 		super(player.getTank().getLocation(), player.getTank().getDirection(), player.getTank().getMap());
 		myPlayer = player;
 		startTime = System.currentTimeMillis();
-		mySpeed = 1; //change value as needed
+	}
+	public Bullet(Point2D.Double loc, double dir, Map mp, Player p) {
+		super(loc,dir,mp);
+		myPlayer = p;
+		startTime = System.currentTimeMillis();
 	}
 	public double getSpeed() {
 		return mySpeed;
 	}
 	
-	public Shape getBounds(){
+	public Shape getBounds() {
 		
 		return new Ellipse2D.Double(getLocation().x-BULLET_RADIUS,getLocation().y-BULLET_RADIUS,2*BULLET_RADIUS,2*BULLET_RADIUS);	
 	}
-	
   
 	public Player getPlayer() {
 		return myPlayer;
@@ -44,8 +48,12 @@ public abstract class Bullet extends GameObject
 	public void conflict(GameObject other) {
 		if(other instanceof Wall) {
 			this.setDirection(2*other.getDirection() - this.getDirection());
+			move();		//try to fix glitch of bullet trapped in wall
 		} else if (other instanceof Tank) {
-			// do nothing (already resolved by Tank.conflict();)
+			// already resolved by the Tank
+		}
+		else if (other instanceof Bullet){
+			// not sure if this should do anything;
 		}
 	}
   
@@ -54,21 +62,21 @@ public abstract class Bullet extends GameObject
 			this.destroy();
 			expire = true;
 		} else {
-			this.translate(mySpeed*Math.cos(getDirection()), mySpeed*Math.sin(getDirection()));	//move
+			move();
 		}
+	}
+	
+	public void move() {
+		this.translate(mySpeed*Math.cos(getDirection()), mySpeed*Math.sin(getDirection()));	//move
 	}
   
 	public void destroy() {
-		this.setMap(null);
-		//needs implementation should be done now
+		setMap(null);
+		//needs implementation
 	}
 	
 	public void paint(Graphics2D g) {
 		g.fillOval((int)(getLocation().x-BULLET_RADIUS),(int)(getLocation().y-BULLET_RADIUS),2*(int)BULLET_RADIUS,2*(int)BULLET_RADIUS);
-	}
-	public RectangularShape getEllipse() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

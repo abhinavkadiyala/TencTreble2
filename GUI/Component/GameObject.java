@@ -1,4 +1,5 @@
-package Component;
+package component;
+
 
 import java.awt.geom.*;
 import java.awt.*;
@@ -55,7 +56,7 @@ public abstract class GameObject {
 	}
 	public void setMap(Map mp)
 	{
-		map.remove(this);
+		if (map != null) map.remove(this);
 		if (mp != null) mp.add(this);
 		map = mp;
 	}
@@ -67,7 +68,8 @@ public abstract class GameObject {
 
 	public abstract Shape getBounds();
 	public static boolean intersect(Shape s1, Shape s2) {
-		Area as1 = new Area(s1);
-		return as1.equals(as1.subtract(new Area(s2)));
+		Area a1 = new Area(s1);
+		a1.intersect(new Area(s2));
+		return !a1.isEmpty();
 	}
 }

@@ -1,17 +1,10 @@
-import java.awt.Color;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.*;
+import java.awt.event.*;
 
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import com.sun.codemodel.internal.JCommentPart;
+import javax.swing.*;
 
 
+@SuppressWarnings("serial")
 public class HelpPanel extends JPanel implements ActionListener, KeyListener{
 
 	    public HelpPanel() {
