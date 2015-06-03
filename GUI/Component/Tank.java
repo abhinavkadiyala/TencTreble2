@@ -38,7 +38,8 @@ public class Tank extends GameObject
         // TODO: movement
     }
     public void move(double amt) {
-        move += amt;
+    	if (Math.signum(move) != Math.signum(amt))
+        	move += amt;
     }
     public void turn(double amt) {
         turn += amt;
