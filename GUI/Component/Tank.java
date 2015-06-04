@@ -141,7 +141,13 @@ public class Tank extends GameObject
 			iyc[i] = (int) dyc[i];
 		}
 		g.fillPolygon(ixc, iyc, 4);*/
-		super.paint(g);
+		super.paint(g);double[] dxc = getXCoords(), dyc = getYCoords();
+		int[] ixc = new int[dxc.length], iyc = new int[dyc.length];
+		Point2D.Double loc = getLocation();
+		for (int i = 0; i < 4; i++) {
+			ixc[i] = (int) ((dxc[i]-loc.x)/3+loc.x);
+			iyc[i] = (int) ((dyc[i]-loc.y)/3+loc.x);
+		}
 		// extra stuff so we know orientation, etc.
 	}
 	@Override
