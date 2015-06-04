@@ -12,7 +12,7 @@ public class Tank extends GameObject
 {
     int health = 1;     //default;
     // TODO: implement health if we plan on doing so.
-    double move, turn; //positive for forward/left, negative for backward/right
+    double move = 0, turn = 0; //positive for forward/left, negative for backward/right
     private final static int MAX_BULLETS = 5;
     LinkedList<Bullet> bullets;
     private final int width = 20;
@@ -36,10 +36,10 @@ public class Tank extends GameObject
     }
     public void update() {
         ListIterator<Bullet> biter = bullets.listIterator();
-        while (biter.hasNext()){
-        	if (biter.next().expired()){
-        		biter.remove();
-        	}
+		while (biter.hasNext()){
+			if (biter.next().expired()){
+				biter.remove();
+			}
         }
         double dir = getDirection();
         setDirection(dir+turn);
@@ -47,8 +47,8 @@ public class Tank extends GameObject
         // TODO: movement
     }
     public void move(double amt) {
-    	if (Math.signum(move) != Math.signum(amt))
-        	move += amt;
+		if (Math.signum(move) != Math.signum(amt))
+			move += amt;
     }
     public void turn(double amt) {
 		if (Math.signum(turn) != Math.signum(amt))
