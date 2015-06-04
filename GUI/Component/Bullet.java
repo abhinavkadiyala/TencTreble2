@@ -8,7 +8,7 @@ public abstract class Bullet extends GameObject
 {
 	private static final double BULLET_RADIUS = 2;
 	protected final int myDamage = 1;
-	protected double mySpeed = 1.2;
+	protected double mySpeed = 2.4;
 	protected Player myPlayer;
 	protected Long startTime;
 	protected final long LIFETIME = 10000;

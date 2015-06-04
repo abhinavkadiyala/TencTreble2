@@ -36,7 +36,7 @@ public class Game implements KeyListener
 		map = new Map();
 		mz = new Maze(12,15,map);
 		initPlayers();
-		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,/*players[0]*/null));
+//		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,/*players[0]*/null));
 	}
 	public Game(Map mp, Player... ps) {
 		players = ps;

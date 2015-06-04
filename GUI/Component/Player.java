@@ -19,7 +19,7 @@ public class Player
 	int fb, bb, lb, rb, sb;         //ForwardButton, BackButton, LeftButton, RightButton, ShootButton
 	private static final double fv, bv, ts;    //ForwardVel, BackVel, TurnSpd
 	static {
-		fv = 0.9; bv = 0.6; ts = 0.1;
+		fv = 1.8; bv = 1.2; ts = 0.1;
 	}
 
 	public boolean keyPressed(int key) {
