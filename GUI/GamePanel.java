@@ -52,7 +52,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.translate(Game.CELL_SIZE, Game.CELL_SIZE);
+		g.translate(Game.CELL_SIDE, Game.CELL_SIDE);
 		game.paint((Graphics2D) g);
 	}
 
