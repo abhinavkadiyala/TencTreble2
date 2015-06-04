@@ -36,9 +36,11 @@ public class Tank extends GameObject
     }
     public void update() {
         ListIterator<Bullet> biter = bullets.listIterator();
-        while (biter.hasNext())
-        	if (biter.next().expired())
+        while (biter.hasNext()){
+        	if (biter.next().expired()){
         		biter.remove();
+        	}
+        }
         double dir = getDirection();
         setDirection(dir+turn);
         this.translate(move * Math.cos(dir), move * Math.sin(dir));
