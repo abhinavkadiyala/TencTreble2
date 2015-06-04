@@ -133,8 +133,6 @@ public class Tank extends GameObject
 	}
 	@Override
 	public void paint(Graphics2D g) {
-		Color oc = g.getColor();
-		g.setColor(color);
 		/*double[] dxc = getXCoords(), dyc = getYCoords();
 		int[] ixc = new int[dxc.length], iyc = new int[dyc.length];
 		for (int i = 0; i < 4; i++) {
@@ -142,7 +140,11 @@ public class Tank extends GameObject
 			iyc[i] = (int) dyc[i];
 		}
 		g.fillPolygon(ixc, iyc, 4);*/
-		g.fill(getBounds());
-		g.setColor(oc);
+		super.paint(g);
+		// extra stuff so we know orientation, etc.
+	}
+	@Override
+	public Color getColor() {
+		return color;
 	}
 }
