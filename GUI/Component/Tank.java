@@ -144,7 +144,7 @@ public class Tank extends GameObject
 		super.paint(g);
 		Point2D.Double loc = getLocation();
 		double dir = getDirection();
-		Point2D.Double cl = new Point2D.Double(loc.x+width*1.2*Math.cos(dir), loc.y+width*1.2*Math.sin(dir));
+		Point2D.Double cl = new Point2D.Double(loc.x+12*Math.cos(dir), loc.y+12*Math.sin(dir));
 		Ellipse2D.Double el = new Ellipse2D.Double(cl.x-CROSSHAIR_DIM/2,cl.y-CROSSHAIR_DIM/2,CROSSHAIR_DIM,CROSSHAIR_DIM);
 		Line2D horiz = new Line2D.Double(cl.x-CROSSHAIR_DIM,cl.y, cl.x+CROSSHAIR_DIM,cl.y),
 		       vert  = new Line2D.Double(cl.x,cl.y-CROSSHAIR_DIM, cl.x,cl.y+CROSSHAIR_DIM);
