@@ -123,7 +123,6 @@ public class Tank extends GameObject
 		Point2D.Double loc = getLocation();
 		return Game.rotation(loc, getDirection()).createTransformedShape(
 				new Rectangle2D.Double(loc.x-width/2,loc.y-height/2,width,height));
-		// this is currently disfunctional
 	}
 	public Tank(Point2D.Double l, Map m) {
 		super(l, 0, m);
