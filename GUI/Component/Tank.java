@@ -18,7 +18,7 @@ public class Tank extends GameObject
     private final int height = 10;
     private final int swidth = 4;
     private final int sheight = 2;
-    private final double CROSSHAIR_DIM = 31;
+    private final double CROSSHAIR_DIM = 15;
     Color color;
     final static Color[] col = {
     	Color.red, Color.green, Color.blue,
@@ -141,13 +141,14 @@ public class Tank extends GameObject
 			iyc[i] = (int) dyc[i];
 		}
 		g.fillPolygon(ixc, iyc, 4);*/
-		super.paint(g);double[] dxc = getXCoords(), dyc = getYCoords();
+		super.paint(g);
 		Point2D.Double loc = getLocation();
 		double dir = getDirection();
-		Point2D.Double cl = new Point2D.Double(loc.x+width*1.2*cos(dir), loc.y+width*1.2*cos(dir));
-		Ellipse2D.Double el = new Ellipse2D.Double(cl.x-CROSSHAIR_DIM/2,el.y-CROSSHAIR_DIM/2,CROSSHAIR_DIM,CROSSHAIR_DIM);
-		Line2D horiz = new Line2D(cl.x-CROSSHAIR_DIM,cl.y, cl.x+CROSSHAIR_DIM,cl.y),
-		       vert  = new Line2D(cl.x,cl.y-CROSSHAIR_DIM, cl.x,cl.y+CROSSHAIR_DIM);
+		Point2D.Double cl = new Point2D.Double(loc.x+width*1.2*Math.cos(dir), loc.y+width*1.2*Math.sin(dir));
+		Ellipse2D.Double el = new Ellipse2D.Double(cl.x-CROSSHAIR_DIM/2,cl.y-CROSSHAIR_DIM/2,CROSSHAIR_DIM,CROSSHAIR_DIM);
+		Line2D horiz = new Line2D.Double(cl.x-CROSSHAIR_DIM,cl.y, cl.x+CROSSHAIR_DIM,cl.y),
+		       vert  = new Line2D.Double(cl.x,cl.y-CROSSHAIR_DIM, cl.x,cl.y+CROSSHAIR_DIM);
+		g.setColor(getColor().darker().darker().darker().darker());
 		g.draw(el);
 		g.draw(horiz);
 		g.draw(vert);
