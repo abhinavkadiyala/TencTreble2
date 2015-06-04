@@ -103,8 +103,8 @@ public class Tank extends GameObject
 //        }
         else if (other instanceof Wall){
             double dir = this.getDirection();
-            this.translate(-move*Math.cos(dir), -move*Math.sin(dir));
-            this.setDirection(this.getDirection() - turn);
+            this.translate(-2*move*Math.cos(dir), -2*move*Math.sin(dir));
+            this.setDirection(this.getDirection() - 2*turn);
             // FILL THIS IN
             /* expected behavior:
              * move away from the wall
