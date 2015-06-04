@@ -4,7 +4,6 @@ package component;
 
 import java.awt.*;
 import java.awt.geom.*;
-import java.awt.geom.Rectangle2D.Double;
 import java.util.*;
 
 
@@ -76,17 +75,17 @@ public class Tank extends GameObject
 		double dir = this.getDirection();
 		Point2D.Double loc = this.getLocation();
         double[] yCoordinates = {
-        	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2, //for parallelogram, change to +
-        	//beginning of shooting component
-        	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * sheight / 2,
-        	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * sheight / 2 + Math.sin(dir) * swidth,
-        	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * sheight / 2 + Math.sin(dir) * swidth,
-        	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * sheight / 2,
-        	//end of shooting component
-        	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
-        	loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
-        	loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2//+
-        };
+			loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2, //for parallelogram, change to +
+			//beginning of shooting component
+			loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * sheight / 2,
+			loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * sheight / 2 + Math.sin(dir) * swidth,
+			loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * sheight / 2 + Math.sin(dir) * swidth,
+			loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * sheight / 2,
+			//end of shooting component
+			loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
+			loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
+			loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2//+
+		};
         return yCoordinates;
     }
     
@@ -123,6 +122,7 @@ public class Tank extends GameObject
 		Point2D.Double loc = getLocation();
 		return Game.rotation(loc, getDirection()).createTransformedShape(
 				new Rectangle2D.Double(loc.x-width/2,loc.y-height/2,width,height));
+		// this is currently disfunctional
 	}
 	public Tank(Point2D.Double l, Map m) {
 		super(l, 0, m);
