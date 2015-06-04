@@ -42,6 +42,7 @@ public class Tank extends GameObject
         }
         double dir = getDirection();
         setDirection(dir+turn);
+        if (move != 0) System.out.println(move);
         this.translate(move * Math.cos(dir), move * Math.sin(dir));
         // TODO: movement
     }
