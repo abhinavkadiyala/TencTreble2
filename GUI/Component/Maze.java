@@ -12,12 +12,13 @@ import java.util.*;
 public class Maze extends GameObject {
 	MazeGenerator mg;
 	Set<Wall> walls;
+	private static final int XMIN = 2, YMIN = 2;
 	
 	public Maze(int xmax, int ymax, Map mp) {
 		super(new Point2D.Double(),0,mp);
 		walls = new HashSet<Wall>();
-		int x = (int) (Math.random() * (xmax-3) + 3);
-		int y = (int) (Math.random() * (ymax-3) + 3);
+		int x = (int) (Math.random() * (xmax-XMIN) + XMIN);
+		int y = (int) (Math.random() * (ymax-YMIN) + YMIN);
 		long seed = System.currentTimeMillis();
 		mg = new MazeGenerator(x, y, seed);
 		int[][] maze = mg.maze();

@@ -16,6 +16,7 @@ public class Game implements KeyListener
 	Player[] players;
 	Map map;
 	Maze mz;
+	long opt;
 
 	private void initPlayers() {
 		Random r = new Random();
@@ -23,7 +24,7 @@ public class Game implements KeyListener
 			players[i] = new Player("Player "+(i-1),dKey[i][0],dKey[i][1],dKey[i][2],dKey[i][3],dKey[i][4]);
 			players[i].makeTank(new java.awt.geom.Point2D.Double(
 					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.height()-1),
-					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.width()-1)), map);	//location = null until a maze is created
+					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.width()-1)), map);
 		}
 	}
 	public Game() {
@@ -43,6 +44,10 @@ public class Game implements KeyListener
 		map = mp;
 		initPlayers();
 	}
+	
+	public int playerCt() {
+		return players.length;
+	}
 
 	public void keyPressed(KeyEvent key) {
 		for (Player p : players) p.keyPressed(key.getKeyCode());
@@ -51,12 +56,14 @@ public class Game implements KeyListener
 		for (Player p : players) p.keyReleased(key.getKeyCode());
 	}
 	public void keyTyped(KeyEvent key) {return;}
-	public void update() {
+	public void update() throws Exception {
 		Set<GameObject> obj = map.getObjects();
 		obj.remove(null);
+		java.util.List<Tank> lt = new ArrayList<>(playerCt());
 		for (GameObject go : obj) {
 			go.update();
 			if (go instanceof Tank) {
+				if (go.getMap() != null) lt.add((Tank)go); 
 				for (GameObject go2 : obj)
 					if (GameObject.intersect(go.getBounds(), go2.getBounds()))
 						go.conflict(go2);
@@ -66,6 +73,8 @@ public class Game implements KeyListener
 						go.conflict(go2);
 			}
 		}
+		if (lt.size() < 2)
+			throw new Exception();
 	}
 	public static AffineTransform rotation(Point2D.Double anchor, double radians) {
 		AffineTransform r = new AffineTransform();

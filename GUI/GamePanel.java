@@ -12,6 +12,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	Game game;
 	Timer timer;
 	private static final int DELAY_MS = 20;
+	boolean waitNewGame;
+	long opTime;
 
 	/**
 	 * Create the panel.
@@ -27,6 +29,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		if (timer != null) timer.stop();
 		timer = new Timer(DELAY_MS, this);
 		timer.start();
+		waitNewGame = false;
+		opTime = Long.MAX_VALUE;
 	}
 
 	@Override
@@ -46,7 +50,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		game.update();
+		long t = System.currentTimeMillis() - opTime;
+		//if (t > 0) System.out.println(t);
+		if (t > 3000) {
+			newGame(game.playerCt());
+			return;
+		}
+		try {
+			game.update();
+		} catch (Exception e) {
+			if (!waitNewGame) opTime = System.currentTimeMillis();
+			waitNewGame = true;
+		}
 		repaint();
 	}
 
