@@ -94,6 +94,16 @@ public class Tank extends GameObject
         if (other instanceof Bullet){
         	((Bullet)other).destroy();
             if (other instanceof KillBullet){
+            	super.paint(g);double[] dxc = getXCoords(), dyc = getYCoords();
+		int[] ixc = new int[dxc.length], iyc = new int[dyc.length];
+		Point2D.Double loc = getLocation();
+		for (int i = 0; i < 4; i++) {
+			ixc[i] = (int) ((dxc[i]-loc.x)/3+loc.x);
+			iyc[i] = (int) ((dyc[i]-loc.y)/3+loc.x);
+		}
+		g.setColor(Color.YELLOW);
+		g.fillOval(ixc, iyc,7);
+		Thread.sleep(1500);
                 this.setMap(null);
             }
         }
@@ -104,7 +114,6 @@ public class Tank extends GameObject
         else if (other instanceof Wall){
             double dir = this.getDirection();
             this.translate(-move*Math.cos(dir), -move*Math.sin(dir));
-            this.setDirection(this.getDirection() - turn);
             
             // FILL THIS IN
             /* expected behavior:
@@ -150,7 +159,7 @@ public class Tank extends GameObject
 			iyc[i] = (int) ((dyc[i]-loc.y)/3+loc.x);
 		}
 		g.setColor(getColor().darker());
-		g.fillPolygon(ixc, iyc, 4);
+		g.fillPolygon(ixc, iyc);
 		// extra stuff so we know orientation, etc.
 	}
 	@Override
