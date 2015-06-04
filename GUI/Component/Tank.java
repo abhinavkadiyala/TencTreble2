@@ -150,7 +150,7 @@ public class Tank extends GameObject
 			iyc[i] = (int) ((dyc[i]-loc.y)/3+loc.x);
 		}
 		g.setColor(getColor().darker());
-		g.fillPolygon(ixc, iyc);
+		g.fillPolygon(ixc, iyc, 4);
 		// extra stuff so we know orientation, etc.
 	}
 	@Override
