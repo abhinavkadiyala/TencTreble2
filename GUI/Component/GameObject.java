@@ -64,7 +64,14 @@ public abstract class GameObject {
 	public abstract void conflict(GameObject other);
 	public abstract void update(); //apparently it took in an int, delta time before
 	
-	public abstract void paint(Graphics2D g);
+	public void paint(Graphics2D g) {
+		g.setColor(getColor());
+		g.fill(getBounds());
+	}
+	
+	public Color getColor() {
+		return Color.black;
+	}
 
 	public abstract Shape getBounds();
 	public static boolean intersect(Shape s1, Shape s2) {
