@@ -17,6 +17,8 @@ public class Tank extends GameObject
     LinkedList<Bullet> bullets;
     private final int width = 20;
     private final int height = 10;
+    private final int swidth = 4;
+    private final int sheight = 2;
     Color color;
     final static Color[] col = {
     	Color.red, Color.green, Color.blue,
@@ -55,6 +57,12 @@ public class Tank extends GameObject
 		Point2D.Double loc = this.getLocation();
 		double[] xCoordinates = {
 			loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2,
+			//beginning of shooting component
+			loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * sheight / 2,
+			loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * sheight / 2 + Math.cos(dir) * swidth,
+			loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * sheight / 2 + Math.cos(dir) * swidth,
+			loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * sheight / 2,
+			//end of shooting component
 			loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2,
 			loc.x - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2,
 			loc.x - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2
@@ -67,6 +75,12 @@ public class Tank extends GameObject
 		Point2D.Double loc = this.getLocation();
         double[] yCoordinates = {
         	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2, //for parallelogram, change to +
+        	//beginning of shooting component
+        	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * sheight / 2,
+        	loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * sheight / 2 + Math.sin(dir) * swidth,
+        	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * sheight / 2 + Math.sin(dir) * swidth,
+        	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * sheight / 2,
+        	//end of shooting component
         	loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
         	loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
         	loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2//+
