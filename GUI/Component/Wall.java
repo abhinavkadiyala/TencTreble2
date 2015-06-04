@@ -6,7 +6,7 @@ import java.awt.geom.*;
 
 public class Wall extends GameObject {
 
-	private static double WALL_WIDTH = 2;
+	private static double WALL_WIDTH = 3;
 
 	public Wall(Point2D.Double loc, double dir, Map aMap) {
 		super(loc, dir, aMap);

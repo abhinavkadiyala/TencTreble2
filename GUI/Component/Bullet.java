@@ -72,6 +72,7 @@ public abstract class Bullet extends GameObject
   
 	public void destroy() {
 		setMap(null);
+		expire = true;
 		//needs implementation
 	}
 
