@@ -17,11 +17,9 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	 * Create the panel.
 	 */
 	public GamePanel(int pct) {
-		setBackground(Color.LIGHT_GRAY);
 		game = new Game(pct);
 	}
 	public GamePanel() {
-		setBackground(Color.LIGHT_GRAY);
 		game = new Game(0);
 	}
 	public void newGame(int pct) {
@@ -54,6 +52,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void paint(Graphics g) {
 		super.paint(g);
+		g.translate(Game.CELL_SIZE, Game.CELL_SIZE);
 		game.paint((Graphics2D) g);
 	}
 
