@@ -5,6 +5,9 @@ import component.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
@@ -53,6 +56,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		long t = System.currentTimeMillis() - opTime;
 		//if (t > 0) System.out.println(t);
 		if (t > 3000) {
+			Player[] players = game.getPlayers();
+			java.util.List<Player> winner = new ArrayList<>();
+			for (Player play: players){
+				if (!(play.getTank().getMap() == null)){
+					winner.add(play);
+				}
+			}
+			if (winner.size() == 1){
+				winner.get(0).incrementScore();
+			}
 			newGame(game.playerCt());
 			return;
 		}

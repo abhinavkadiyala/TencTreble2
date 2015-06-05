@@ -48,6 +48,9 @@ public class Game implements KeyListener
 	public int playerCt() {
 		return players.length;
 	}
+	public Player[] getPlayers(){
+		return players;
+	}
 
 	public void keyPressed(KeyEvent key) {
 		for (Player p : players) p.keyPressed(key.getKeyCode());
