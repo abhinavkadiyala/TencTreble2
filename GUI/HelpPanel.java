@@ -32,7 +32,7 @@ public class HelpPanel extends JFrame {
 	    }
 	    
          public static void main(String[] args) {
-        Gui application = new Gui();
+        HelpPanel application = new HelpPanel();
     }
 		//setBackground(Color.BLUE);
 		//setBounds(new Rectangle(500, 200));
@@ -40,4 +40,4 @@ public class HelpPanel extends JFrame {
 		//JOptionPane helpText = new JOptionPane("Player 1: Use arrow keys to move and press \"/\" to fire!\n Player 2: Use esdf to move and press q to fire!");
 		//add(helpText);
 	}
-}
+
