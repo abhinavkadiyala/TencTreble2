@@ -91,7 +91,7 @@ public class AppWindow implements ActionListener {
 	}
 
 	public void newGame() {
-		Object[] sv = { 2 };
+		Object[] sv = { 2, 3 };
 		Integer p = (Integer) JOptionPane.showInputDialog(frame,
 				"How many players?", "New Game", JOptionPane.PLAIN_MESSAGE,
 				null, sv, 2);
