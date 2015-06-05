@@ -79,7 +79,7 @@ public class AppWindow implements ActionListener {
 		});
 
 		frame.setContentPane(new GamePanel());
-		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(new BorderLayout());
 		frame.addKeyListener((KeyListener) frame.getContentPane());
 
 		frame.addWindowListener(new WindowAdapter() {

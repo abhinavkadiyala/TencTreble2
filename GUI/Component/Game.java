@@ -19,13 +19,17 @@ public class Game implements KeyListener
 	long opt;
 
 	private void initPlayers() {
-		Random r = new Random();
 		for (int i = 0; i < players.length; i++) {
-			players[i] = new Player("Player "+(i-1),dKey[i][0],dKey[i][1],dKey[i][2],dKey[i][3],dKey[i][4]);
-			players[i].makeTank(new java.awt.geom.Point2D.Double(
+			players[i] = new Player("Player "+(i+1),dKey[i][0],dKey[i][1],dKey[i][2],dKey[i][3],dKey[i][4]);
+		}
+		initPlayerTanks();
+	}
+	private void initPlayerTanks() {
+		Random r = new Random();
+		for (Player p : players)
+			p.makeTank(new java.awt.geom.Point2D.Double(
 					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.height()-1),
 					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.width()-1)), map);
-		}
 	}
 	public Game() {
 		players = new Player[0];
@@ -39,10 +43,14 @@ public class Game implements KeyListener
 		initPlayers();
 //		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,/*players[0]*/null));
 	}
+	public Game(Player... ps) {
+		this(new Map(), ps);
+	}
 	public Game(Map mp, Player... ps) {
 		players = ps;
 		map = mp;
-		initPlayers();
+		mz = new Maze(25,11,map);
+		initPlayerTanks();
 	}
 	
 	public int playerCt() {

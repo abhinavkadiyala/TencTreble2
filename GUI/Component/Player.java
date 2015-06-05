@@ -24,6 +24,9 @@ public class Player
 	public int getScore(){
 		return score;
 	}
+	public String getName() {
+		return name;
+	}
 	
 	public void incrementScore(){
 		score++;
