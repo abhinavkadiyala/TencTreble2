@@ -56,8 +56,8 @@ public class AppWindow implements ActionListener {
 		mnGame.add(mntmNewGame);
 
 		JMenuItem mntmClose = new JMenuItem("Close");
-		mntmClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_W,
-				InputEvent.CTRL_MASK));
+		/*mntmClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4,
+				InputEvent.ALT_MASK));*/
 		mntmClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);

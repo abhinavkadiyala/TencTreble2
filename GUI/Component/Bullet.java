@@ -8,7 +8,7 @@ public abstract class Bullet extends GameObject
 {
 	private static final double BULLET_RADIUS = 2;
 	protected final int myDamage = 1;
-	protected double mySpeed = 1.2;
+	protected double mySpeed = 2.4;
 	protected Player myPlayer;
 	protected Long startTime;
 	protected final long LIFETIME = 10000;
@@ -37,7 +37,7 @@ public abstract class Bullet extends GameObject
 		return myPlayer;
 	}
   
-	public boolean expired () {
+	public boolean expired() {
 		return expire;
 	}
   
@@ -72,11 +72,8 @@ public abstract class Bullet extends GameObject
   
 	public void destroy() {
 		setMap(null);
+		expire = true;
 		//needs implementation
-	}
-	
-	public void paint(Graphics2D g) {
-		g.fillOval((int)(getLocation().x-BULLET_RADIUS),(int)(getLocation().y-BULLET_RADIUS),2*(int)BULLET_RADIUS,2*(int)BULLET_RADIUS);
 	}
 
 }

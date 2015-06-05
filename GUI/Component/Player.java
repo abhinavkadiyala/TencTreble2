@@ -1,7 +1,7 @@
 package component;
 
 
-import java.awt.geom.Point2D;
+import java.awt.geom.*;
 
 
 /**
@@ -18,7 +18,7 @@ public class Player
 	int fb, bb, lb, rb, sb;         //ForwardButton, BackButton, LeftButton, RightButton, ShootButton
 	private static final double fv, bv, ts;    //ForwardVel, BackVel, TurnSpd
 	static {
-		fv = 1.9; bv = 1.5; ts = 1;
+		fv = 1.8; bv = 1.2; ts = Math.PI/32;
 	}
 
 	public boolean keyPressed(int key) {
@@ -48,7 +48,11 @@ public class Player
 		return true;
 	}
 	public Bullet getBullet() {
-		return null;    // TODO: make this actually create+return a bullet
+		Point2D.Double loc = this.getTank().getLocation();
+		double dir = this.getTank().getDirection();
+		Point2D.Double newLoc = new Point2D.Double(loc.x + 20 * Math.cos(dir), loc.y + 20 * Math.sin(dir));
+		Bullet hej = new KillBullet(newLoc ,dir, null, this);
+		return hej;    // TODO: make this actually create+return a bullet
 	}
 	public Tank getTank() {
 		return tank;
