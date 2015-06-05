@@ -25,12 +25,6 @@ public class HelpPanel extends JFrame {
         	container.add(label1, BorderLayout.NORTH);
         	container.add(label2, BorderLayout.CENTER);
         	container.add(label3, BorderLayout.SOUTH);
-        	
-        	addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(WindowEvent evt) {
-                System.exit(0);
-            }
-        });
         
         pack();
         setVisible(true);
