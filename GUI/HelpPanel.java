@@ -13,7 +13,7 @@ public class HelpPanel extends JPanel {
 		//setBackground(Color.BLUE);
 		//setBounds(new Rectangle(500, 200));
 		
-		JOptionPane helpText = new JOptionPane("Use arrow keys to move and press m to fire!");
+		JOptionPane helpText = new JOptionPane("Player 1: Use arrow keys to move and press \"/\" to fire!\n Player 2: Use esdf to move and press q to fire!");
 		helpText.setVisible(true);
 		add(helpText);
 		setVisible(true);
