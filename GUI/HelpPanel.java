@@ -20,7 +20,7 @@ public class HelpPanel extends JFrame {
         	
         	label1 = new JLabel("Player 1: Use \"E\" to move forward, \"D\" to move backward, \"S\" to turn left, \"F\" to turn right, and \"Q\" to shoot bullets(a max of 5 at a time)");
         	label2 = new JLabel("Player 2: Use the up arrow to move forward, the down arrow to move backward, the left arrow to turn left, the right arrow to turn right, and \"/\" to shoot bullets(a max of 5 at a time)");
-        	label3 = new JLabel("The cross indicates where the bullet will spawn. (Yes, you can shoot across walls if you are close enough)");
+        	label3 = new JLabel("The goal of the game is to kill the other tank. The cross indicates where the bullet will spawn. (Yes, you can shoot across walls if you are close enough)");
         	
         	container.add(label1, BorderLayout.NORTH);
         	container.add(label2, BorderLayout.CENTER);
