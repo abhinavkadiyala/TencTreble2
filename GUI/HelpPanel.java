@@ -5,7 +5,7 @@ import javax.swing.*;
 
 
 @SuppressWarnings("serial")
-public class HelpPanel extends JPanel implements ActionListener {
+public class HelpPanel extends JPanel {
 
 	    public HelpPanel() {
 		// TODO Auto-generated constructor stub
@@ -18,12 +18,4 @@ public class HelpPanel extends JPanel implements ActionListener {
 		add(helpText);
 		setVisible(true);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 }
