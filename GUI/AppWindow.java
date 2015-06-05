@@ -101,8 +101,9 @@ public class AppWindow implements ActionListener {
 	}
 	
 	public void controls(){
-		frame.add(new HelpPanel());
-		frame.setVisible(true);
+		JFrame hp = new HelpPanel();
+		hp.pack();
+		hp.setVisible(true);
 	}
 
 	@Override
