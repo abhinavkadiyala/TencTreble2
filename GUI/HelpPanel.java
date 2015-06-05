@@ -9,6 +9,7 @@ public class HelpPanel extends JFrame {
 	
 	private JLabel label1;
 	private JLabel label2;
+	private JLabel label3;
 
 	    public HelpPanel() {
 		// TODO Auto-generated constructor stub
@@ -17,11 +18,13 @@ public class HelpPanel extends JFrame {
 		Container container = getContentPane();
         	container.setLayout( new BorderLayout() );
         	
-        	label1 = new JLabel("Player 1: Use \"E\" to move forward, \"D\" to move backward, \"S\" to turn left, \"F\" to turn right, and \"Q\" to shoot bullets(a max of 5 at a time)\nPlayer 1: Use the up arrow to move forward, the down arrow to move backward, the left arrow to turn left, the right arrow to turn right, and \"/\" to shoot bullets(a max of 5 at a time)");
-        	label2 = new JLabel("The cross indicates where the bullet will spawn. (Yes, you can shoot across walls if you are close enough)");
+        	label1 = new JLabel("Player 1: Use \"E\" to move forward, \"D\" to move backward, \"S\" to turn left, \"F\" to turn right, and \"Q\" to shoot bullets(a max of 5 at a time)");
+        	label2 = new JLabel("Player 2: Use the up arrow to move forward, the down arrow to move backward, the left arrow to turn left, the right arrow to turn right, and \"/\" to shoot bullets(a max of 5 at a time)");
+        	label3 = new JLabel("The cross indicates where the bullet will spawn. (Yes, you can shoot across walls if you are close enough)");
         	
-        	container.add(label1, BorderLayout.CENTER);
-        	container.add(label1, BorderLayout.SOUTH);
+        	container.add(label1, BorderLayout.NORTH);
+        	container.add(label2, BorderLayout.CENTER);
+        	container.add(label3, BorderLayout.SOUTH);
         	
         	addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(WindowEvent evt) {
@@ -29,7 +32,7 @@ public class HelpPanel extends JFrame {
             }
         });
         
-        setSize( 275, 275);
+        pack();
         setVisible(true);
         
 	    }
