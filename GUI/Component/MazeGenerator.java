@@ -125,19 +125,18 @@ public class MazeGenerator {
 		}
 	};
 
-	public static void seed(int x, int y, long s) {
-		MazeGenerator maze = new MazeGenerator(x,y,s);
+	public static MazeGenerator seed(int x, int y, long s) {
+		return new MazeGenerator(x,y,s);
+	}
+	public static MazeGenerator seed(int x, int y, long s, int d) {
+		return new MazeGenerator(x,y,s,d);
 		maze.display();
 	}
-	public static void seed(int x, int y, long s, int d) {
-		MazeGenerator maze = new MazeGenerator(x,y,s,d);
-		maze.display();
-	}
-	public static void encoded(long enc) {
+	public static MazeGenerator encoded(long enc) {
 		int x = (int)(enc % 100);
 		int y = (int)((enc/=100) % 100);
 		int d = (int)((enc/=100) % 10);
-		seed(x, y, enc/10, d);
+		return seed(x, y, enc/10, d);
 	}
 	/*public static void encoded(String enc) {
 	    encoded(BaseTransformer.convert(enc, 52));

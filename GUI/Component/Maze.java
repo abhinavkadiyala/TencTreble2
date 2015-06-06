@@ -14,6 +14,10 @@ public class Maze extends GameObject {
 	Set<Wall> walls;
 	private static final int XMIN = 2, YMIN = 2;
 	
+	public Maze(String code, Map mp) {
+		super(new Point2D.Double(),0,mp);
+		mg = MazeGenerator.encoded(new Long(code));
+	}
 	public Maze(int xmax, int ymax, Map mp) {
 		super(new Point2D.Double(),0,mp);
 		walls = new HashSet<Wall>();
