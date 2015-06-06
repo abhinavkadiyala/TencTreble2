@@ -63,6 +63,17 @@ public class AppWindow implements ActionListener {
 				System.exit(0);
 			}
 		});
+		
+		JMenu mnMaze = new JMenu("Maze");
+		mnGame.add(mnMaze);
+		
+		JMenuItem mntmImportMaze = new JMenuItem("Import Maze");
+		mntmImportMaze.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
+		mnMaze.add(mntmImportMaze);
+		
+		JMenuItem mntmExportMaze = new JMenuItem("Export Maze");
+		mntmExportMaze.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
+		mnMaze.add(mntmExportMaze);
 		mnGame.add(mntmClose);
 
 		JMenu mnHelp = new JMenu("Help");
