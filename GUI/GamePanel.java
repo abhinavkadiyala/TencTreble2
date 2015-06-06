@@ -1,10 +1,12 @@
 
 import javax.swing.*;
+import javax.swing.Timer;
 
 import component.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
@@ -14,6 +16,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	private static final int DELAY_MS = 20;
 	boolean waitNewGame;
 	long opTime;
+	ScoreDisplay scoreDisp;
 
 	/**
 	 * Create the panel.
@@ -25,7 +28,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		game = new Game(0);
 	}
 	public void newGame(int pct) {
-		game = new Game(pct);
+		if (game != null && game.getPlayers() != null && game.getPlayers().length == pct && waitNewGame) {
+			game = new Game(game.getPlayers());
+		}
+		else {
+			game = new Game(pct);
+			scoreDisp = new ScoreDisplay(game.getPlayers());
+			this.add(scoreDisp, BorderLayout.SOUTH);
+		}
+		scoreDisp.update();
+		repaint();
 		if (timer != null) timer.stop();
 		timer = new Timer(DELAY_MS, this);
 		timer.start();
@@ -53,6 +65,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		long t = System.currentTimeMillis() - opTime;
 		//if (t > 0) System.out.println(t);
 		if (t > 3000) {
+			Player[] players = game.getPlayers();
+			java.util.List<Player> winner = new ArrayList<>();
+			for (Player play: players){
+				if (!(play.getTank().getMap() == null)){
+					winner.add(play);
+				}
+			}
+			if (winner.size() == 1){
+				winner.get(0).incrementScore();
+			}
 			newGame(game.playerCt());
 			return;
 		}
@@ -71,4 +93,21 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		game.paint((Graphics2D) g);
 	}
 
+}
+
+@SuppressWarnings("serial")
+class ScoreDisplay extends JPanel {
+	Player[] players;
+	public ScoreDisplay(Player... ps) {
+		players = ps;
+		for (Player p : players) {
+			this.add(new JLabel(p.getName() + ": " + p.getScore()));
+		}
+	}
+	public void update() {
+		Component[] cs = getComponents();
+		for (int i = 0; i < cs.length; i++)
+			if (cs[i] instanceof JLabel) ((JLabel) cs[i]).setText(players[i].getName()+": "+players[i].getScore());
+	}
+	
 }

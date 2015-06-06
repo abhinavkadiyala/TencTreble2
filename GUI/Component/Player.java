@@ -20,6 +20,17 @@ public class Player
 	static {
 		fv = 1.8; bv = 1.2; ts = Math.PI/32;
 	}
+	
+	public int getScore(){
+		return score;
+	}
+	public String getName() {
+		return name;
+	}
+	
+	public void incrementScore(){
+		score++;
+	}
 
 	public boolean keyPressed(int key) {
 		if (key == fb)

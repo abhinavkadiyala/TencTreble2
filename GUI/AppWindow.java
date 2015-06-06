@@ -79,7 +79,7 @@ public class AppWindow implements ActionListener {
 		});
 
 		frame.setContentPane(new GamePanel());
-		frame.getContentPane().setLayout(null);
+		frame.getContentPane().setLayout(new BorderLayout());
 		frame.addKeyListener((KeyListener) frame.getContentPane());
 
 		frame.addWindowListener(new WindowAdapter() {
@@ -91,7 +91,7 @@ public class AppWindow implements ActionListener {
 	}
 
 	public void newGame() {
-		Object[] sv = { 2 };
+		Object[] sv = { 2, 3 };
 		Integer p = (Integer) JOptionPane.showInputDialog(frame,
 				"How many players?", "New Game", JOptionPane.PLAIN_MESSAGE,
 				null, sv, 2);
@@ -101,8 +101,8 @@ public class AppWindow implements ActionListener {
 	}
 	
 	public void controls(){
-		frame.add(new HelpPanel());
-		frame.setVisible(true);
+		JFrame hp = new HelpPanel();
+		hp.setVisible(true);
 	}
 
 	@Override
