@@ -28,6 +28,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		game = new Game(0);
 	}
 	public void newGame(int pct) {
+		this.setLayout(new BorderLayout());
 		if (game != null && game.getPlayers() != null && game.getPlayers().length == pct && waitNewGame) {
 			game = new Game(game.getPlayers());
 		}

@@ -1,7 +1,3 @@
-/BlueTank.gif
-/Bullet.gif
-/Wall.gif
-/component/
 /AppWindow$1.class
 /AppWindow$2.class
 /AppWindow$3.class
@@ -9,7 +5,7 @@
 /AppWindow$5.class
 /AppWindow.class
 /GamePanel.class
-/HelpPanel.class
 /HelpPanel$1.class
-/GamePanel$1.class
+/HelpPanel.class
 /ScoreDisplay.class
+/component/

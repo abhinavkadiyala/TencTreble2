@@ -8,6 +8,9 @@ import java.awt.*;
 public class Map {
 	int size;
 	Set<GameObject> obj;
+	Set<Tank> tanks;
+	Set<Wall> walls;
+	Set<Bullet> bullets;
 	ArrayList<GameObject> rm = new ArrayList<GameObject>();
 	ArrayList<GameObject> ad = new ArrayList<GameObject>();
 	public Map() {

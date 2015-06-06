@@ -39,10 +39,6 @@ public class HelpPanel extends JFrame {
         setVisible(true);
         
 	    }
-	    
-         public static void main(String[] args) {
-        HelpPanel application = new HelpPanel();
-    }
 		//setBackground(Color.BLUE);
 		//setBounds(new Rectangle(500, 200));
 		
