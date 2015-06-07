@@ -112,7 +112,7 @@ public class AppWindow implements ActionListener {
 	}
 	
 	public void controls(){
-		JFrame hp = new HelpPanel();
+		JFrame hp = new HelpWindow();
 		hp.setVisible(true);
 	}
 
