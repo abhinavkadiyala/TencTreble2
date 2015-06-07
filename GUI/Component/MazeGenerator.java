@@ -130,7 +130,6 @@ public class MazeGenerator {
 	}
 	public static MazeGenerator seed(int x, int y, long s, int d) {
 		return new MazeGenerator(x,y,s,d);
-		maze.display();
 	}
 	public static MazeGenerator encoded(long enc) {
 		int x = (int)(enc % 100);
@@ -138,14 +137,14 @@ public class MazeGenerator {
 		int d = (int)((enc/=100) % 10);
 		return seed(x, y, enc/10, d);
 	}
-	/*public static void encoded(String enc) {
+	public static void encoded(String enc) {
 	    encoded(BaseTransformer.convert(enc, 52));
-	}*/
+	}
 
 	public long encode() {
 		return ((seed * 10 + density) * 100 + y) * 100 + x;
 	}
-	/*public String encode2() {
+	public String encode2() {
 		return BaseTransformer.convert(encode(), 52);
-	}*/
+	}
 }
