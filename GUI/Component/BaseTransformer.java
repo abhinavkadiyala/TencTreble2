@@ -10,7 +10,7 @@ package component;
 public enum BaseTransformer {;
 	private static final String cstr = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	public static String convert(long num, int base) {
-		check(base, 1, 52);
+		check(base, 1, 62);
 		String r = "";
 		while (num > 0) {
 			r = cstr.charAt((int) (num%base)) + r;
@@ -19,7 +19,7 @@ public enum BaseTransformer {;
 		return r;
 	}
 	public static long convert(String num, int base) {
-		check(base, 1, 52);
+		check(base, 1, 62);
 		long r = 0;
 		int t;
 		for (int i = 0; i < num.length(); i++) {
