@@ -95,11 +95,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 	
 	public String code() {
-		return Game.code()
+		return game.code()
 	}
 	public void setCode(String code) {
 		game = new Game(code);
-		newGame();
+		newGame(game.getPlayers().length);
 	}
 
 }
