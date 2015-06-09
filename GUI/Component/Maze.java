@@ -13,10 +13,12 @@ public class Maze extends GameObject {
 	MazeGenerator mg;
 	Set<Wall> walls;
 	private static final int XMIN = 2, YMIN = 2;
+	Shape bounds;
 	
 	public Maze(String code, Map mp) {
 		super(new Point2D.Double(),0,mp);
 		mg = MazeGenerator.encoded(new Long(code));
+		initBounds();
 	}
 	public Maze(int xmax, int ymax, Map mp) {
 		super(new Point2D.Double(),0,mp);
@@ -25,6 +27,9 @@ public class Maze extends GameObject {
 		int y = (int) (Math.random() * (ymax-YMIN) + YMIN);
 		long seed = System.currentTimeMillis();
 		mg = new MazeGenerator(x, y, seed);
+		initBounds();
+	}
+	private void initBounds() {
 		int[][] maze = mg.maze();
 		for (int i = 0; i < y; i++) {
 			for (int j = 0; j < x; j++) {
@@ -38,6 +43,29 @@ public class Maze extends GameObject {
 		for (int j = 0; j < x; j++) {
 			walls.add(new Wall(new Point2D.Double(j*Game.CELL_SIDE, y*Game.CELL_SIDE),0,mp));
 		}
+		Area a = new Area();
+		for (Wall w : walls)
+			a.add(new Area(w.getBounds()));
+		bounds = a;
+	}
+	private void init() {	//not sure if it works
+		Area a = new Area();
+		int[][] maze = mg.maze();
+		for (int i = 0; i < y; i++) {
+			for (int j = 0; j < x; j++) {
+				if((maze[j][i] & 1) == 0)
+					a.add(new Area(new Wall(new Point2D.Double(j*Game.CELL_SIDE, i*Game.CELL_SIDE),0,mp).getBounds()));
+			}
+			for (int j = 0; j < x; j++) {
+				if((maze[j][i] & 8) == 0)
+					a.add(new Area(new Wall(new Point2D.Double(j*Game.CELL_SIDE, i*Game.CELL_SIDE),Math.PI/2,mp).getBounds()));
+			}	
+			a.add(new Area(new Wall(new Point2D.Double(x*Game.CELL_SIDE, i*Game.CELL_SIDE),Math.PI/2,mp).getBounds()));
+		}
+		for (int j = 0; j < x; j++) {
+			a.add(new Area(new Wall(new Point2D.Double(j*Game.CELL_SIDE, y*Game.CELL_SIDE),0,mp).getBounds()));
+		}
+		bounds = a;
 	}
 	
 	public int width() {
@@ -47,8 +75,8 @@ public class Maze extends GameObject {
 		return mg.maze().length;
 	}
 	
-	public long code() {
-		return mg.encode();
+	public String code() {
+		return mg.encode2();
 	}
 
 	/* (non-Javadoc)
@@ -73,9 +101,6 @@ public class Maze extends GameObject {
 	}
 
 	public Shape getBounds() {
-		Area a = new Area();
-		for (Wall w : walls)
-			a.add(new Area(w.getBounds()));
-		return a;
+		return bounds;
 	}
 }
