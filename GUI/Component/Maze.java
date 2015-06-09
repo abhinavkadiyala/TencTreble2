@@ -91,15 +91,6 @@ public class Maze extends GameObject {
 	@Override
 	public void update() {}
 
-	/* (non-Javadoc)
-	 * @see component.GameObject#paint(java.awt.Graphics2D)
-	 */
-	@Override
-	public void paint(Graphics2D g) {
-		for (Wall w : walls)
-			w.paint(g);
-	}
-
 	public Shape getBounds() {
 		return bounds;
 	}
