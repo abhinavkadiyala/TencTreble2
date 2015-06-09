@@ -25,6 +25,7 @@ public class Map {
 			if (go instanceof Tank) tanks.add(go);
 			else if (go instanceof Wall) continue;
 			else if (go instanceof Bullet) bullets.add(go);
+			else if (go instanceof Maze) walls = go;
 			else obj.add(go);
 		}
 		ad = new ArrayList<GameObject>();
