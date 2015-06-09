@@ -93,6 +93,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		g.translate(Game.CELL_SIDE, Game.CELL_SIDE);
 		game.paint((Graphics2D) g);
 	}
+	
+	public String code() {
+		return Game.code()
+	}
+	public void setCode(String code) {
+		game = new Game(code);
+		newGame();
+	}
 
 }
 
