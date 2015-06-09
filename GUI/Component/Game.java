@@ -112,4 +112,7 @@ public class Game implements KeyListener
 	public void setMaze(String code) {
 		mz = new Maze(code, map);
 	}
+	public String code() {
+		return mz.code()
+	}
 }
