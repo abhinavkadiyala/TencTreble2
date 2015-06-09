@@ -18,8 +18,16 @@ public class Map {
 		obj = new HashSet<GameObject>();
 	}
 	
-	public Set<GameObject> getObjects(){
-		for (GameObject go : rm) obj.remove(go);
+	public void update() throws Exception {
+		for (GameObject go : rm) {
+			obj.remove(go);
+			try {
+				tanks.remove((Tank)go);
+			} catch (ClassCastException e) {}
+			try {
+				bullets.remove((Bullet)go);
+			} catch (ClassCastException e) {}
+		}
 		rm = new ArrayList<GameObject>();
 		for (GameObject go: ad) {
 			if (go instanceof Tank) tanks.add(go);
@@ -29,7 +37,18 @@ public class Map {
 			else obj.add(go);
 		}
 		ad = new ArrayList<GameObject>();
-		return obj;
+		//return obj;
+		for (Bullet b : bullets) {
+			b.update();
+			for (Wall w : walls.walls())
+				if (b.getBounds().intersects(w.getBounds())) b.conflict(w);
+		}
+		for (Tank t : tanks) {
+			t.update();
+			for (Bullet b : bullets)
+				if (GameObject.intersect(t.getBounds(), b.getBounds())) t.conflict(b);
+			if (GameObject.intersect(t.getBounds(), walls.getBounds())) t.conflict(walls);
+		}
 	}
 	public void add(GameObject gObj) {
 		//obj.add(gObj);
