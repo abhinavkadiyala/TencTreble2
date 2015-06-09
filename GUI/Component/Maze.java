@@ -17,7 +17,7 @@ public class Maze extends GameObject {
 	
 	public Maze(String code, Map mp) {
 		super(new Point2D.Double(),0,mp);
-		mg = MazeGenerator.encoded(new Long(code));
+		mg = MazeGenerator.encoded(code);
 		initBounds();
 	}
 	public Maze(int xmax, int ymax, Map mp) {
