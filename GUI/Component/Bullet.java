@@ -6,7 +6,7 @@ import java.awt.geom.*;
 
 public abstract class Bullet extends GameObject
 {
-	private static final double BULLET_RADIUS = 2;
+	public static final double BULLET_RADIUS = 2;
 	protected final int myDamage = 1;
 	protected double mySpeed = 2.4;
 	protected Player myPlayer;
