@@ -94,4 +94,7 @@ public class Maze extends GameObject {
 	public Shape getBounds() {
 		return bounds;
 	}
+	public Set<Wall> walls() {
+		return walls;
+	}
 }
