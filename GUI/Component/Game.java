@@ -43,6 +43,10 @@ public class Game implements KeyListener
 		initPlayers();
 //		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,/*players[0]*/null));
 	}
+	public Game(String code) {
+		map = new Map();
+		mz = new Maze(code, map);
+	}
 	public Game(Player... ps) {
 		this(new Map(), ps);
 	}
