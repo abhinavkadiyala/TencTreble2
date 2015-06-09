@@ -137,8 +137,8 @@ public class MazeGenerator {
 		int d = (int)((enc/=100) % 10);
 		return seed(x, y, enc/10, d);
 	}
-	public static void encoded(String enc) {
-	    encoded(BaseTransformer.convert(enc, 62));
+	public static MazeGenerator encoded(String enc) {
+		return encoded(BaseTransformer.convert(enc, 62));
 	}
 
 	public long encode() {
