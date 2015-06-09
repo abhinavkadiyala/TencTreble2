@@ -9,7 +9,7 @@ public class Map {
 	int size;
 	Set<GameObject> obj;
 	Set<Tank> tanks;
-	Set<Wall> walls;
+	Maze walls;
 	Set<Bullet> bullets;
 	ArrayList<GameObject> rm = new ArrayList<GameObject>();
 	ArrayList<GameObject> ad = new ArrayList<GameObject>();
@@ -21,7 +21,12 @@ public class Map {
 	public Set<GameObject> getObjects(){
 		for (GameObject go : rm) obj.remove(go);
 		rm = new ArrayList<GameObject>();
-		for (GameObject go: ad) obj.add(go);
+		for (GameObject go: ad) {
+			if (go instanceof Tank) tanks.add(go);
+			else if (go instanceof Wall) continue;
+			else if (go instanceof Bullet) bullets.add(go);
+			else obj.add(go);
+		}
 		ad = new ArrayList<GameObject>();
 		return obj;
 	}
@@ -35,8 +40,8 @@ public class Map {
 	}
 	
 	public void paint(Graphics2D g) {
-		for (GameObject go : obj) {
-			go.paint(g);
-		}
+		walls.paint();
+		for (Tank t : tanks) t.paint();
+		for (Bullet b : bullets) b.paint();
 	}
 }
