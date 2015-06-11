@@ -118,6 +118,6 @@ public class Game implements KeyListener
 		mz = new Maze(code, map);
 	}
 	public String code() {
-		return mz.code()
+		return mz.code();
 	}
 }

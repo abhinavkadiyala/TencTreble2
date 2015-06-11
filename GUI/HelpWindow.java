@@ -5,12 +5,6 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class HelpWindow extends JFrame {
 
-	private JLabel label1;
-	private JLabel label2;
-	private JLabel label3;
-	private JLabel label4;
-	private JLabel labels[];
-
 	public HelpWindow() {
 		// TODO Auto-generated constructor stub
 		super("Tank Trouble Help");
@@ -18,7 +12,7 @@ public class HelpWindow extends JFrame {
 		Container container = getContentPane();
 		container.setLayout( new BoxLayout(container, 1) );
 
-		labels = {
+		JLabel[] labels = {
 			new JLabel("Player 1: Use \"E\" to move forward, \"D\" to move backward, \"S\" to turn left, \"F\" to turn right, and \"Q\" to shoot bullets(a max of 5 at a time)"),
 			new JLabel("Player 2: Use the up arrow to move forward, the down arrow to move backward, the left arrow to turn left, the right arrow to turn right, and \"/\" to shoot bullets(a max of 5 at a time)"),
 			new JLabel("Player 3: Use the numpad 5 key to move forward, numpad 2 to move backward, numpad 1 to turn left, numpad 3 to turn right, and numpad 7 to shoot bullets. (a max of 5 at a time)"),

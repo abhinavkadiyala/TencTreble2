@@ -5,9 +5,11 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.GridLayout;
 
 
+@SuppressWarnings("serial")
 public class ControlsWindow extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();

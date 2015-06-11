@@ -18,7 +18,7 @@ public class Maze extends GameObject {
 	public Maze(String code, Map mp) {
 		super(new Point2D.Double(),0,mp);
 		mg = MazeGenerator.encoded(code);
-		initBounds();
+		initBounds(mg.maze()[0].length,mg.maze().length,mp);
 	}
 	public Maze(int xmax, int ymax, Map mp) {
 		super(new Point2D.Double(),0,mp);
@@ -27,9 +27,9 @@ public class Maze extends GameObject {
 		int y = (int) (Math.random() * (ymax-YMIN) + YMIN);
 		long seed = System.currentTimeMillis();
 		mg = new MazeGenerator(x, y, seed);
-		initBounds();
+		initBounds(x,y,mp);
 	}
-	private void initBounds() {
+	private void initBounds(int x, int y, Map mp) {
 		int[][] maze = mg.maze();
 		for (int i = 0; i < y; i++) {
 			for (int j = 0; j < x; j++) {
@@ -48,7 +48,8 @@ public class Maze extends GameObject {
 			a.add(new Area(w.getBounds()));
 		bounds = a;
 	}
-	private void init() {	//not sure if it works
+	@SuppressWarnings("unused")
+	private void init(int x, int y, Map mp) {	//not sure if it works
 		Area a = new Area();
 		int[][] maze = mg.maze();
 		for (int i = 0; i < y; i++) {

@@ -4,9 +4,8 @@
 /AppWindow$4.class
 /AppWindow$5.class
 /AppWindow.class
+/ControlsWindow.class
 /GamePanel.class
-/HelpPanel.class
+/HelpWindow.class
 /ScoreDisplay.class
 /component/
-/ControlsWindow.class
-/HelpWindow.class
