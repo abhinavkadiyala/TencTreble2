@@ -43,6 +43,10 @@ public class Game implements KeyListener
 		initPlayers();
 //		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,/*players[0]*/null));
 	}
+	public Game(String code) {
+		map = new Map();
+		mz = new Maze(code, map);
+	}
 	public Game(Player... ps) {
 		this(new Map(), ps);
 	}
@@ -68,7 +72,7 @@ public class Game implements KeyListener
 	}
 	public void keyTyped(KeyEvent key) {return;}
 	public void update() throws Exception {
-		Set<GameObject> obj = map.getObjects();
+		/*Set<GameObject> obj = map.getObjects();
 		obj.remove(null);
 		java.util.List<Tank> lt = new ArrayList<>(playerCt());
 		for (GameObject go : obj) {
@@ -85,7 +89,8 @@ public class Game implements KeyListener
 			}
 		}
 		if (lt.size() < 2)
-			throw new Exception();
+			throw new Exception();*/
+		map.update();
 	}
 	public static AffineTransform rotation(Point2D.Double anchor, double radians) {
 		AffineTransform r = new AffineTransform();
@@ -111,5 +116,8 @@ public class Game implements KeyListener
 	}
 	public void setMaze(String code) {
 		mz = new Maze(code, map);
+	}
+	public String code() {
+		return mz.code()
 	}
 }

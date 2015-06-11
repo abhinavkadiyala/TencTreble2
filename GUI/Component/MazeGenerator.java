@@ -137,14 +137,14 @@ public class MazeGenerator {
 		int d = (int)((enc/=100) % 10);
 		return seed(x, y, enc/10, d);
 	}
-	public static void encoded(String enc) {
-	    encoded(BaseTransformer.convert(enc, 52));
+	public static MazeGenerator encoded(String enc) {
+		return encoded(BaseTransformer.convert(enc, 62));
 	}
 
 	public long encode() {
 		return ((seed * 10 + density) * 100 + y) * 100 + x;
 	}
 	public String encode2() {
-		return BaseTransformer.convert(encode(), 52);
+		return BaseTransformer.convert(encode(), 62);
 	}
 }

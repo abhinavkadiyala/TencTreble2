@@ -9,7 +9,7 @@ public class Map {
 	int size;
 	Set<GameObject> obj;
 	Set<Tank> tanks;
-	Set<Wall> walls;
+	Maze walls;
 	Set<Bullet> bullets;
 	ArrayList<GameObject> rm = new ArrayList<GameObject>();
 	ArrayList<GameObject> ad = new ArrayList<GameObject>();
@@ -18,12 +18,37 @@ public class Map {
 		obj = new HashSet<GameObject>();
 	}
 	
-	public Set<GameObject> getObjects(){
-		for (GameObject go : rm) obj.remove(go);
+	public void update() throws Exception {
+		for (GameObject go : rm) {
+			obj.remove(go);
+			try {
+				tanks.remove((Tank)go);
+			} catch (ClassCastException e) {}
+			try {
+				bullets.remove((Bullet)go);
+			} catch (ClassCastException e) {}
+		}
 		rm = new ArrayList<GameObject>();
-		for (GameObject go: ad) obj.add(go);
+		for (GameObject go: ad) {
+			if (go instanceof Tank) tanks.add(go);
+			else if (go instanceof Wall) continue;
+			else if (go instanceof Bullet) bullets.add(go);
+			else if (go instanceof Maze) walls = go;
+			else obj.add(go);
+		}
 		ad = new ArrayList<GameObject>();
-		return obj;
+		//return obj;
+		for (Bullet b : bullets) {
+			b.update();
+			for (Wall w : walls.walls())
+				if (b.getBounds().intersects(w.getBounds())) b.conflict(w);
+		}
+		for (Tank t : tanks) {
+			t.update();
+			for (Bullet b : bullets)
+				if (GameObject.intersect(t.getBounds(), b.getBounds())) t.conflict(b);
+			if (GameObject.intersect(t.getBounds(), walls.getBounds())) t.conflict(walls);
+		}
 	}
 	public void add(GameObject gObj) {
 		//obj.add(gObj);
@@ -35,8 +60,8 @@ public class Map {
 	}
 	
 	public void paint(Graphics2D g) {
-		for (GameObject go : obj) {
-			go.paint(g);
-		}
+		walls.paint();
+		for (Tank t : tanks) t.paint();
+		for (Bullet b : bullets) b.paint();
 	}
 }

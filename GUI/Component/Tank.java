@@ -101,7 +101,7 @@ public class Tank extends GameObject
 //        	 double dir = this.getDirection();
 //             this.translate(-move*Math.cos(dir), -move*Math.sin(dir));
 //        }
-        else if (other instanceof Wall){
+        else if (other instanceof Wall || other instanceof Maze) {
             double dir = this.getDirection();
             this.translate(-2*move*Math.cos(dir), -2*move*Math.sin(dir));
             this.setDirection(this.getDirection() - 2*turn);
