@@ -17,6 +17,8 @@ public class Map {
 	public Map() {
 		// STILL NEED SOME WAY TO USE MAZE GENERATOR
 		obj = new HashSet<GameObject>();
+		tanks = new HashSet<Tank>();
+		bullets = new HashSet<Bullet>();
 	}
 	
 	public void update() throws Exception {
@@ -61,7 +63,7 @@ public class Map {
 	}
 	
 	public void paint(Graphics2D g) {
-		walls.paint(g);
+		if (walls != null) walls.paint(g);
 		for (Tank t : tanks) t.paint(g);
 		for (Bullet b : bullets) b.paint(g);
 	}
