@@ -52,6 +52,7 @@ public class Map {
 				if (GameObject.intersect(t.getBounds(), b.getBounds())) t.conflict(b);
 			if (GameObject.intersect(t.getBounds(), walls.getBounds())) t.conflict(walls);
 		}
+		if (tanks.size() < 2) throw new Exception();
 	}
 	public void add(GameObject gObj) {
 		//obj.add(gObj);
