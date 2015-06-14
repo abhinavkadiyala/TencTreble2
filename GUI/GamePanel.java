@@ -51,7 +51,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		timer.start();
 		waitNewGame = false;
 		opTime = Long.MAX_VALUE;
-		System.out.println(this.getSize().toString());
 	}
 
 	@Override
@@ -132,9 +131,7 @@ class ScoreDisplay extends JPanel {
 		if (game != null && game.game != null && game.game.getPlayers() != null) players = game.game.getPlayers();
 		for (int i = 0; i < cs.length; i++)
 			try {
-				String s;
-				((JLabel) cs[i]).setText(s = players[i].getName()+": "+players[i].getScore());
-				System.out.println(s);
+				((JLabel) cs[i]).setText(players[i].getName()+": "+players[i].getScore());
 			} catch (IndexOutOfBoundsException e) {
 				((JLabel) cs[i]).setText("");
 			}
