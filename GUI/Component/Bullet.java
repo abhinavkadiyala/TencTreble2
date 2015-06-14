@@ -11,7 +11,8 @@ public abstract class Bullet extends GameObject
 	protected double mySpeed = 2.4;
 	protected Player myPlayer;
 	protected Long startTime;
-	protected final long LIFETIME = 10000;
+	protected int LIFEDIST = 25000;
+	protected int dt = 0;	//distance traveled
 	protected boolean expire = false;
 
 	public Bullet(Player player) {
@@ -40,10 +41,6 @@ public abstract class Bullet extends GameObject
 	public boolean expired() {
 		return expire;
 	}
-  
-	public long time() {
-		return System.currentTimeMillis() - startTime;
-	}
 	
 	public void conflict(GameObject other) {
 		if(other instanceof Wall) {
@@ -58,7 +55,7 @@ public abstract class Bullet extends GameObject
 	}
   
 	public void update() {
-		if(this.time() >= LIFETIME) {
+		if(dt >= LIFEDIST) {
 			this.destroy();
 			expire = true;
 		} else {
@@ -68,6 +65,7 @@ public abstract class Bullet extends GameObject
 	
 	public void move() {
 		this.translate(mySpeed*Math.cos(getDirection()), mySpeed*Math.sin(getDirection()));	//move
+		dt += mySpeed;
 	}
   
 	public void destroy() {
