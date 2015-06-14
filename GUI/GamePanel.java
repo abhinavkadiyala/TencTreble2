@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
+
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
@@ -22,10 +23,18 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	 * Create the panel.
 	 */
 	public GamePanel(int pct) {
+		setLayout(new BorderLayout(0, 0));
 		game = new Game(pct);
+		scoreDisp = new ScoreDisplay(this);
+		this.add(scoreDisp, BorderLayout.SOUTH);
+		repaint();
 	}
 	public GamePanel() {
+		setLayout(new BorderLayout(0, 0));
 		game = new Game(0);
+		scoreDisp = new ScoreDisplay(this);
+		this.add(scoreDisp, BorderLayout.NORTH);
+		repaint();
 	}
 	public void newGame(int pct) {
 		this.setLayout(new BorderLayout());
@@ -34,8 +43,6 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		}
 		else {
 			game = new Game(pct);
-			scoreDisp = new ScoreDisplay(game.getPlayers());
-			this.add(scoreDisp, BorderLayout.SOUTH);
 		}
 		scoreDisp.update();
 		repaint();
@@ -44,6 +51,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		timer.start();
 		waitNewGame = false;
 		opTime = Long.MAX_VALUE;
+		System.out.println(this.getSize().toString());
 	}
 
 	@Override
@@ -92,6 +100,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		super.paint(g);
 		g.translate(Game.CELL_SIDE, Game.CELL_SIDE);
 		game.paint((Graphics2D) g);
+		//scoreDisp.paint(g);
 	}
 	
 	public String code() {
@@ -106,17 +115,29 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 @SuppressWarnings("serial")
 class ScoreDisplay extends JPanel {
-	Player[] players;
-	public ScoreDisplay(Player... ps) {
-		players = ps;
-		for (Player p : players) {
-			this.add(new JLabel(p.getName() + ": " + p.getScore()));
-		}
+	GamePanel game;
+	static final String[] title = { "Tank", " ", "Trouble" };
+	public ScoreDisplay() {
+		for (int i = 0; i < 3; i++)
+			this.add(new JLabel(title[i]));
+	}
+	public ScoreDisplay(GamePanel gp) {
+		game = gp;
+		for (int i = 0; i < 3; i++)
+			this.add(new JLabel(title[i]));
 	}
 	public void update() {
 		Component[] cs = getComponents();
+		Player[] players = new Player[0];
+		if (game != null && game.game != null && game.game.getPlayers() != null) players = game.game.getPlayers();
 		for (int i = 0; i < cs.length; i++)
-			if (cs[i] instanceof JLabel) ((JLabel) cs[i]).setText(players[i].getName()+": "+players[i].getScore());
+			try {
+				String s;
+				((JLabel) cs[i]).setText(s = players[i].getName()+": "+players[i].getScore());
+				System.out.println(s);
+			} catch (IndexOutOfBoundsException e) {
+				((JLabel) cs[i]).setText("");
+			}
 	}
 	
 }

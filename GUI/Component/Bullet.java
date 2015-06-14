@@ -10,7 +10,6 @@ public abstract class Bullet extends GameObject
 	protected final int myDamage = 1;
 	protected double mySpeed = 2.4;
 	protected Player myPlayer;
-	protected Long startTime;
 	protected int LIFEDIST = 25000;
 	protected int dt = 0;	//distance traveled
 	protected boolean expire = false;
@@ -18,12 +17,10 @@ public abstract class Bullet extends GameObject
 	public Bullet(Player player) {
 		super(player.getTank().getLocation(), player.getTank().getDirection(), player.getTank().getMap());
 		myPlayer = player;
-		startTime = System.currentTimeMillis();
 	}
 	public Bullet(Point2D.Double loc, double dir, Map mp, Player p) {
 		super(loc,dir,mp);
 		myPlayer = p;
-		startTime = System.currentTimeMillis();
 	}
 	public double getSpeed() {
 		return mySpeed;
