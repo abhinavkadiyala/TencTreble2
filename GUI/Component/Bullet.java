@@ -10,7 +10,7 @@ public abstract class Bullet extends GameObject
 	protected final int myDamage = 1;
 	protected double mySpeed = 2.4;
 	protected Player myPlayer;
-	protected static final int LIFEDIST = 25000;
+	protected static final int LIFEDIST = 1250;
 	protected int dt = 0;	//distance traveled
 	protected boolean expire = false;
 
