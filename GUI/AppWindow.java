@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -54,35 +55,48 @@ public class AppWindow implements ActionListener {
 			}
 		});
 		mnGame.add(mntmNewGame);
+		/*
+		 * mntmClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4,
+		 * InputEvent.ALT_MASK));
+		 */
+
+		JMenu mnMaze = new JMenu("Maze");
+		mnGame.add(mnMaze);
+
+		JMenuItem mntmImportMaze = new JMenuItem("Import Maze");
+		mntmImportMaze.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,
+				InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
+		mntmImportMaze.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				importMaze();
+			}
+		});
+		mnMaze.add(mntmImportMaze);
+
+		JMenuItem mntmExportMaze = new JMenuItem("Export Maze");
+		mntmExportMaze.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
+				InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
+		mntmExportMaze.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				exportMaze();
+			}
+		});
+		mnMaze.add(mntmExportMaze);
 
 		JMenuItem mntmClose = new JMenuItem("Close");
-		/*mntmClose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4,
-				InputEvent.ALT_MASK));*/
 		mntmClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
 			}
 		});
-		
-		JMenu mnMaze = new JMenu("Maze");
-		mnGame.add(mnMaze);
-		
-		JMenuItem mntmImportMaze = new JMenuItem("Import Maze");
-		mntmImportMaze.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
-		mnMaze.add(mntmImportMaze);
-		
-		JMenuItem mntmExportMaze = new JMenuItem("Export Maze");
-		mntmExportMaze.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
-		mnMaze.add(mntmExportMaze);
 		mnGame.add(mntmClose);
 
 		JMenu mnHelp = new JMenu("Help");
 		menuBar.add(mnHelp);
 
-
 		JMenuItem mntmControls = new JMenuItem("Controls");
 		mnHelp.add(mntmControls);
-		
+
 		mntmControls.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controls();
@@ -109,10 +123,18 @@ public class AppWindow implements ActionListener {
 			return;
 		((GamePanel) frame.getContentPane()).newGame(p);
 	}
-	
-	public void controls(){
+
+	public void controls() {
 		JFrame hp = new HelpWindow();
 		hp.setVisible(true);
+	}
+
+	public void importMaze() {
+
+	}
+
+	public void exportMaze() {
+
 	}
 
 	@Override

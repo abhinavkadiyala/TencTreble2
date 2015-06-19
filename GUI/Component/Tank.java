@@ -15,7 +15,7 @@ public class Tank extends GameObject
     private final static int MAX_BULLETS = 5;
     LinkedList<Bullet> bullets;
     private final int width = 20;
-    private final int height = 10;
+    private final int height = 11;
     private final int swidth = 4;
     private final int sheight = 2;
     private final double CROSSHAIR_DIM = 15;
