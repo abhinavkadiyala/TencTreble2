@@ -64,7 +64,7 @@ public class Player
 		double dir = this.getTank().getDirection();
 		Point2D.Double newLoc = new Point2D.Double(loc.x + Tank.width/2 * Math.cos(dir), loc.y + Tank.width/2 * Math.sin(dir));
 		Bullet hej = new KillBullet(newLoc ,dir, null, this);
-		return hej;    // TODO: make this actually create+return a bullet
+		return hej;
 	}
 	public Tank getTank() {
 		return tank;
