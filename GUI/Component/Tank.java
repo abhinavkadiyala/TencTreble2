@@ -20,11 +20,6 @@ public class Tank extends GameObject
     private final int sheight = 2;
     private final double CROSSHAIR_DIM = 15;
     Color color;
-    final static Color[] col = {
-    	Color.red, Color.green, Color.blue,
-    	Color.black
-    };
-    static int colind = 0;
    
     public boolean fire(Bullet bullet) {
         if (bullets.size() >= MAX_BULLETS) return false;
@@ -125,12 +120,11 @@ public class Tank extends GameObject
 				new Rectangle2D.Double(loc.x-width/2,loc.y-height/2,width,height));
 		// this is currently disfunctional
 	}
-	public Tank(Point2D.Double l, Map m) {
+	public Tank(Point2D.Double l, Map m, Color c) {
 		super(l, 0, m);
 		move = turn = 0;
 		bullets = new LinkedList<Bullet>();
-		color = col[colind];
-		colind = (colind + 1) % col.length;
+		color = c;
 	}
 	@Override
 	public void paint(Graphics2D g) {

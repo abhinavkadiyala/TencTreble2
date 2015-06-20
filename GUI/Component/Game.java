@@ -17,6 +17,9 @@ public class Game implements KeyListener
 	Map map;
 	Maze mz;
 	long opt;
+	public static final Color[] colors = {
+		Color.red, Color.green, Color.blue, Color.yellow
+	};
 
 	private void initPlayers() {
 		for (int i = 0; i < players.length; i++) {
@@ -26,10 +29,10 @@ public class Game implements KeyListener
 	}
 	private void initPlayerTanks() {
 		Random r = new Random();
-		for (Player p : players)
-			p.makeTank(new java.awt.geom.Point2D.Double(
+		for (int i = 0; i < players.length; i++)
+			players[i].makeTank(new java.awt.geom.Point2D.Double(
 					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.height()-1),
-					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.width()-1)), map);
+					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.width()-1)),	map, colors[i]);
 	}
 	public Game() {
 		players = new Player[0];

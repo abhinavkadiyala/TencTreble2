@@ -1,6 +1,7 @@
 package component;
 
 
+import java.awt.Color;
 import java.awt.geom.*;
 
 
@@ -68,9 +69,9 @@ public class Player
 	public Tank getTank() {
 		return tank;
 	}
-	public Tank makeTank(Point2D.Double loc, Map m) {
+	public Tank makeTank(Point2D.Double loc, Map m, Color c) {
 		Tank ot = tank;
-		tank = new Tank(loc, m);
+		tank = new Tank(loc, m, c);
 		return ot;
 	}
 
