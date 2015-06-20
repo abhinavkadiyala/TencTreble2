@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		setLayout(new BorderLayout(0, 0));
 		game = new Game(pct);
 		scoreDisp = new ScoreDisplay(this);
-		this.add(scoreDisp, BorderLayout.SOUTH);
+		this.add(scoreDisp, BorderLayout.NORTH);
 		repaint();
 	}
 
@@ -32,6 +32,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		setLayout(new BorderLayout(0, 0));
 		game = new Game(0);
 		scoreDisp = new ScoreDisplay(this);
+		FlowLayout flowLayout = (FlowLayout) scoreDisp.getLayout();
+		flowLayout.setHgap(25);
 		this.add(scoreDisp, BorderLayout.NORTH);
 		repaint();
 	}
@@ -109,8 +111,8 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	}
 
 	public void setCode(String code) {
-		game = new Game(code);
 		newGame(game.getPlayers().length);
+		game = new Game(code);
 	}
 
 }
@@ -127,8 +129,11 @@ class ScoreDisplay extends JPanel {
 
 	public ScoreDisplay(GamePanel gp) {
 		game = gp;
-		for (int i = 0; i < 3; i++)
-			this.add(new JLabel(title[i]));
+		for (int i = 0; i < 3; i++) {
+			JLabel fd = new JLabel(title[i]);
+			fd.setFont(new Font("tahoma", Font.BOLD, 15));
+			this.add(fd);
+		}
 	}
 
 	public void update() {
