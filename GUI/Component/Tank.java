@@ -14,11 +14,10 @@ public class Tank extends GameObject
     double move = 0, turn = 0; //positive for forward/left, negative for backward/right
     private final static int MAX_BULLETS = 5;
     LinkedList<Bullet> bullets;
-    private final int width = 20;
-    private final int height = 11;
+    public static final double width = 20, height = 11;
     private final int swidth = 4;
     private final int sheight = 2;
-    private final double CROSSHAIR_DIM = 15;
+    private final double CROSSHAIR_DIM = 11;
     Color color;
    
     public boolean fire(Bullet bullet) {
@@ -144,7 +143,7 @@ public class Tank extends GameObject
 		super.paint(g);
 		Point2D.Double loc = getLocation();
 		double dir = getDirection();
-		Point2D.Double cl = new Point2D.Double(loc.x+width*Math.cos(dir), loc.y+width*Math.sin(dir));
+		Point2D.Double cl = new Point2D.Double(loc.x+(width/2+1)*Math.cos(dir), loc.y+(width/2+1)*Math.sin(dir));
 		Ellipse2D.Double el = new Ellipse2D.Double(cl.x-CROSSHAIR_DIM/2,cl.y-CROSSHAIR_DIM/2,CROSSHAIR_DIM,CROSSHAIR_DIM);
 		Line2D horiz = new Line2D.Double(cl.x-CROSSHAIR_DIM,cl.y, cl.x+CROSSHAIR_DIM,cl.y),
 		       vert  = new Line2D.Double(cl.x,cl.y-CROSSHAIR_DIM, cl.x,cl.y+CROSSHAIR_DIM);
