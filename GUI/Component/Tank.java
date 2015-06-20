@@ -45,9 +45,15 @@ public class Tank extends GameObject
 		if (Math.signum(move) != Math.signum(amt))
 			move += amt;
     }
+    public double move() {
+    	return move;
+    }
     public void turn(double amt) {
 		if (Math.signum(turn) != Math.signum(amt))
 			turn += amt;
+    }
+    public double turn() {
+    	return turn;
     }
 	public double[] getXCoords() {
 		double dir = this.getDirection();

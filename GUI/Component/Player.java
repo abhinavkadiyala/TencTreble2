@@ -21,14 +21,14 @@ public class Player
 	static {
 		fv = 1.8; bv = 1.2; ts = Math.PI/32;
 	}
-	
+
 	public int getScore(){
 		return score;
 	}
 	public String getName() {
 		return name;
 	}
-	
+
 	public void incrementScore(){
 		score++;
 	}
@@ -46,17 +46,17 @@ public class Player
 		return true;
 	}
 	public boolean keyReleased(int key) {
-		if (key == fb)
+		if (key == fb && tank.move() > 0)
 			tank.move(-fv);
-		else if (key == bb)
+		else if (key == bb && tank.move() < 0)
 			tank.move(bv);
-		else if (key == lb)
+		if (key == lb && tank.turn() < 0)
 			tank.turn(ts);
-		else if (key == rb)
+		else if (key == rb && tank.turn() > 0)
 			tank.turn(-ts);
 		else if (key == sb)
 			tank.fire(getBullet());
-		else return false;
+		else return false;	
 		return true;
 	}
 	public Bullet getBullet() {
