@@ -8,7 +8,7 @@ public abstract class Bullet extends GameObject
 {
 	public static final double BULLET_RADIUS = 2;
 	protected final int myDamage = 1;
-	protected double mySpeed = 2.4;
+	protected static double mySpeed = 2.4;
 	protected Player myPlayer;
 	protected static final int LIFEDIST = 1250;
 	protected int dt = 0;	//distance traveled
@@ -22,7 +22,7 @@ public abstract class Bullet extends GameObject
 		super(loc,dir,mp);
 		myPlayer = p;
 	}
-	public double getSpeed() {
+	public static double getSpeed() {
 		return mySpeed;
 	}
 	

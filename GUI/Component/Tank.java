@@ -25,7 +25,8 @@ public class Tank extends GameObject
         // TODO: bullet-specific stuff
         bullet.setMap(getMap());
         bullets.add(bullet);
-        map.add(bullet);
+        if (map != null)
+        	map.add(bullet);
         return true;
     }
     public void update() {
