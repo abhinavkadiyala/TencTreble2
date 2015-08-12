@@ -47,8 +47,7 @@ public class AppWindow implements ActionListener {
 		menuBar.add(mnGame);
 
 		JMenuItem mntmNewGame = new JMenuItem("New Game");
-		mntmNewGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N,
-				InputEvent.CTRL_MASK));
+		mntmNewGame.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, InputEvent.CTRL_MASK));
 		mntmNewGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				newGame();
@@ -64,8 +63,8 @@ public class AppWindow implements ActionListener {
 		mnGame.add(mnMaze);
 
 		JMenuItem mntmImportMaze = new JMenuItem("Import Maze");
-		mntmImportMaze.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I,
-				InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
+		mntmImportMaze
+				.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mntmImportMaze.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				importMaze();
@@ -74,8 +73,8 @@ public class AppWindow implements ActionListener {
 		mnMaze.add(mntmImportMaze);
 
 		JMenuItem mntmExportMaze = new JMenuItem("Export Maze");
-		mntmExportMaze.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E,
-				InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
+		mntmExportMaze
+				.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mntmExportMaze.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				exportMaze();
@@ -95,6 +94,8 @@ public class AppWindow implements ActionListener {
 		menuBar.add(mnHelp);
 
 		JMenuItem mntmControls = new JMenuItem("Controls");
+		mntmControls
+				.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mnHelp.add(mntmControls);
 
 		mntmControls.addActionListener(new ActionListener() {
@@ -116,17 +117,19 @@ public class AppWindow implements ActionListener {
 
 	public void newGame() {
 		Object[] sv = { 2, 3 };
-		Integer p = (Integer) JOptionPane.showInputDialog(frame,
-				"How many players?", "New Game", JOptionPane.PLAIN_MESSAGE,
-				null, sv, 2);
+		Integer p = (Integer) JOptionPane.showInputDialog(frame, "How many players?", "New Game",
+				JOptionPane.PLAIN_MESSAGE, null, sv, 2);
 		if (p == null)
 			return;
 		((GamePanel) frame.getContentPane()).newGame(p);
 	}
 
 	public void controls() {
-		JFrame hp = new HelpWindow();
-		hp.setVisible(true);
+		/*
+		 * JFrame hp = new HelpWindow(); hp.setVisible(true);
+		 */
+		ControlPanel cp = new ControlPanel((GamePanel) frame.getContentPane());
+		cp.setVisible(true);
 	}
 
 	public void importMaze() {

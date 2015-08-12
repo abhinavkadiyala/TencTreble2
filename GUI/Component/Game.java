@@ -8,7 +8,7 @@ import java.util.*;
 public class Game implements KeyListener
 {
 	public static int CELL_SIDE = 50;
-	private static final int[][] dKey = {
+	public static final int[][] dKey = {
 		{KeyEvent.VK_UP     , KeyEvent.VK_DOWN   , KeyEvent.VK_LEFT   , KeyEvent.VK_RIGHT  , KeyEvent.VK_SLASH  },
 		{KeyEvent.VK_E      , KeyEvent.VK_D      , KeyEvent.VK_S      , KeyEvent.VK_F      , KeyEvent.VK_Q      },
 		{KeyEvent.VK_NUMPAD5, KeyEvent.VK_NUMPAD2, KeyEvent.VK_NUMPAD1, KeyEvent.VK_NUMPAD3, KeyEvent.VK_NUMPAD7}
@@ -122,5 +122,26 @@ public class Game implements KeyListener
 	}
 	public String code() {
 		return mz.code();
+	}
+	
+	public void setBinds(int[][] binds) {
+		for (int i = 0; i < players.length; i++)
+			players[i].controls(binds[i][0],binds[i][1],binds[i][2],binds[i][3],binds[i][4]);
+	}
+	public int[][] getBinds() {
+		int[][] binds = new int[3][5];
+		for (int i = 0; i < playerCt(); i++) {
+			binds[i][0] = players[i].fb;
+			binds[i][1] = players[i].bb;
+			binds[i][2] = players[i].lb;
+			binds[i][3] = players[i].rb;
+			binds[i][4] = players[i].sb;
+		}
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 5; j++){
+				System.out.println(binds[i][j]);
+			}
+		}
+		return binds;
 	}
 }
