@@ -142,6 +142,8 @@ public class Tank extends GameObject
 		}
 		g.fillPolygon(ixc, iyc, 4);*/
 		super.paint(g);
+		g.setColor(getColor().darker().darker().darker().darker().darker());
+		g.draw(getBounds());
 		Point2D.Double loc = getLocation();
 		double dir = getDirection();
 		Point2D.Double cl = new Point2D.Double(loc.x+(width/2+1)*Math.cos(dir), loc.y+(width/2+1)*Math.sin(dir));
