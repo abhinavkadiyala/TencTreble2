@@ -36,19 +36,8 @@ public class Maze extends GameObject {
 		int[][] maze = mg.maze();
 		int x = maze[0].length;
 		int y = maze.length;
-		System.out.println(y+" "+x+" "+maze.length+" "+maze[0].length);
-		//System.out.println(maze[5][4]);
 		for (int i = 0; i < y; i++) {
 			for (int j = 0; j < x; j++) {
-				System.out.print(maze[i][j]+"\t");
-			}
-			System.out.println();
-		}
-		for (int i = 0; i < y; i++) {
-			for (int j = 0; j < x; j++) {
-				System.out.print(j+" "+i+" ");
-				System.out.print(maze[i][j]);
-				System.out.println("\t"+x+" "+y);
 				if((maze[i][j] & 1) == 0) walls.add(new Wall(new Point2D.Double(i*Game.CELL_SIDE, j*Game.CELL_SIDE),0,mp));
 			}
 			for (int j = 0; j < x; j++) {
