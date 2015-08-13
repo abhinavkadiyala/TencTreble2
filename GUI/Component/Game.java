@@ -39,12 +39,16 @@ public class Game implements KeyListener
 		map = new Map();
 	}
 	public Game(int pct) {
-		//players = new Player[pct];
 		players = new Player[pct];
 		map = new Map();
 		mz = new Maze(20,11,map);
 		initPlayers();
-//		add(new KillBullet(new java.awt.geom.Point2D.Double(35,72),1,map,/*players[0]*/null));
+	}
+	public Game(String code, int pct) {
+		players = new Player[pct];
+		map = new Map();
+		mz = new Maze(code, map);
+		initPlayers();
 	}
 	public Game(String code) {
 		map = new Map();
@@ -53,10 +57,19 @@ public class Game implements KeyListener
 	public Game(Player... ps) {
 		this(new Map(), ps);
 	}
+	public Game(String code, Player... ps) {
+		this(new Map(), code, ps);
+	}
 	public Game(Map mp, Player... ps) {
 		players = ps;
 		map = mp;
 		mz = new Maze(25,11,map);
+		initPlayerTanks();
+	}
+	public Game(Map mp, String code, Player... ps) {
+		players = ps;
+		map = mp;
+		mz = new Maze(code, map);
 		initPlayerTanks();
 	}
 	

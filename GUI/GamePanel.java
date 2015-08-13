@@ -110,11 +110,23 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		return game.code();
 	}
 
-	public void setCode(String code) {
-		newGame(game.getPlayers().length);
-		game = new Game(code);
+	public void newGame(String code, int pct) {
+		this.setLayout(new BorderLayout());
+		if (game != null && game.getPlayers() != null
+				&& game.getPlayers().length == pct && waitNewGame) {
+			game = new Game(code, game.getPlayers());
+		} else {
+			game = new Game(code, pct);
+		}
+		scoreDisp.update();
+		repaint();
+		if (timer != null)
+			timer.stop();
+		timer = new Timer(DELAY_MS, this);
+		timer.start();
+		waitNewGame = false;
+		opTime = Long.MAX_VALUE;
 	}
-
 }
 
 @SuppressWarnings("serial")

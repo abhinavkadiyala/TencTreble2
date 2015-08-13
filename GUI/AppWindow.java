@@ -133,11 +133,32 @@ public class AppWindow implements ActionListener {
 	}
 
 	public void importMaze() {
-
+		GamePanel gp = ((GamePanel) frame.getContentPane());
+		Integer p = gp.game.getPlayers().length;
+		if (p < 2) {
+			Object[] sv = { 2, 3 };
+			p = (Integer) JOptionPane.showInputDialog(frame, "How many players?", "New Game", JOptionPane.PLAIN_MESSAGE,
+					null, sv, 2);
+			if (p == null)
+				return;
+		}
+		String c = (String) JOptionPane.showInputDialog(frame, "Maze code:", "Import Maze", JOptionPane.PLAIN_MESSAGE);
+		if (c == null)
+			return;
+		try {
+			gp.newGame(c, p);
+		} catch (Exception e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(frame, "Your code is invalid.");
+		} catch (StackOverflowError e) {
+			JOptionPane.showMessageDialog(frame, "Your code gives an invalid maze");
+		}
+		// gp.newGame(p);
 	}
 
 	public void exportMaze() {
-
+		JOptionPane.showInputDialog(frame, "Maze Code", "Export Maze", JOptionPane.INFORMATION_MESSAGE, null, null,
+				((GamePanel) frame.getContentPane()).code());
 	}
 
 	@Override

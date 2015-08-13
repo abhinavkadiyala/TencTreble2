@@ -18,7 +18,10 @@ public class Maze extends GameObject {
 	public Maze(String code, Map mp) {
 		super(new Point2D.Double(),0,mp);
 		mg = MazeGenerator.encoded(code);
-		initBounds(mg.maze()[0].length,mg.maze().length,mp);
+		walls = new HashSet<Wall>();
+		System.out.println(mg.maze()[0].length+" "+mg.maze().length);
+		initBounds(mp);
+		System.out.println(mg.encode());
 	}
 	public Maze(int xmax, int ymax, Map mp) {
 		super(new Point2D.Double(),0,mp);
@@ -27,21 +30,34 @@ public class Maze extends GameObject {
 		int y = (int) (Math.random() * (ymax-YMIN) + YMIN);
 		long seed = System.currentTimeMillis();
 		mg = new MazeGenerator(x, y, seed);
-		initBounds(x,y,mp);
+		initBounds(mp);
 	}
-	private void initBounds(int x, int y, Map mp) {
+	private void initBounds(Map mp) {
 		int[][] maze = mg.maze();
+		int x = maze[0].length;
+		int y = maze.length;
+		System.out.println(y+" "+x+" "+maze.length+" "+maze[0].length);
+		//System.out.println(maze[5][4]);
 		for (int i = 0; i < y; i++) {
 			for (int j = 0; j < x; j++) {
-				if((maze[j][i] & 1) == 0) walls.add(new Wall(new Point2D.Double(j*Game.CELL_SIDE, i*Game.CELL_SIDE),0,mp));
+				System.out.print(maze[i][j]+"\t");
+			}
+			System.out.println();
+		}
+		for (int i = 0; i < y; i++) {
+			for (int j = 0; j < x; j++) {
+				System.out.print(j+" "+i+" ");
+				System.out.print(maze[i][j]);
+				System.out.println("\t"+x+" "+y);
+				if((maze[i][j] & 1) == 0) walls.add(new Wall(new Point2D.Double(i*Game.CELL_SIDE, j*Game.CELL_SIDE),0,mp));
 			}
 			for (int j = 0; j < x; j++) {
-				if((maze[j][i] & 8) == 0) walls.add(new Wall(new Point2D.Double(j*Game.CELL_SIDE, i*Game.CELL_SIDE),Math.PI/2,mp));
+				if((maze[i][j] & 8) == 0) walls.add(new Wall(new Point2D.Double(i*Game.CELL_SIDE, j*Game.CELL_SIDE),Math.PI/2,mp));
 			}	
-			walls.add(new Wall(new Point2D.Double(x*Game.CELL_SIDE, i*Game.CELL_SIDE),Math.PI/2,mp));
+			walls.add(new Wall(new Point2D.Double(i*Game.CELL_SIDE, x*Game.CELL_SIDE),0,mp));
 		}
 		for (int j = 0; j < x; j++) {
-			walls.add(new Wall(new Point2D.Double(j*Game.CELL_SIDE, y*Game.CELL_SIDE),0,mp));
+			walls.add(new Wall(new Point2D.Double(y*Game.CELL_SIDE, j*Game.CELL_SIDE),Math.PI/2,mp));
 		}
 		Area a = new Area();
 		for (Wall w : walls)
