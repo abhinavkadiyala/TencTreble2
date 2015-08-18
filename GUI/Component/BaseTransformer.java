@@ -1,12 +1,7 @@
-/**
- * 
- */
 package component;
 
-/**
- * @author 0001
- *
- */
+import java.util.Scanner;
+
 public enum BaseTransformer {;
 	private static final String cstr = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 	public static String convert(long num, int base) {
@@ -31,5 +26,12 @@ public enum BaseTransformer {;
 	}
 	private static void check(int base, int min, int max) {
 		if (!(min < base && base <= max)) throw new IndexOutOfBoundsException();
+	}
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		Long l = s.nextLong();
+		System.out.println(l);
+		System.out.println(convert(l,62));
+		s.close();
 	}
 }
