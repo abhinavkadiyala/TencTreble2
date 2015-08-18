@@ -20,6 +20,9 @@ public class Map {
 		tanks = new HashSet<Tank>();
 		bullets = new HashSet<Bullet>();
 	}
+	public Maze walls() {
+		return walls;
+	}
 	
 	public void update() throws Exception {
 		for (GameObject go : rm) {

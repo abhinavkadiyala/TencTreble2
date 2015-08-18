@@ -61,7 +61,6 @@ public class ControlPanel extends JDialog {
 		keyMap.put(VK_BRACERIGHT, "}");
 		keyMap.put(VK_CLOSE_BRACKET, "]");
 		keyMap.put(VK_COMMA, ",");
-		keyMap.put(VK_CONTROL, "^");
 		keyMap.put(VK_DELETE, "DEL");
 		keyMap.put(VK_DOWN, "\u2193");
 		keyMap.put(VK_ENTER, "\u23ce");
@@ -355,7 +354,10 @@ class ControlWindow extends JFrame implements KeyListener {
 
 	static {
 		bindingDisabled = new TreeSet<Integer>();
+		bindingDisabled.add(VK_ALT);
 		bindingDisabled.add(VK_CAPS_LOCK);
+		bindingDisabled.add(VK_CONTROL);
+		bindingDisabled.add(VK_META);
 		bindingDisabled.add(VK_WINDOWS);
 	}
 

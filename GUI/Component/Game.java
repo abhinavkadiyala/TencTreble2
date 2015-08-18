@@ -88,24 +88,6 @@ public class Game implements KeyListener
 	}
 	public void keyTyped(KeyEvent key) {return;}
 	public void update() throws Exception {
-		/*Set<GameObject> obj = map.getObjects();
-		obj.remove(null);
-		java.util.List<Tank> lt = new ArrayList<>(playerCt());
-		for (GameObject go : obj) {
-			go.update();
-			if (go instanceof Tank) {
-				if (go.getMap() != null) lt.add((Tank)go); 
-				for (GameObject go2 : obj)
-					if (GameObject.intersect(go.getBounds(), go2.getBounds()))
-						go.conflict(go2);
-			} else if (go instanceof Bullet) {
-				for (GameObject go2 : obj)
-					if (go2 instanceof Wall && GameObject.intersect(go.getBounds(), go2.getBounds()))
-						go.conflict(go2);
-			}
-		}
-		if (lt.size() < 2)
-			throw new Exception();*/
 		map.update();
 	}
 	public static AffineTransform rotation(Point2D.Double anchor, double radians) {
@@ -126,10 +108,6 @@ public class Game implements KeyListener
 		map.paint(g);
 	}
 	
-	public Shape getBounds()
-	{
-		return mz.getBounds();
-	}
 	public void setMaze(String code) {
 		mz = new Maze(code, map);
 	}

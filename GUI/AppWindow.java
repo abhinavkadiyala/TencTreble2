@@ -98,6 +98,16 @@ public class AppWindow implements ActionListener {
 				.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mnHelp.add(mntmControls);
 
+		JMenuItem mntmMazeDetails = new JMenuItem("Maze Details");
+		mntmMazeDetails.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				GamePanel g = (GamePanel) frame.getContentPane();
+				JOptionPane.showMessageDialog(frame,
+						"" + g.game.getMap().walls().width() + "x" + g.game.getMap().walls().height());
+			}
+		});
+		mnHelp.add(mntmMazeDetails);
+
 		mntmControls.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				controls();
