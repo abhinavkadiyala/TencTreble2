@@ -19,9 +19,7 @@ public class Maze extends GameObject {
 		super(new Point2D.Double(),0,mp);
 		mg = MazeGenerator.encoded(code);
 		walls = new HashSet<Wall>();
-		System.out.println(mg.maze()[0].length+" "+mg.maze().length);
 		initBounds(mp);
-		System.out.println(mg.encode());
 	}
 	public Maze(int xmax, int ymax, Map mp) {
 		super(new Point2D.Double(),0,mp);

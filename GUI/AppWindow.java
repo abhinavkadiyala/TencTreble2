@@ -75,6 +75,7 @@ public class AppWindow implements ActionListener {
 		JMenuItem mntmExportMaze = new JMenuItem("Export Maze");
 		mntmExportMaze
 				.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
+				.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.CTRL_MASK | InputEvent.SHIFT_MASK));
 		mntmExportMaze.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				exportMaze();
@@ -153,7 +154,6 @@ public class AppWindow implements ActionListener {
 		} catch (StackOverflowError e) {
 			JOptionPane.showMessageDialog(frame, "Your code gives an invalid maze");
 		}
-		// gp.newGame(p);
 	}
 
 	public void exportMaze() {

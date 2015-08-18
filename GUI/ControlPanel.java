@@ -18,7 +18,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 import javax.swing.JLabel;
 import static java.awt.event.KeyEvent.*;
@@ -26,7 +29,7 @@ import static java.awt.event.KeyEvent.*;
 @SuppressWarnings("serial")
 public class ControlPanel extends JDialog {
 
-	static final TreeMap<Integer, String> keyMap;
+	static final Map<Integer, String> keyMap;
 	public int[][] binds = new int[3][5];
 	private JButton[][] buttons = new JButton[3][5];
 	private GamePanel game;
@@ -68,6 +71,8 @@ public class ControlPanel extends JDialog {
 		keyMap.put(VK_LEFT, "\u2190");
 		keyMap.put(VK_MINUS, "-");
 		keyMap.put(VK_OPEN_BRACKET, "[");
+		keyMap.put(VK_PAGE_DOWN, "PG\u2193");
+		keyMap.put(VK_PAGE_UP, "PG\u2191");
 		keyMap.put(VK_PERIOD, ".");
 		keyMap.put(VK_PLUS, "+");
 		keyMap.put(VK_QUOTE, "'");
@@ -346,6 +351,13 @@ abstract class KeyLogger implements ActionListener {
 class ControlWindow extends JFrame implements KeyListener {
 	int val;
 	JPanel panel;
+	final static Set<Integer> bindingDisabled;
+
+	static {
+		bindingDisabled = new TreeSet<Integer>();
+		bindingDisabled.add(VK_CAPS_LOCK);
+		bindingDisabled.add(VK_WINDOWS);
+	}
 
 	public ControlWindow(int key) {
 		val = key;
@@ -369,9 +381,9 @@ class ControlWindow extends JFrame implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		int kc = arg0.getKeyCode();
-		if (kc != VK_ESCAPE && kc != VK_CAPS_LOCK && kc != VK_WINDOWS)
+		if (kc != VK_ESCAPE && !bindingDisabled.contains(kc))
 			val = arg0.getKeyCode();
-		if (kc != VK_CAPS_LOCK && kc != VK_WINDOWS)
+		if (!bindingDisabled.contains(kc))
 			close();
 	}
 

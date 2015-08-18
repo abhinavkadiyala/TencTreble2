@@ -42,6 +42,11 @@ public class Map {
 		ad = new ArrayList<GameObject>();
 		//return obj;
 		for (Bullet b : bullets) {
+			if (b.dt < Bullet.getSpeed()) {
+				b.update();
+				for (Wall w : walls.walls())
+					if (b.getBounds().intersects((Rectangle2D) w.getBounds())) b.conflict(w);
+			}
 			b.update();
 			for (Wall w : walls.walls())
 				if (b.getBounds().intersects((Rectangle2D) w.getBounds())) b.conflict(w);

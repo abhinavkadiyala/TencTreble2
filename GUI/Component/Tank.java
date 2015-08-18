@@ -14,7 +14,7 @@ public class Tank extends GameObject
     double move = 0, turn = 0; //positive for forward/left, negative for backward/right
     private final static int MAX_BULLETS = 5;
     LinkedList<Bullet> bullets;
-    public static final double width = 20, height = 14;
+    public static final double width = 21, height = 13;
     private final int swidth = 4;
     private final int sheight = 2;
     private final double CROSSHAIR_DIM = 11;
