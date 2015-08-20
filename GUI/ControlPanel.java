@@ -132,12 +132,6 @@ public class ControlPanel extends JDialog {
 
 					public void actionPerformed(ActionEvent e) {
 						binds = Game.dKey;
-						for (int i = 0; i < 3; i++) {
-							for (int j = 0; j < 5; j++) {
-								System.out.println(keyMap.get(binds[i][j]));
-								System.out.println(keyMap.get(Game.dKey[i][j]));
-							}
-						}
 						repaint();
 					}
 				});
@@ -148,12 +142,6 @@ public class ControlPanel extends JDialog {
 				// cancelButton.setActionCommand("Cancel");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						for (int i = 0; i < 3; i++) {
-							for (int j = 0; j < 5; j++) {
-								System.out.println(keyMap.get(binds[i][j]));
-								System.out.println(keyMap.get(dbs[i][j]));
-							}
-						}
 						dispose();
 					}
 				});
