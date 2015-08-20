@@ -31,8 +31,8 @@ public class Game implements KeyListener
 		Random r = new Random();
 		for (int i = 0; i < players.length; i++)
 			players[i].makeTank(new java.awt.geom.Point2D.Double(
-					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.height()-1),
-					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.width()-1)),	map, colors[i]);
+					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.height()),
+					CELL_SIDE/2+CELL_SIDE*r.nextInt(mz.width())),	map, colors[i]);
 	}
 	public Game() {
 		players = new Player[0];
