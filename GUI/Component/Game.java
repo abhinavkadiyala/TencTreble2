@@ -17,6 +17,7 @@ public class Game implements KeyListener
 	Map map;
 	Maze mz;
 	long opt;
+	public boolean paused = false;
 	public static final Color[] colors = {
 		Color.red, Color.green, Color.blue, Color.yellow
 	};
@@ -134,5 +135,11 @@ public class Game implements KeyListener
 			}
 		}
 		return binds;
+	}
+	public void pause() {
+		paused = true;
+	}
+	public void unpause() {
+		paused = false;
 	}
 }

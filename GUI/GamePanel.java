@@ -89,9 +89,15 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 			newGame(game.playerCt());
 			return;
 		}
+		if (!game.paused)
 		try {
 			game.update();
 		} catch (Exception e) {
+			/*
+			 * Suggestion:
+			 * Add a special exception class so that regular
+			 * exceptions won't cause unintended behavior
+			 */
 			if (!waitNewGame)
 				opTime = System.currentTimeMillis();
 			waitNewGame = true;
@@ -126,6 +132,13 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 		timer.start();
 		waitNewGame = false;
 		opTime = Long.MAX_VALUE;
+	}
+	
+	public void pause() {
+		game.pause();
+	}
+	public void unpause() {
+		game.unpause();
 	}
 }
 

@@ -1,11 +1,8 @@
 package component;
 
 
-import static java.awt.event.KeyEvent.*;
-
-import java.awt.Color;
+import java.awt.*;
 import java.awt.geom.*;
-import java.util.*;
 
 
 /**
@@ -23,13 +20,8 @@ public class Player
 	int fb, bb, lb, rb, sb;         //ForwardButton, BackButton, LeftButton, RightButton, ShootButton
 	boolean ctrl, alt, meta, win;
 	private static final double fv, bv, ts;    //ForwardVel, BackVel, TurnSpd
-	final static TreeMap<Integer, Boolean> modifiers;
 	static {
 		fv = 1.8; bv = 1.2; ts = Math.PI/32;
-		int[] blocking = {VK_ALT, VK_CONTROL, VK_META, VK_WINDOWS};
-		modifiers = new TreeMap<Integer,Boolean>();
-		for (int value : blocking)
-			modifiers.put(value, false);
 	}
 
 	public int getScore(){
@@ -43,17 +35,7 @@ public class Player
 		score++;
 	}
 
-	private boolean disabled() {
-		boolean r = false;
-		for (Boolean b : modifiers.values())
-			r = r || b;
-		return r;
-	}
 	public boolean keyPressed(int key) {
-		if (modifiers.keySet().contains(key))
-			modifiers.put(key, true);
-		if (disabled())
-			return false;
 		if (key == fb)
 			tank.move(fv);
 		else if (key == bb)
@@ -66,8 +48,6 @@ public class Player
 		return true;
 	}
 	public boolean keyReleased(int key) {
-		if (modifiers.keySet().contains(key))
-			modifiers.put(key, false);
 		if (key == fb && tank.move() > 0)
 			tank.move(-fv);
 		else if (key == bb && tank.move() < 0)

@@ -101,9 +101,10 @@ public class AppWindow implements ActionListener {
 		JMenuItem mntmMazeDetails = new JMenuItem("Maze Details");
 		mntmMazeDetails.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				GamePanel g = (GamePanel) frame.getContentPane();
+				game().pause();
 				JOptionPane.showMessageDialog(frame,
-						"" + g.game.getMap().walls().width() + "x" + g.game.getMap().walls().height());
+						"" + game().game.getMap().walls().width() + "x" + game().game.getMap().walls().height());
+				game().unpause();
 			}
 		});
 		mnHelp.add(mntmMazeDetails);
@@ -115,7 +116,7 @@ public class AppWindow implements ActionListener {
 		});
 
 		frame.setContentPane(new GamePanel());
-		frame.addKeyListener((KeyListener) frame.getContentPane());
+		frame.addKeyListener(game());
 
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
@@ -126,25 +127,34 @@ public class AppWindow implements ActionListener {
 	}
 
 	public void newGame() {
+		game().pause();
 		Object[] sv = { 2, 3 };
 		Integer p = (Integer) JOptionPane.showInputDialog(frame, "How many players?", "New Game",
 				JOptionPane.PLAIN_MESSAGE, null, sv, 2);
+		game().unpause();
 		if (p == null)
 			return;
-		((GamePanel) frame.getContentPane()).newGame(p);
+		game().newGame(p);
 	}
 
 	public void controls() {
 		/*
 		 * JFrame hp = new HelpWindow(); hp.setVisible(true);
 		 */
-		ControlPanel cp = new ControlPanel((GamePanel) frame.getContentPane());
+		game().pause();
+		@SuppressWarnings("serial")
+		ControlPanel cp = new ControlPanel(game()) {
+			@SuppressWarnings("unused")
+			public void windowClosing(WindowEvent e) {
+				game().unpause();
+			}
+		};
 		cp.setVisible(true);
 	}
 
 	public void importMaze() {
-		GamePanel gp = ((GamePanel) frame.getContentPane());
-		Integer p = gp.game.getPlayers().length;
+		game().pause();
+		Integer p = game().game.getPlayers().length;
 		if (p < 2) {
 			Object[] sv = { 2, 3 };
 			p = (Integer) JOptionPane.showInputDialog(frame, "How many players?", "New Game", JOptionPane.PLAIN_MESSAGE,
@@ -153,25 +163,35 @@ public class AppWindow implements ActionListener {
 				return;
 		}
 		String c = (String) JOptionPane.showInputDialog(frame, "Maze code:", "Import Maze", JOptionPane.PLAIN_MESSAGE);
-		if (c == null)
+		if (c == null) {
+			game().unpause();
 			return;
+		}
 		try {
-			gp.newGame(c, p);
+			game().newGame(c, p);
 		} catch (Exception e) {
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(frame, "Your code is invalid.");
 		} catch (StackOverflowError e) {
 			JOptionPane.showMessageDialog(frame, "Your code gives an invalid maze");
+		} finally {
+			game().unpause();
 		}
 	}
 
 	public void exportMaze() {
+		game().pause();
 		JOptionPane.showInputDialog(frame, "Maze Code", "Export Maze", JOptionPane.INFORMATION_MESSAGE, null, null,
-				((GamePanel) frame.getContentPane()).code());
+				game().code());
+		game().unpause();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ActionListener) frame.getContentPane()).actionPerformed(e);
+		game().actionPerformed(e);
+	}
+
+	public GamePanel game() {
+		return (GamePanel) frame.getContentPane();
 	}
 }
