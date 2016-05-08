@@ -7,6 +7,7 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -154,13 +155,18 @@ public class AppWindow implements ActionListener {
 		 * JFrame hp = new HelpWindow(); hp.setVisible(true);
 		 */
 		game().pause();
-		@SuppressWarnings("serial")
-		ControlPanel cp = new ControlPanel(game()) {
-			@SuppressWarnings("unused")
+		ControlPanel cp = new ControlPanel(game());
+		cp.addWindowListener(new WindowAdapter() {
+			@Override
 			public void windowClosing(WindowEvent e) {
 				game().unpause();
 			}
-		};
+
+			@Override
+			public void windowClosed(WindowEvent e) {
+				game().unpause();
+			}
+		});
 		cp.setVisible(true);
 	}
 
