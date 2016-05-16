@@ -345,9 +345,13 @@ class ControlWindow extends JFrame implements KeyListener {
 	static {
 		bindingDisabled = new TreeSet<Integer>();
 		bindingDisabled.add(VK_ALT);
+		bindingDisabled.add(VK_ALT_GRAPH);
 		bindingDisabled.add(VK_CAPS_LOCK);
 		bindingDisabled.add(VK_CONTROL);
 		bindingDisabled.add(VK_META);
+		bindingDisabled.add(VK_NUM_LOCK);
+		bindingDisabled.add(VK_SHIFT);
+		bindingDisabled.add(VK_SPACE);
 		bindingDisabled.add(VK_WINDOWS);
 	}
 
