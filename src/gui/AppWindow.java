@@ -15,6 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+import javax.swing.JCheckBoxMenuItem;
 
 public class AppWindow implements ActionListener {
 
@@ -95,6 +96,21 @@ public class AppWindow implements ActionListener {
 		});
 		mnMaze.add(mntmExportMaze);
 
+		JMenuItem mntmPause = new JMenuItem("Pause");
+		mntmPause.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_SPACE, 0));
+		mntmPause.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (game().paused()) {
+					game().unpause();
+					mntmPause.setText("Pause");
+				} else {
+					game().pause();
+					mntmPause.setText("Unpause");
+				}
+			}
+		});
+		mnGame.add(mntmPause);
+
 		JMenuItem mntmClose = new JMenuItem("Close");
 		mntmClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -151,9 +167,6 @@ public class AppWindow implements ActionListener {
 	}
 
 	public void controls() {
-		/*
-		 * JFrame hp = new HelpWindow(); hp.setVisible(true);
-		 */
 		game().pause();
 		ControlPanel cp = new ControlPanel(game());
 		cp.addWindowListener(new WindowAdapter() {

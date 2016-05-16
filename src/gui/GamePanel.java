@@ -29,6 +29,11 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	boolean waitNewGame;
 	long opTime;
 	ScoreDisplay scoreDisp;
+	static int[] pauseDim = { 2, 2, 4};
+	static int[][] playDim = {
+			{ 2, 2, 12 },
+			{ 2, 12, 7 }
+	};
 
 	/**
 	 * Create the panel.
@@ -120,6 +125,14 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
 	public void paint(Graphics g) {
 		super.paint(g);
+		if (paused()) {
+			g.drawRect(pauseDim[0], pauseDim[1],
+				pauseDim[2], pauseDim[2]*3);
+			g.drawRect(pauseDim[0] + 2*pauseDim[2], pauseDim[1],
+				pauseDim[2], pauseDim[2]*3);
+		} else {
+			g.drawPolygon(playDim[0], playDim[1], 3);
+		}
 		g.translate(Game.CELL_SIDE, Game.CELL_SIDE);
 		game.paint((Graphics2D) g);
 		// scoreDisp.paint(g);
@@ -153,6 +166,10 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 	public void unpause() {
 		game.unpause();
 	}
+	public boolean paused() {
+		return game.paused;
+	}
+
 }
 
 @SuppressWarnings("serial")
