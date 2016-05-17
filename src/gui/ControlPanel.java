@@ -104,6 +104,7 @@ public class ControlPanel extends JDialog {
 	}
 
 	public ControlPanel(int[][] dbs) {
+		setTitle("Controls");
 		for (int i = 0; i < 3; i++) {
 			binds[i] = dbs[i].clone();
 		}
