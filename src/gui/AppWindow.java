@@ -39,6 +39,7 @@ public class AppWindow implements ActionListener {
 	 */
 	public AppWindow() {
 		initialize();
+		game().newGame(2);
 	}
 
 	/**
