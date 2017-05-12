@@ -377,10 +377,10 @@ class ControlWindow extends JFrame implements KeyListener {
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		int kc = arg0.getKeyCode();
-		if (kc != VK_ESCAPE && !bindingDisabled.contains(kc))
-			val = arg0.getKeyCode();
-		if (!bindingDisabled.contains(kc))
+		if (!bindingDisabled.contains(kc)) {
+			if (kc != VK_ESCAPE) val = arg0.getKeyCode();
 			close();
+		}
 	}
 
 	@Override
