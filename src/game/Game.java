@@ -135,11 +135,6 @@ public class Game implements KeyListener
 			binds[i][3] = players[i].rb;
 			binds[i][4] = players[i].sb;
 		}
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 5; j++){
-				System.out.println(binds[i][j]);
-			}
-		}
 		return binds;
 	}
 	public void pause() {
