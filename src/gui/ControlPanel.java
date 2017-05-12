@@ -90,7 +90,7 @@ public class ControlPanel extends JDialog {
 	public static void main(String[] args) {
 		try {
 			// Arrays.fill(Game.dKey, 0);
-			ControlPanel dialog = new ControlPanel(Game.dKey);
+			ControlPanel dialog = new ControlPanel(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -99,13 +99,14 @@ public class ControlPanel extends JDialog {
 	}
 
 	public ControlPanel(GamePanel g) {
-		this(g.game != null ? Game.dKey : g.game.getBinds());
 		game = g;
-	}
+		int[][] dbs = game == null || game.game == null || game.game.getPlayers().length == 0 ? Game.dKey
+				: game.game.getBinds();
+		int tabs = game == null || game.game == null || game.game.getPlayers().length == 0 ? 3
+				: game.game.getPlayers().length;
 
-	public ControlPanel(int[][] dbs) {
 		setTitle("Controls");
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < tabs; i++) {
 			binds[i] = dbs[i].clone();
 		}
 
@@ -155,8 +156,8 @@ public class ControlPanel extends JDialog {
 			JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 
 			getContentPane().add(tabbedPane, BorderLayout.CENTER);
-			JPanel[] p = new JPanel[3];
-			for (int i = 0; i < 3; i++) {
+			JPanel[] p = new JPanel[tabs];
+			for (int i = 0; i < tabs; i++) {
 				p[i] = new JPanel();
 				p[i].setBorder(new EmptyBorder(5, 5, 5, 5));
 				tabbedPane.addTab("Player " + (i + 1), null, p[i], null);
@@ -170,7 +171,7 @@ public class ControlPanel extends JDialog {
 						cw.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
-								fors: for (int m = 0; m < 3; m++)
+								fors: for (int m = 0; m < tabs; m++)
 									for (int n = 0; n < 5; n++)
 										if (binds[m][n] == cw.getKey()) {
 											binds[m][n] = binds[x][y];
@@ -198,7 +199,7 @@ public class ControlPanel extends JDialog {
 						cw.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
-								fors: for (int m = 0; m < 3; m++)
+								fors: for (int m = 0; m < tabs; m++)
 									for (int n = 0; n < 5; n++)
 										if (binds[m][n] == cw.getKey()) {
 											binds[m][n] = binds[x][y];
@@ -226,7 +227,7 @@ public class ControlPanel extends JDialog {
 						cw.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
-								fors: for (int m = 0; m < 3; m++)
+								fors: for (int m = 0; m < tabs; m++)
 									for (int n = 0; n < 5; n++)
 										if (binds[m][n] == cw.getKey()) {
 											binds[m][n] = binds[x][y];
@@ -254,7 +255,7 @@ public class ControlPanel extends JDialog {
 						cw.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
-								fors: for (int m = 0; m < 3; m++)
+								fors: for (int m = 0; m < tabs; m++)
 									for (int n = 0; n < 5; n++)
 										if (binds[m][n] == cw.getKey()) {
 											binds[m][n] = binds[x][y];
@@ -282,7 +283,7 @@ public class ControlPanel extends JDialog {
 						cw.addWindowListener(new WindowAdapter() {
 							@Override
 							public void windowClosed(WindowEvent e) {
-								fors: for (int m = 0; m < 3; m++)
+								fors: for (int m = 0; m < tabs; m++)
 									for (int n = 0; n < 5; n++)
 										if (binds[m][n] == cw.getKey()) {
 											binds[m][n] = binds[x][y];
@@ -316,7 +317,7 @@ public class ControlPanel extends JDialog {
 
 	@Override
 	public void repaint() {
-		for (int i = 0; i < 3; i++) {
+		for (int i = 0; i < game.game.getPlayers().length; i++) {
 			buttons[i][0].setText("Forward: " + keyMap.get(binds[i][0]));
 			buttons[i][1].setText("Back: " + keyMap.get(binds[i][1]));
 			buttons[i][2].setText("Left: " + keyMap.get(binds[i][2]));
@@ -358,12 +359,12 @@ class ControlWindow extends JFrame implements KeyListener {
 
 	public ControlWindow(int key) {
 		val = key;
-		this.setBounds(0, 0, 0, 0);
+		// this.setBounds(0, 0, 0, 0);
 		this.setFocusable(true);
 		this.setAlwaysOnTop(true);
 		panel = new JPanel();
+		this.setContentPane(panel);
 		panel.add(new JLabel(ControlPanel.keyMap.get(val)));
-		getContentPane().add(panel);
 	}
 
 	public int close() {
