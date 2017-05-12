@@ -39,12 +39,8 @@ public class Tank extends GameObject
         return true;
     }
     public void update() {
-        ListIterator<Bullet> biter = bullets.listIterator();
-		while (biter.hasNext()){
-			if (biter.next().expired()){
-				biter.remove();
-			}
-        }
+    	if (!bullets.isEmpty() && bullets.getFirst().expired())
+    		bullets.removeFirst();
         double dir = getDirection();
         setDirection(dir+turn);
         this.translate(move * Math.cos(dir), move * Math.sin(dir));
