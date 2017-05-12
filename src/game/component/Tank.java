@@ -60,41 +60,6 @@ public class Tank extends GameObject
     public double turn() {
     	return turn;
     }
-	public double[] getXCoords() {
-		double dir = this.getDirection();
-		Point2D.Double loc = this.getLocation();
-		double[] xCoordinates = {
-			loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2,
-			//beginning of shooting component
-			loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * sheight / 2,
-			loc.x + Math.cos(dir) * width / 2 + Math.sin(dir) * sheight / 2 + Math.cos(dir) * swidth,
-			loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * sheight / 2 + Math.cos(dir) * swidth,
-			loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * sheight / 2,
-			//end of shooting component
-			loc.x + Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2,
-			loc.x - Math.cos(dir) * width / 2 - Math.sin(dir) * height / 2,
-			loc.x - Math.cos(dir) * width / 2 + Math.sin(dir) * height / 2
-		};
-		// I still get a NullPointerException here
-		return xCoordinates;
-	}
-    public double[] getYCoords(){
-		double dir = this.getDirection();
-		Point2D.Double loc = this.getLocation();
-        double[] yCoordinates = {
-			loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2, //for parallelogram, change to +
-			//beginning of shooting component
-			loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * sheight / 2,
-			loc.y + Math.sin(dir) * width / 2 - Math.cos(dir) * sheight / 2 + Math.sin(dir) * swidth,
-			loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * sheight / 2 + Math.sin(dir) * swidth,
-			loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * sheight / 2,
-			//end of shooting component
-			loc.y + Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
-			loc.y - Math.sin(dir) * width / 2 + Math.cos(dir) * height / 2,//-
-			loc.y - Math.sin(dir) * width / 2 - Math.cos(dir) * height / 2//+
-		};
-        return yCoordinates;
-    }
     
     public void conflict(GameObject other){
         if (other instanceof Bullet){
@@ -118,18 +83,10 @@ public class Tank extends GameObject
              */
         }
     }
-	public Shape getBounds() {	//needs to be improved so it actually does something.
-		//return new Polygon(getXCoords(), getYCoords(),4);
-		/*double[] xCoords = getXCoords(), yCoords = getYCoords();
-		Path2D.Double p2d = new Path2D.Double();
-		for (int i = 0; i < 4; i++)
-			p2d.moveTo(xCoords[i], yCoords[i]);
-		p2d.moveTo(xCoords[0], yCoords[0]);
-		return p2d;*/
+	public Shape getBounds() {
 		Point2D.Double loc = getLocation();
 		return Game.rotation(loc, getDirection()).createTransformedShape(
 				new Rectangle2D.Double(loc.x-width/2,loc.y-height/2,width,height));
-		// this is currently disfunctional
 	}
 	public Tank(Point2D.Double l, Map m, Color c) {
 		super(l, 0, m);
@@ -139,13 +96,6 @@ public class Tank extends GameObject
 	}
 	@Override
 	public void paint(Graphics2D g) {
-		/*double[] dxc = getXCoords(), dyc = getYCoords();
-		int[] ixc = new int[dxc.length], iyc = new int[dyc.length];
-		for (int i = 0; i < 4; i++) {
-			ixc[i] = (int) dxc[i];
-			iyc[i] = (int) dyc[i];
-		}
-		g.fillPolygon(ixc, iyc, 4);*/
 		super.paint(g);
 		g.setColor(getColor().darker().darker().darker().darker().darker());
 		g.draw(getBounds());
