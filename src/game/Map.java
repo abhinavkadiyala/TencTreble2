@@ -2,8 +2,9 @@ package game;
 
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import game.component.Bullet;
@@ -19,8 +20,8 @@ public class Map {
 	Set<Tank> tanks;
 	Maze walls;
 	Set<Bullet> bullets;
-	ArrayList<GameObject> rm = new ArrayList<GameObject>();
-	ArrayList<GameObject> ad = new ArrayList<GameObject>();
+	List<GameObject> rm = new LinkedList<GameObject>();
+	List<GameObject> ad = new LinkedList<GameObject>();
 	public Map() {
 		// STILL NEED SOME WAY TO USE MAZE GENERATOR
 		obj = new HashSet<GameObject>();
@@ -41,7 +42,7 @@ public class Map {
 				bullets.remove((Bullet)go);
 			} catch (ClassCastException e) {}
 		}
-		rm = new ArrayList<GameObject>();
+		rm = new LinkedList<GameObject>();
 		for (GameObject go: ad) {
 			if (go instanceof Tank) tanks.add((Tank) go);
 			else if (go instanceof Wall) continue;
@@ -49,7 +50,7 @@ public class Map {
 			else if (go instanceof Maze) walls = (Maze) go;
 			else obj.add(go);
 		}
-		ad = new ArrayList<GameObject>();
+		ad = new LinkedList<GameObject>();
 		//return obj;
 		for (Bullet b : bullets) {
 			if (b.dt < Bullet.getSpeed()) {
